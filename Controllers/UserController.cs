@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SemestralnaPracaVAII.Models;
+using Bc_exercise_and_healthy_nutrition.Models;
 
-namespace SemestralnaPracaVAII.Controllers
+namespace Bc_exercise_and_healthy_nutrition.Controllers
 {
     public class UserController : Controller
     {
@@ -19,21 +19,36 @@ namespace SemestralnaPracaVAII.Controllers
             return View();
         }
 
+
         [HttpPost]
-
-
         public IActionResult Register(RegisterViewModel model)
         {
-            // Server-side validácia
             if (!ModelState.IsValid)
             {
+              
                 return View(model);
             }
 
-            // Sem neskôr pôjde uloženie do databázy
-            // Zatiaľ iba presmerujeme na Dashboard
+            // Zatiaľ iba redirect........sem pride logika s DB
+            TempData["Success"] = "Registrácia prebehla úspešne!";
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                return View(model);
+            }
+
+            // Zatiaľ iba redirect........sem pride logika s DB
+            TempData["Success"] = "Prihlásili ste sa úspešne!";
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }
 

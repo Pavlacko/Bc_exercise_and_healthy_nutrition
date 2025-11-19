@@ -1,5 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Prihlásenie";
-}
+﻿@model Bc_exercise_and_healthy_nutrition.Models.LoginViewModel
 
-<h1>Prihlásenie používateľa</h1>
+<h2>Prihlásenie</h2>
+
+<form asp-action="Login" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Heslo" class="form-label"></label>
+        <input asp-for="Heslo" class="form-control" type="password" />
+        <span asp-validation-for="Heslo" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Prihlásiť</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

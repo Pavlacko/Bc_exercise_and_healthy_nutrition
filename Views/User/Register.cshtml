@@ -1,5 +1,47 @@
-﻿@{
-    ViewData["Title"] = "Registrácia";
-}
+﻿@model Bc_exercise_and_healthy_nutrition.Models.RegisterViewModel
 
-<h1>Registrácia používateľa</h1>
+<h2>Registrácia</h2>
+
+<form asp-action="Register" method="post">
+    <div class="mb-3">
+        <label asp-for="Meno" class="form-label"></label>
+        <input asp-for="Meno" class="form-control" />
+        <span asp-validation-for="Meno" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Heslo" class="form-label"></label>
+        <input asp-for="Heslo" class="form-control" type="password" />
+        <span asp-validation-for="Heslo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Vek" class="form-label"></label>
+        <input asp-for="Vek" class="form-control" />
+        <span asp-validation-for="Vek" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Váha" class="form-label"></label>
+        <input asp-for="Váha" class="form-control" />
+        <span asp-validation-for="Váha" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Výška" class="form-label"></label>
+        <input asp-for="Výška" class="form-control" />
+        <span asp-validation-for="Výška" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Registrovať</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
