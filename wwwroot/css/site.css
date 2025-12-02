@@ -3,37 +3,57 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ===== SIDEBAR ===== */
+/* SIDEBAR */
 .sidebar {
     width: 220px;
-    background-color: #e7f5e5;
+    background-color: #f2f8f1;
     min-height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
     padding: 20px;
-    border-right: 1px solid #cddfcc;
+    border-right: 1px solid #d5e5d3;
 }
 
 .sidebar-title {
     font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .nav-link {
-    color: #275c45 !important;
+    color: #35694c !important;
     font-weight: 500;
-    padding: 8px 0;
+    padding: 10px 0;
 }
 
     .nav-link:hover {
-        color: #0a3622 !important;
-        text-decoration: underline;
+        color: #244c37 !important;
     }
 
-/* ===== MAIN CONTENT ===== */
+/* MAIN CONTENT */
 .main-content {
     margin-left: 220px;
     padding: 20px;
+}
+
+/* CARDS (Dashboard style) */
+.card-custom {
+    border-radius: 12px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #e1e7e0;
+    margin-bottom: 20px;
+}
+
+/* PROGRESS BAR STYLE */
+.progress {
+    height: 10px;
+    border-radius: 6px;
+    background-color: #e8efe7;
+}
+
+.progress-bar {
+    background-color: #67a86e;
+    border-radius: 6px;
 }

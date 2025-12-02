@@ -5,52 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Nutričná aplikácia</title>
 
-    <!-- Bootstrap CSS (responzívny dizajn) -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" />
-
-    <!-- Naše vlastné CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 
 <body>
-
-    <!-- ===== LEFT SIDEBAR ===== -->
+    <!-- LEFT SIDEBAR -->
     <div class="sidebar">
-        <h2 class="sidebar-title">Nutrition App</h2>
+        <h2 class="sidebar-title">Nutričná aplikácia</h2>
 
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">Dashboard</a>
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Prehľad</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Food" asp-action="Add">Pridať jedlo</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-controller="Food" asp-action="List">Databáza potravín</a>
+                <a class="nav-link" asp-controller="Food" asp-action="Index">Databáza jedál</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-controller="User" asp-action="Register">Registrácia</a>
+                <a class="nav-link" asp-controller="Stats" asp-action="Index">Štatistiky</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-controller="User" asp-action="Login">Prihlásenie</a>
+                <a class="nav-link" asp-controller="User" asp-action="Profile">Profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-danger" asp-controller="User" asp-action="Logout">Odhlásiť sa</a>
             </li>
         </ul>
     </div>
 
-    <!-- ===== MAIN CONTENT WRAPPER ===== -->
+    <!-- MAIN CONTENT -->
     <div class="main-content">
-        <main role="main" class="container pt-4">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="~/js/site.js"></script>
-
     @RenderSection("Scripts", required: false)
-
 </body>
 </html>

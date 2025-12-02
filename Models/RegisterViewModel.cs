@@ -17,11 +17,11 @@ namespace Bc_exercise_and_healthy_nutrition.Models
 
         [Required(ErrorMessage = "Výška je povinná.")]
         [Range(50, 250, ErrorMessage = "Výška musí byť medzi 50 a 250 cm.")]
-        public int? Výška { get; set; }
+        public int? Vyska { get; set; }
 
         [Required(ErrorMessage = "Hmotnosť je povinná.")]
         [Range(20, 300, ErrorMessage = "Hmotnosť musí byť medzi 20 a 300 kg.")]
-        public double? Váha { get; set; }
+        public double? Vaha { get; set; }
 
         [Required(ErrorMessage = "Heslo je povinné.")]
         [MinLength(6, ErrorMessage = "Heslo musí mať aspoň 6 znakov.")]

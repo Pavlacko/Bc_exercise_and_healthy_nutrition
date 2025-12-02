@@ -1,4 +1,8 @@
-﻿@model Bc_exercise_and_healthy_nutrition.Models.RegisterViewModel
+﻿@{
+    Layout = "_AuthLayout";
+}
+
+@model Bc_exercise_and_healthy_nutrition.Models.RegisterViewModel
 
 <h2>Registrácia</h2>
 
@@ -28,15 +32,15 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="Váha" class="form-label"></label>
-        <input asp-for="Váha" class="form-control" />
-        <span asp-validation-for="Váha" class="text-danger"></span>
+        <label asp-for="Vaha" class="form-label"></label>
+        <input asp-for="Vaha" class="form-control" />
+        <span asp-validation-for="Vaha" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Výška" class="form-label"></label>
-        <input asp-for="Výška" class="form-control" />
-        <span asp-validation-for="Výška" class="text-danger"></span>
+        <label asp-for="Vyska" class="form-label"></label>
+        <input asp-for="Vyska" class="form-control" />
+        <span asp-validation-for="Vyska" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-success">Registrovať</button>
