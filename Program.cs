@@ -1,12 +1,19 @@
+using Bc_exercise_and_healthy_nutrition.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession(); // ? DOPLNIç
+builder.Services.AddSession();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseInMemoryDatabase("NutritionDb");
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -20,10 +27,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseSession(); // ? DOPLNIç
+app.UseSession(); 
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Welcome}/{action=Index}/{id?}");   // ? ZMENA
+    pattern: "{controller=Welcome}/{action=Index}/{id?}");  
 
 app.Run();
