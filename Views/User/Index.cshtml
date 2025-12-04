@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Bc_exercise_and_healthy_nutrition.Models.AppUser>
+
+@{
+    ViewData["Title"] = "Zoznam používateľov";
+}
+
+<h2>Zoznam používateľov</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Meno</th>
+            <th>Email</th>
+            <th>Vek</th>
+            <th>Výška</th>
+            <th>Váha</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.Meno</td>
+                <td>@u.Email</td>
+                <td>@u.Vek</td>
+                <td>@u.Vyska</td>
+                <td>@u.Vaha</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@u.Id" class="btn btn-sm btn-warning">Upraviť</a>
+                    <a asp-action="Delete" asp-route-id="@u.Id" class="btn btn-sm btn-danger">Zmazať</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

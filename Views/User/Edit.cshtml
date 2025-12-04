@@ -1,0 +1,54 @@
+﻿@model Bc_exercise_and_healthy_nutrition.Models.AppUser
+
+@{
+    ViewData["Title"] = "Upraviť používateľa";
+}
+
+<h2>Upraviť používateľa</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Meno" class="form-label"></label>
+        <input asp-for="Meno" class="form-control" />
+        <span asp-validation-for="Meno" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Vek" class="form-label"></label>
+        <input asp-for="Vek" class="form-control" />
+        <span asp-validation-for="Vek" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Vyska" class="form-label"></label>
+        <input asp-for="Vyska" class="form-control" />
+        <span asp-validation-for="Vyska" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Vaha" class="form-label"></label>
+        <input asp-for="Vaha" class="form-control" />
+        <span asp-validation-for="Vaha" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Heslo" class="form-label"></label>
+        <input asp-for="Heslo" class="form-control" type="password" />
+        <span asp-validation-for="Heslo" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Uložiť</button>
+    <a asp-action="Index" class="btn btn-secondary">Späť</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
