@@ -98,7 +98,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Welcome"); // alebo "Home" podľa toho, čo máš
+            return RedirectToAction("Index", "Welcome"); 
         }
 
 
@@ -137,15 +137,13 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //delete
-
         [HttpGet]
         public IActionResult Delete(int id)
         {
             var user = _context.Users.Find(id);
             if (user == null) return NotFound();
 
-            return View(user); // Views/User/Delete.cshtml
+            return View(user); 
         }
 
         [HttpPost, ActionName("Delete")]

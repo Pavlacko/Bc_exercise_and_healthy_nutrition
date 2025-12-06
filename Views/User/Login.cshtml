@@ -1,28 +1,31 @@
-﻿@{
+﻿@model Bc_exercise_and_healthy_nutrition.Models.LoginViewModel
+
+@{
     Layout = "_AuthLayout";
 }
 
-@model Bc_exercise_and_healthy_nutrition.Models.LoginViewModel
+<div class="form-container">
 
+    <h2>Prihlásenie</h2>
 
-<h2>Prihlásenie</h2>
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-<form asp-action="Login" method="post">
+    <form asp-action="Login" method="post">
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Heslo" class="form-label"></label>
+            <input asp-for="Heslo" class="form-control" type="password" />
+            <span asp-validation-for="Heslo" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Heslo" class="form-label"></label>
-        <input asp-for="Heslo" class="form-control" type="password" />
-        <span asp-validation-for="Heslo" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-success">Prihlásiť</button>
-</form>
+        <button type="submit" class="btn btn-main">Prihlásiť</button>
+    </form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

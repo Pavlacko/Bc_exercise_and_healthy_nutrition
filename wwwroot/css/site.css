@@ -1,9 +1,16 @@
+﻿/* ============================
+   ZÁKLAD
+============================ */
 body {
     background-color: #f8faf5;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-/* SIDEBAR */
+/* ============================
+   SIDEBAR
+============================ */
 .sidebar {
     width: 220px;
     background-color: #f2f8f1;
@@ -31,13 +38,17 @@ body {
         color: #244c37 !important;
     }
 
-/* MAIN CONTENT */
+/* ============================
+   HLAVNÝ OBSAH
+============================ */
 .main-content {
     margin-left: 220px;
     padding: 20px;
 }
 
-/* CARDS (Dashboard style) */
+/* ============================
+   KARTY
+============================ */
 .card-custom {
     border-radius: 12px;
     padding: 20px;
@@ -46,14 +57,100 @@ body {
     margin-bottom: 20px;
 }
 
-/* PROGRESS BAR STYLE */
-.progress {
-    height: 10px;
-    border-radius: 6px;
-    background-color: #e8efe7;
+/* ============================
+   FORMULÁRE
+============================ */
+.form-container {
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e1e7e0;
 }
 
-.progress-bar {
-    background-color: #67a86e;
-    border-radius: 6px;
+.form-label {
+    font-weight: 500;
+    color: #355243;
+}
+
+/* ============================
+   TLAČIDLÁ
+============================ */
+.btn-main {
+    background-color: #35694c;
+    border-color: #2c543d;
+    color: #fff;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-weight: 500;
+}
+
+    .btn-main:hover {
+        background-color: #2c543d;
+        border-color: #264735;
+    }
+
+/* ============================
+   TABUĽKY
+============================ */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* mobil bude scrollovať */
+}
+
+.table-nutrition {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e1e7e0;
+    width: 100%;
+}
+
+/* ============================
+   RESPONZÍVNY DIZAJN
+============================ */
+
+/* --- TABLETY / MOBILY --- */
+@media (max-width: 768px) {
+
+    /* Sidebar sa zmení na hornú lištu */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid #d5e5d3;
+    }
+
+    /* Obsah sa vysunie doprava */
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .nav-link {
+        padding: 8px 0;
+        font-size: 1rem;
+    }
+
+    .form-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .card-custom {
+        padding: 15px;
+    }
+}
+
+/* --- VEĽMI MALÉ MOBILY --- */
+@media (max-width: 480px) {
+
+    .sidebar-title {
+        font-size: 1.2rem;
+    }
+
+    .btn-main {
+        width: 100%;
+        text-align: center;
+    }
 }
