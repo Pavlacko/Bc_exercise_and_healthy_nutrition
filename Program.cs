@@ -3,14 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseInMemoryDatabase("NutritionDb");
-});
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
@@ -27,10 +24,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseSession(); 
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Welcome}/{action=Index}/{id?}");  
+    pattern: "{controller=Welcome}/{action=Index}/{id?}");
 
 app.Run();
