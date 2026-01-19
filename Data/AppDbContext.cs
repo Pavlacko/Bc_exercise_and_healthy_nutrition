@@ -1,6 +1,5 @@
 ﻿using Bc_exercise_and_healthy_nutrition.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Bc_exercise_and_healthy_nutrition.Data
 {
@@ -12,5 +11,6 @@ namespace Bc_exercise_and_healthy_nutrition.Data
         }
 
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<FoodItem> FoodItems { get; set; }
     }
 }
