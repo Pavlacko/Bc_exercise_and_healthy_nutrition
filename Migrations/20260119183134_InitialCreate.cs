@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Bc_exercise_and_healthy_nutrition.Migrations
 {
-    
+    /// <inheritdoc />
     public partial class InitialCreate : Migration
     {
-        
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -19,7 +21,8 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                     Vek = table.Column<int>(type: "int", nullable: false),
                     Vyska = table.Column<int>(type: "int", nullable: false),
                     Vaha = table.Column<double>(type: "float", nullable: false),
-                    Heslo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rola = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,6 +30,7 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                 });
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

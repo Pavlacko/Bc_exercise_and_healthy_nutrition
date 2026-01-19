@@ -25,8 +25,10 @@ namespace Bc_exercise_and_healthy_nutrition.Models
         [Range(20, 300, ErrorMessage = "Hmotnosť musí byť medzi 20 a 300 kg.")]
         public double Vaha { get; set; }
 
-        [Required(ErrorMessage = "Heslo je povinné.")]
-        [MinLength(6, ErrorMessage = "Heslo musí mať aspoň 6 znakov.")]
-        public string Heslo { get; set; } = string.Empty;
+        [Required]
+        public string PasswordHash { get; set; } = string.Empty;
+
+        [Required]
+        public string Rola { get; set; } = "User"; 
     }
 }

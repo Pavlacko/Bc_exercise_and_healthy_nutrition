@@ -30,7 +30,10 @@
                 <td>@u.Vaha</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@u.Id" class="btn btn-sm btn-warning">Upraviť</a>
-                    <a asp-action="Delete" asp-route-id="@u.Id" class="btn btn-sm btn-danger">Zmazať</a>
+                    @if (u.Rola != "Admin")
+                    {
+                        <a asp-action="Delete" asp-route-id="@u.Id" class="btn btn-sm btn-danger">Zmazať</a>   
+                    }
                 </td>
             </tr>
         }

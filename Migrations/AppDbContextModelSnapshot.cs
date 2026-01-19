@@ -33,11 +33,15 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Heslo")
+                    b.Property<string>("Meno")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Meno")
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rola")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

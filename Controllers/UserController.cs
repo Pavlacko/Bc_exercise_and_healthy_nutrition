@@ -1,9 +1,11 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Bc_exercise_and_healthy_nutrition.Data;
+﻿using Bc_exercise_and_healthy_nutrition.Data;
 using Bc_exercise_and_healthy_nutrition.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Bc_exercise_and_healthy_nutrition.Filters;
 
 namespace Bc_exercise_and_healthy_nutrition.Controllers
 {
@@ -16,16 +18,14 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             _context = context;
         }
 
-        // ========= READ: ZOZNAM POUŽÍVATEĽOV =========
-        // /User/Index
+        [RequireAdmin]
         [HttpGet]
         public IActionResult Index()
         {
             var users = _context.Users.ToList();
-            return View(users);   // Views/User/Index.cshtml
+            return View(users);  
         }
 
-        // ========= CREATE: REGISTRÁCIA =========
 
         [HttpGet]
         public IActionResult Register()
@@ -40,7 +40,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Kontrola, či už email existuje
             var exists = _context.Users.Any(u => u.Email == model.Email);
             if (exists)
             {
@@ -55,18 +54,23 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 Vek = model.Vek ?? 0,
                 Vyska = model.Vyska ?? 0,
                 Vaha = model.Vaha ?? 0,
-                Heslo = model.Heslo
+                Rola = "User"
             };
+
+            var hasher = new PasswordHasher<AppUser>();
+            user.PasswordHash = hasher.HashPassword(user, model.Heslo);
 
             _context.Users.Add(user);
             _context.SaveChanges();
 
             HttpContext.Session.SetString("LoggedIn", "true");
+            HttpContext.Session.SetInt32("UserId", user.Id);
+            HttpContext.Session.SetString("UserRole", user.Rola);
+            HttpContext.Session.SetString("UserEmail", user.Email);
 
             return RedirectToAction("Index", "Home");
         }
 
-        // ========= LOGIN / LOGOUT =========
 
         [HttpGet]
         public IActionResult Login()
@@ -78,11 +82,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            var user = _context.Users
-                .FirstOrDefault(u => u.Email == model.Email && u.Heslo == model.Heslo);
+            var user = _context.Users.FirstOrDefault(u => u.Email == model.Email);
 
             if (user == null)
             {
@@ -90,7 +90,19 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 return View(model);
             }
 
+            var hasher = new PasswordHasher<AppUser>();
+            var check = hasher.VerifyHashedPassword(user, user.PasswordHash, model.Heslo);
+
+            if (check == PasswordVerificationResult.Failed)
+            {
+                ModelState.AddModelError(string.Empty, "Nesprávny email alebo heslo.");
+                return View(model);
+            }
+
             HttpContext.Session.SetString("LoggedIn", "true");
+            HttpContext.Session.SetString("UserRole", user.Rola);
+            HttpContext.Session.SetString("UserEmail", user.Email);
+            HttpContext.Session.SetInt32("UserId", user.Id);
 
             return RedirectToAction("Index", "Home");
         }
@@ -101,7 +113,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return RedirectToAction("Index", "Welcome"); 
         }
 
-
+        [RequireAdmin]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -111,6 +123,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View(user); 
         }
 
+        [RequireAdmin]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, AppUser model)
@@ -130,13 +143,13 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             user.Vek = model.Vek;
             user.Vyska = model.Vyska;
             user.Vaha = model.Vaha;
-            user.Heslo = model.Heslo;
 
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
         }
 
+        [RequireAdmin]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -146,12 +159,17 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View(user); 
         }
 
+        [RequireAdmin]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             var user = _context.Users.Find(id);
             if (user == null) return NotFound();
+            if (user.Rola == "Admin")
+            {
+                return BadRequest("Admin účet nie je možné zmazať.");
+            }
 
             _context.Users.Remove(user);
             _context.SaveChanges();

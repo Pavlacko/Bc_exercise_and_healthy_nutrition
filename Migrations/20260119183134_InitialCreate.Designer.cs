@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bc_exercise_and_healthy_nutrition.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251207221103_InitialCreate")]
+    [Migration("20260119183134_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,11 +36,15 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Heslo")
+                    b.Property<string>("Meno")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Meno")
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rola")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
