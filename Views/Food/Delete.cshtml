@@ -1,0 +1,27 @@
+﻿@model Bc_exercise_and_healthy_nutrition.Models.FoodItem
+
+@{
+    ViewData["Title"] = "Zmazať jedlo";
+}
+
+<h2>Zmazať jedlo</h2>
+
+<div class="alert alert-warning">
+    Naozaj chceš zmazať toto jedlo?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Názov</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">kcal/100g</dt>
+    <dd class="col-sm-9">@Model.KcalPer100g</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">Zmazať</button>
+    <a asp-action="Index" class="btn btn-secondary">Späť</a>
+</form>

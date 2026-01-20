@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Bc_exercise_and_healthy_nutrition.Models.FoodItem>
+
+@{
+    ViewData["Title"] = "Jedlá";
+}
+
+<h2>Databáza jedál</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">+ Pridať jedlo</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Názov</th>
+            <th>kcal/100g</th>
+            <th>P/100g</th>
+            <th>C/100g</th>
+            <th>F/100g</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var f in Model)
+        {
+            <tr>
+                <td>@f.Name</td>
+                <td>@f.KcalPer100g</td>
+                <td>@f.ProteinPer100g</td>
+                <td>@f.CarbsPer100g</td>
+                <td>@f.FatPer100g</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@f.Id" class="btn btn-sm btn-warning">Upraviť</a>
+                    <a asp-action="Delete" asp-route-id="@f.Id" class="btn btn-sm btn-danger">Zmazať</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
