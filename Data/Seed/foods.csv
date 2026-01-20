@@ -1,0 +1,386 @@
+﻿Name,KcalPer100g,ProteinPer100g,CarbsPer100g,FatPer100g
+Kuracie prsia,165,31,0,3.6
+Kuracie stehna bez koze,180,25,0,8.5
+Morčacie prsia,135,29,0,1.5
+Hovadzie chude,170,26,0,6
+Hovadzie mlete 10 percent,215,20,0,15
+Bravcove karé,160,27,0,5
+Bravcova krkovicka,260,17,0,21
+Sunkova salama,240,15,2,20
+Dietna kuracia sunka,110,20,1,2
+Anglicka slanina,541,37,1,42
+Jaternica,290,12,4,25
+Klobasa,330,14,2,29
+Tuniak vo vlastnej stave,120,26,0,1
+Losos,208,20,0,13
+Treska,82,18,0,0.7
+Sardinky,208,25,0,11
+Krevety,99,24,0,0.3
+Tofu natural,144,15,3,8
+Tempeh,192,20,9,11
+Vajce,143,13,1.1,9.5
+Vajecny bielok,52,11,0.7,0.2
+Ryza varena,130,2.7,28,0.3
+Ryza sucha,365,7.1,80,0.7
+Cestoviny varene,131,5,25,1.1
+Cestoviny suche,371,13,75,1.5
+Zemiaky varene,87,2,20,0.1
+Bataty pecene,90,2,21,0.2
+Kuskus vareny,112,3.8,23,0.2
+Bulgur vareny,83,3.1,19,0.2
+Quinoa varena,120,4.4,21.3,1.9
+Ovsené vlocky,389,16.9,66.3,6.9
+Granola,450,10,60,18
+Chlieb biely,265,9,49,3.2
+Chlieb celozrnny,247,13,41,4.2
+Rozok,310,9,57,3.5
+Bageta,270,9,52,2
+Tortilla psenicna,310,8,52,8
+Tortilla celozrnna,295,9,49,7
+Ryžové chlebíky,387,8,80,3
+Kukuricné chlebíky,380,7,79,2.5
+Maslo,717,0.9,0.1,81
+Olivovy olej,884,0,0,100
+Repikovy olej,884,0,0,100
+Majoneza,680,1,1,75
+Horčica,66,4,5,3
+Kečup,100,1.3,23,0.2
+Jogurt biely 3.5,61,3.5,4.7,3.5
+Jogurt grécky 10,133,6,3.8,10
+Jogurt odtucneny,45,4.5,6,0.2
+Tvaroh odtucneny,70,12,3,0.2
+Tvaroh polotucny,120,15,3,5
+Cottage,98,11,3.4,4.3
+Syr eidam 30,255,30,1,15
+Syr mozarella,280,22,2,20
+Syr parmezan,431,38,4,29
+Syr nivovy,353,21,2,29
+Mlieko 1.5,47,3.4,4.8,1.5
+Mlieko 3.5,64,3.3,4.7,3.6
+Kefir,52,3.4,4.8,2
+Smetana 12,136,2.6,3.4,12
+Smetana 30,292,2,3,30
+Banan,89,1.1,23,0.3
+Jablko,52,0.3,14,0.2
+Hruska,57,0.4,15,0.1
+Pomaranč,47,0.9,12,0.1
+Mandarinka,53,0.8,13,0.3
+Grapefruit,42,0.8,11,0.1
+Hrozno,69,0.7,18,0.2
+Jahody,32,0.7,7.7,0.3
+Maliny,52,1.2,12,0.7
+Boruvky,57,0.7,14,0.3
+Ananas,50,0.5,13,0.1
+Mango,60,0.8,15,0.4
+Kivi,61,1.1,15,0.5
+Broskyna,39,0.9,10,0.3
+Marhula,48,1.4,11,0.4
+Slivka,46,0.7,11,0.3
+Melon,34,0.8,8,0.2
+Avokado,160,2,9,15
+Datle susene,282,2.5,75,0.4
+Hrozienka,299,3.1,79,0.5
+Orechy vlasske,654,15,14,65
+Mandle,579,21,22,50
+Lieskovce,628,15,17,61
+Keshu,553,18,30,44
+Pistacie,562,20,28,45
+Arašidy,567,26,16,49
+Chia semienka,486,17,42,31
+Lanske semienka,534,18,29,42
+Slnečnicove semienka,584,21,20,51
+Tekvicove semienka,559,30,11,49
+Cokolada horka 70,600,8,46,43
+Cokolada mliecna,535,7,59,30
+Med,304,0.3,82,0
+Dzem,250,0.5,65,0.2
+Cukor,400,0,100,0
+Ryza basmati varena,130,2.9,28,0.3
+Ryza jazminova varena,129,2.7,28,0.3
+Zemiakova kasa,90,2,18,1
+Hranolky pecene,150,2.5,24,4
+Hranolky smažene,312,3.4,41,15
+Chlieb toastovy,266,8.7,49,3.3
+Chlieb razny,259,8.5,48,3.3
+Chlieb sourdough,240,8,46,1.5
+Bagel,250,10,48,1.5
+Cereálie kukurične,370,7,84,1
+Müsli,370,10,66,7
+Proteínová tyčinka,380,30,35,10
+Proteínový prášok whey,400,80,8,6
+Ryžový proteín,370,75,10,4
+Sojový proteín,380,85,5,2
+Fazuľa varena,127,8.7,23,0.5
+Cicer vareny,164,9,27,2.6
+Šošovica varena,116,9,20,0.4
+Hrasok vareny,84,5.4,15,0.4
+Fazuľa čierna varena,132,8.9,23.7,0.5
+Fazuľa cervena varena,127,8.7,22.8,0.5
+Kukurica varena,96,3.4,21,1.5
+Kukurica konzervovana,86,2.9,19,1.2
+Cervena repa varena,44,1.7,10,0.2
+Mrkva,41,0.9,10,0.2
+Mrkva varena,35,0.8,8,0.2
+Brokolica,34,2.8,6.6,0.4
+Karfiol,25,1.9,5,0.3
+Spinat,23,2.9,3.6,0.4
+Uhorka,15,0.7,3.6,0.1
+Paradajka,18,0.9,3.9,0.2
+Paprika,31,1,6,0.3
+Cibula,40,1.1,9.3,0.1
+Cesnak,149,6.4,33,0.5
+Salat ladovy,14,0.9,3,0.1
+Rukola,25,2.6,3.7,0.7
+Kapusta biela,25,1.3,5.8,0.1
+Kapusta kysla,19,0.9,4.3,0.1
+Kedluben,27,1.7,6.2,0.1
+Zeler,16,0.7,3,0.2
+Cuketa,17,1.2,3.1,0.3
+Baklazan,25,1,6,0.2
+Sampinony,22,3.1,3.3,0.3
+Hlivy,33,3.3,6,0.4
+Rybie prsty,220,12,18,12
+Surimi,95,7,15,1
+Pstruh,168,20,0,8
+Makrela,262,19,0,21
+Tuniak v oleji,200,24,0,10
+Sardinky v oleji,250,23,0,18
+Kravsky syr trojuholnik,280,14,5,23
+Syr feta,264,14,4,21
+Syr halloumi,321,22,2,26
+Syr ricotta,174,11,3,13
+Syr cottage light,80,12,3,1.5
+Tvaroh proteinovy,95,18,4,0.5
+Jogurt skyr,60,11,3.6,0.2
+Mlieko bezlaktozove 1.5,47,3.4,4.8,1.5
+Syr cheddar,403,25,1.3,33
+Syr gouda,356,25,2.2,27
+Syr camembert,300,19,0.5,24
+Syr brie,334,21,0.5,28
+Syr emental,380,28,0.1,29
+Syr tvaruzky,125,28,2,0.5
+Kefir ochuteny,70,3,10,2
+Jogurt ovocny,95,4,14,2.5
+Mliecna ryza,120,3,20,2
+Puding vanilkovy,110,3,18,2.5
+Zmrzlina vanilkova,207,3.5,24,11
+Zmrzlina sorbet,120,0.5,28,0.2
+Coca cola,42,0,10.6,0
+Dzus pomaranč 100,45,0.7,10.4,0.2
+Dzus jablkovy 100,46,0.1,11.3,0.1
+Energeticky napoj,45,0,11,0
+Kava bez cukru,2,0.1,0,0
+Caj nesladeny,1,0,0.2,0
+Pivo,43,0.5,3.6,0
+Vino biele,82,0.1,2.6,0
+Vino cervene,85,0.1,2.6,0
+Oats milk,50,1,6.7,1.8
+Mandlove mlieko,15,0.6,0.3,1.2
+Sojove mlieko,45,3.3,2.5,2
+Proteinovy napoj,70,10,4,1
+Proteínový puding,80,10,8,1
+Ryžová kaša instantná,360,7,80,1.5
+Krupicova kasa,110,3,18,2
+Palacinka,227,6,28,10
+Lievanec,230,7,32,9
+Vafle,290,6,35,15
+Croissant,406,8,45,21
+Buchta,320,6,48,12
+Kolac tvarohovy,260,8,35,10
+Donut,452,5,51,25
+Pizza margarita,266,11,33,10
+Pizza sunkova,280,13,32,12
+Hamburger,250,12,23,12
+Cheeseburger,300,15,25,16
+Hranolky fastfood,312,3.4,41,15
+Hotdog,290,10,26,16
+Kebab,215,11,22,10
+Tortilla chicken wrap,240,14,28,8
+Burrito,230,10,30,8
+Sushi maki,140,6,28,2
+Sushi nigiri,160,8,30,2.5
+Ramen,80,3,10,3
+Pho,60,3,7,2
+Curry kuracie,140,10,8,8
+Butter chicken,190,12,6,13
+Gulas,120,8,6,7
+Svieckova,150,9,10,9
+Segedinsky gulas,140,7,9,9
+Bryndzove halusky,240,8,26,12
+Halušky,190,5,35,4
+Kapustnica,60,3,4,3
+Cesnacka,45,2,6,1.5
+Paradajkova polievka,35,1,7,0.5
+Vyvar,20,2,1,0.5
+Cibulacka,50,2,6,2
+Hrachova polievka,70,4,10,2
+Fazulova polievka,80,5,12,2
+Sosovica na kyslo,120,7,18,2
+Rizoto kuracie,150,9,20,4
+Rizoto zeleninove,130,4,23,2
+Spagety bolonske,160,7,20,6
+Spagety carbonara,220,8,20,12
+Lasagne,180,9,16,8
+Mac and cheese,200,8,18,10
+Smazeny syr,300,16,20,18
+Smazeny rezen,260,18,16,14
+Kuraci rezen,240,20,14,12
+Fish and chips,250,10,26,14
+Zemiakovy salat,150,2.5,18,7
+Cestovinovy salat,170,5,25,6
+Salat Caesar,190,9,8,14
+Salat grecky,120,4,6,9
+Salat tuna,140,12,4,7
+Quinoa salat,130,4,20,3
+Ovsena kasa,110,4,18,2.5
+Jogurt s ovocim,95,4,14,2.5
+Tvaroh s ovocim,120,12,10,3
+Tvaroh s medom,150,12,15,3
+Cottage s paradajkou,90,11,4,3
+Sendvic sunkovy,240,12,28,9
+Sendvic syrovy,260,12,30,11
+Toast sunka syr,280,14,28,12
+Panini kuracie,250,16,30,8
+Bageta tuna,230,12,30,6
+Chlieb s maslom,320,7,45,13
+Chlieb so sunkou,260,14,38,6
+Chlieb so syrom,300,15,36,11
+Chlieb s vajcom,240,10,28,12
+Cereálne mlieko,90,3,14,2
+Kukurične lupienky s mliekom,160,5,30,3
+Oreo susienky,480,5,68,20
+Maslove susienky,520,6,60,26
+Piskoty,390,10,78,4
+Ryzovy puding,120,3,20,2
+Cokoladovy puding,130,3,22,3
+Tiramisu,300,6,35,16
+Cheesecake,320,6,28,20
+Panna cotta,260,4,18,18
+Jablkovy zavin,280,4,40,12
+Bananovy chlieb,330,6,50,12
+Muffin,400,6,52,18
+Brownie,450,5,50,25
+Palacinky s dzemom,260,6,40,8
+Palacinky s nutellou,320,6,45,14
+Nutella,539,6,57,31
+Arašidove maslo,588,25,20,50
+Tuniakovy salat,160,14,3,10
+Vajickovy salat,220,10,3,18
+Kuraci salat,170,15,4,10
+Zeleninovy salat,50,2,10,0.5
+Cervena sosovica varena,116,9,20,0.4
+Bulgur suchy,342,12,76,1.3
+Quinoa sucha,368,14,64,6
+Kuskus suchy,376,13,77,0.6
+Ryza natural varena,112,2.3,23,0.9
+Pohanka varena,92,3.4,20,0.6
+Pohanka sucha,343,13,71,3.4
+Jačmenné krupy varene,123,2.3,28,0.4
+Jačmenné krupy suche,352,10,74,2.3
+Chlieb proteinovy,250,20,15,10
+Tortilla proteinova,290,18,28,9
+Pita chlieb,275,9,55,1.2
+Naan,310,9,52,8
+Hummus,166,8,14,10
+Falafel,333,13,31,18
+Guacamole,160,2,9,15
+Salsa,36,1.5,7,0.2
+Pesto,450,5,6,45
+Paradajkove passata,29,1.4,4.7,0.2
+Tuniakova pomazanka,220,15,2,17
+Syrova pomazanka,260,10,4,24
+Bryndza,310,20,2,25
+Kysla smotana,136,2.6,3.4,12
+Tatarska omacka,450,1,6,47
+Klobasovy gulas,180,8,6,13
+Kuracie na paprike,140,10,8,8
+Ryba na masle,190,20,0,12
+Zeleninove curry,120,3,15,6
+Tofu stir fry,140,10,10,7
+Kuraci stir fry,150,16,10,5
+Ryža s vajcom,170,6,24,5
+Fried rice,190,5,28,6
+Smazena ryza,190,5,28,6
+Omeleta,154,11,1,11
+Miesane vajcia,150,10,2,11
+Varené vajcia,143,13,1.1,9.5
+Vajecna praženica so sunkou,180,12,2,13
+Cottage pancake,180,12,20,6
+Proteinove palacinky,200,18,20,6
+Proteinova kasa,160,18,18,2
+Smoothie banan,80,1.2,18,0.5
+Smoothie jahoda,60,1,14,0.3
+Smoothie mango,70,0.8,16,0.4
+Ovocny salat,55,0.6,13,0.2
+Zeleninovy wrap,210,6,30,7
+Kuraci wrap,240,14,28,8
+Tuniak wrap,230,13,26,8
+Sunkovy wrap,250,12,28,10
+Syrovy wrap,260,11,28,12
+Ryzova misa poke,150,8,20,4
+Poke losos,180,12,18,8
+Poke tuna,170,12,18,6
+Poke tofu,160,10,20,5
+Sashimi losos,208,20,0,13
+Sashimi tuna,120,26,0,1
+Kimchi,15,1,2.5,0.2
+Nakladana uhorka,12,0.5,2,0.1
+Kysle zeli,19,0.9,4.3,0.1
+Ryzovy ocot,18,0,4,0
+Sojova omacka,53,8,5,0.6
+Teriyaki omacka,90,2,20,0.2
+Miso pasta,199,12,26,6
+Miso polievka,35,2,5,1
+Edamame,122,11,10,5
+Tofu udene,170,19,3,10
+Seitan,140,25,6,2
+Proteinovy chlieb sendvic,260,18,20,9
+Proteinovy jogurt,70,10,5,0.5
+Proteinovy skyr ovocny,80,11,7,0.2
+Pecene kuracie kridla,290,23,0,21
+Pecene bravcove rebra,320,20,0,26
+Pecene zemiaky,110,2.5,23,1
+Pecena zelenina,70,2,10,3
+Grilovana zelenina,60,2,8,3
+Grilovane kuracie,165,31,0,3.6
+Grilovane hovadzie,170,26,0,6
+Grilovana ryba,140,20,0,6
+Tvarohovy dezert,170,12,18,5
+Ryza na mlieku,120,3,20,2
+Cokoladovy napoj,70,3,11,1.5
+Kakao s mliekom,80,3.5,12,2
+Matcha latte,60,2,8,2
+Cappuccino,40,2,4,2
+Latte,60,3,6,3
+Proteinove smoothie,90,12,8,1
+Sendvic vajickovy,260,12,28,11
+Sendvic kuraci,240,14,30,8
+Sendvic tuna,230,13,28,7
+Cestoviny pesto,220,6,30,10
+Cestoviny tuna,190,12,25,5
+Cestoviny syrova omacka,240,10,28,11
+Zemiaky s tvarohom,140,7,22,3
+Zemiaky s maslom,180,3,22,8
+Zemiaky s vajcom,160,8,20,6
+Salat s avokadom,120,2,8,9
+Salat s kuracim,160,16,6,8
+Salat s lososom,180,14,6,12
+Salat s fetou,150,6,6,11
+Cottage bowl,140,12,10,5
+Skyr bowl,120,11,12,2
+Ovsena kasa s bananom,140,4,25,3
+Ovsena kasa s orechmi,200,6,22,10
+Ovsena kasa s proteinom,180,18,20,3
+Ryza s kuracim,160,12,22,4
+Ryza s lososom,180,12,20,7
+Ryza s tofu,150,10,22,4
+Bulgur s kuracim,150,12,20,3
+Quinoa s kuracim,160,13,18,5
+Quinoa s tofu,150,11,20,4
+Cicerovy salat,140,6,20,4
+Sosovicovy salat,120,7,16,3
+Fazuľovy salat,130,7,18,3
+Tuniakovy sendvic,240,14,28,8
+Kuraci sendvic,250,16,28,9
+Syrovy sendvic,270,12,30,12
+Sunkovy sendvic,245,13,30,8

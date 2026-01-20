@@ -33,8 +33,11 @@ app.MapControllerRoute(
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+
     AdminSeeder.SeedAdmin(db);
-    FoodSeeder.SeedFoods(db);
+    FoodSeeder.SeedFoods(db, env);
+
 }
 
 app.Run();
