@@ -4,6 +4,7 @@ using Bc_exercise_and_healthy_nutrition.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bc_exercise_and_healthy_nutrition.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260120200324_AddDiaryEntities")]
+    partial class AddDiaryEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,39 +61,6 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.DailyGoal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("CarbsGoal")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("FatGoal")
-                        .HasColumnType("float");
-
-                    b.Property<double>("KcalGoal")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ProteinGoal")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("DailyGoals");
                 });
 
             modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.FoodItem", b =>
@@ -150,17 +120,6 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                     b.HasIndex("FoodItemId");
 
                     b.ToTable("MealEntries");
-                });
-
-            modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.DailyGoal", b =>
-                {
-                    b.HasOne("Bc_exercise_and_healthy_nutrition.Models.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.MealEntry", b =>
