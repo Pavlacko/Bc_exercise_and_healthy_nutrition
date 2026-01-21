@@ -1,0 +1,127 @@
+﻿(function () {
+    const dateInput = document.getElementById("diaryDate");
+    const foodSelect = document.getElementById("foodSelect");
+    const gramsInput = document.getElementById("gramsInput");
+    const addBtn = document.getElementById("addEntryBtn");
+    const addError = document.getElementById("addError");
+    const entriesBody = document.getElementById("entriesBody");
+
+    const sumCount = document.getElementById("sumCount");
+    const sumKcal = document.getElementById("sumKcal");
+    const sumP = document.getElementById("sumP");
+    const sumC = document.getElementById("sumC");
+    const sumF = document.getElementById("sumF");
+
+    function showError(msg) {
+        addError.style.display = "block";
+        addError.textContent = msg;
+    }
+
+    function hideError() {
+        addError.style.display = "none";
+        addError.textContent = "";
+    }
+
+    async function refreshSummary() {
+        const d = dateInput.value;
+        const resp = await fetch(`/Diary/Summary?date=${encodeURIComponent(d)}`);
+        if (!resp.ok) return;
+
+        const data = await resp.json();
+        sumCount.textContent = data.count;
+        sumKcal.textContent = data.kcal;
+        sumP.textContent = data.protein;
+        sumC.textContent = data.carbs;
+        sumF.textContent = data.fat;
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    function addRow(item) {
+        const tr = document.createElement("tr");
+        tr.setAttribute("data-id", item.id);
+
+        tr.innerHTML = `
+            <td>${escapeHtml(item.foodName)}</td>
+            <td>${item.grams}</td>
+            <td>${item.kcal}</td>
+            <td>${item.protein}</td>
+            <td>${item.carbs}</td>
+            <td>${item.fat}</td>
+            <td><button class="btn btn-sm btn-danger delBtn">Zmazať</button></td>
+        `;
+
+        entriesBody.prepend(tr);
+    }
+
+    async function addEntry() {
+        hideError();
+
+        const grams = Number(gramsInput.value);
+        if (!grams || grams < 1 || grams > 5000) {
+            showError("Zadaj gramáž 1–5000 g.");
+            return;
+        }
+
+        const payload = {
+            foodItemId: Number(foodSelect.value),
+            grams: grams,
+            date: dateInput.value
+        };
+
+        const resp = await fetch("/Diary/AddEntry", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        if (!resp.ok) {
+            const txt = await resp.text();
+            showError(txt || "Nepodarilo sa pridať záznam.");
+            return;
+        }
+
+        const data = await resp.json();
+        addRow(data);
+        await refreshSummary();
+    }
+
+    async function deleteEntry(id) {
+        const resp = await fetch("/Diary/DeleteEntry", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id })
+        });
+
+        if (!resp.ok) return;
+
+        const tr = entriesBody.querySelector(`tr[data-id="${id}"]`);
+        if (tr) tr.remove();
+
+        await refreshSummary();
+    }
+
+    addBtn.addEventListener("click", addEntry);
+
+    entriesBody.addEventListener("click", function (e) {
+        const btn = e.target.closest(".delBtn");
+        if (!btn) return;
+
+        const tr = e.target.closest("tr");
+        const id = Number(tr.getAttribute("data-id"));
+        deleteEntry(id);
+    });
+
+    dateInput.addEventListener("change", function () {
+        window.location.href = `/Diary/Index?date=${encodeURIComponent(dateInput.value)}`;
+    });
+
+    refreshSummary();
+})();
