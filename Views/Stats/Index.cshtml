@@ -8,7 +8,6 @@
     <div class="col-md-6">
         <div class="card-custom">
             <h4>Dnešný súhrn</h4>
-            <div class="small-help">Automaticky sa berie z denníka za dnešný dátum.</div>
 
             <div class="kpi-grid mt-3">
                 <div class="kpi-item">
@@ -46,25 +45,6 @@
 
 <hr />
 
-<div class="card-custom" style="max-width: 400px;">
-    <h4>Rýchly BMI kalkulátor</h4>
-
-    <div class="mb-3">
-        <label for="bmiWeight" class="form-label">Hmotnosť (kg)</label>
-        <input type="number" id="bmiWeight" class="form-control" min="20" max="300" />
-    </div>
-
-    <div class="mb-3">
-        <label for="bmiHeight" class="form-label">Výška (cm)</label>
-        <input type="number" id="bmiHeight" class="form-control" min="100" max="250" />
-    </div>
-
-    <button id="bmiCalculateBtn" class="btn btn-success mb-3">Vypočítať BMI</button>
-
-    <div id="bmiResult" class="fw-bold"></div>
-</div>
-
 @section Scripts {
-    <script src="~/js/bmi-calculator.js"></script>
     <script src="~/js/stats.js"></script>
 }

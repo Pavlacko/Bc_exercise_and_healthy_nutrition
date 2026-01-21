@@ -20,9 +20,6 @@
 
         <ul class="nav flex-column">
 
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">Prehľad</a>
-            </li>
 
             @if (loggedIn)
             {
@@ -32,6 +29,10 @@
 
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Stats" asp-action="Index">Štatistiky</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Education" asp-action="Index">Tutorialy</a>
                 </li>
             }
 

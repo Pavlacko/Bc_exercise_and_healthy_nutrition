@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Tutorialy";
+}
+
+<h2 class="page-title">Základy výživy</h2>
+
+<div class="card-custom">
+    <p>
+        Táto sekcia slúži ako úvodná príručka pre ľudí, ktorí začínajú
+        so zdravým stravovaním a sledovaním svojho energetického príjmu.
+    </p>
+
+    <ul>
+        <li><a asp-action="Calories">Čo sú kalórie a energetická bilancia</a></li>
+        <li><a asp-action="Macros">Makroživiny – proteíny, sacharidy, tuky</a></li>
+        <li><a asp-action="Tips">Praktické tipy a časté chyby</a></li>
+        <li><a asp-controller="Calculators" asp-action="BMI">BMI kalkulačka (index telesnej hmotnosti) </a></li>
+        <li><a asp-controller="Calculators" asp-action="BMR">BMR kalkulačka (bazálny metabolizmus)</a></li>
+        <li><a asp-controller="Calculators" asp-action="Calories">Odporúčaný denný kalorický príjem</a></li>
+    </ul>
+</div>

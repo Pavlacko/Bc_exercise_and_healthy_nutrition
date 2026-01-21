@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Denný kalorický príjem";
+}
+
+<h2 class="page-title">Odporúčaný denný kalorický príjem</h2>
+
+<p class="small-help">
+    Odporúčaný denný kalorický príjem vychádza z hodnoty BMR
+    a zohľadňuje úroveň fyzickej aktivity počas dňa.
+    Táto hodnota predstavuje orientačný príjem energie,
+    pri ktorom si človek dlhodobo udržiava telesnú hmotnosť.
+</p>
+
+<p class="small-help">
+    Pri nižšom príjme dochádza k úbytku hmotnosti,
+    pri vyššom k jej nárastu.
+</p>
+
+<div class="card-custom" style="max-width:400px;">
+    <label class="form-label">BMR (kcal)</label>
+    <input id="calBmr" type="number" class="form-control mb-2" />
+
+    <label class="form-label">Úroveň aktivity</label>
+    <select id="calActivity" class="form-select mb-2">
+        <option value="1.2">Sedavý režim</option>
+        <option value="1.375">Mierna aktivita</option>
+        <option value="1.55">Stredná aktivita</option>
+        <option value="1.725">Vysoká aktivita</option>
+    </select>
+
+    <button id="calBtn" class="btn btn-main">Vypočítať</button>
+
+    <div id="calResult" class="mt-3 fw-bold"></div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("calBtn").addEventListener("click", () => {
+            const bmr = Number(calBmr.value);
+            const factor = Number(calActivity.value);
+            if (!bmr) return;
+
+            const kcal = Math.round(bmr * factor);
+            calResult.textContent = "Odporúčaný príjem: " + kcal + " kcal/deň";
+        });
+    </script>
+}
