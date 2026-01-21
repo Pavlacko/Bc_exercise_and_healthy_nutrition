@@ -1,16 +1,10 @@
-﻿/* ============================
-   ZÁKLAD
-============================ */
-body {
+﻿body {
     background-color: #f8faf5;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* ============================
-   SIDEBAR
-============================ */
 .sidebar {
     width: 220px;
     background-color: #f2f8f1;
@@ -38,17 +32,12 @@ body {
         color: #244c37 !important;
     }
 
-/* ============================
-   HLAVNÝ OBSAH
-============================ */
 .main-content {
     margin-left: 220px;
     padding: 20px;
 }
 
-/* ============================
-   KARTY
-============================ */
+
 .card-custom {
     border-radius: 12px;
     padding: 20px;
@@ -57,9 +46,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* ============================
-   FORMULÁRE
-============================ */
+
 .form-container {
     max-width: 600px;
     background-color: #ffffff;
@@ -73,9 +60,6 @@ body {
     color: #355243;
 }
 
-/* ============================
-   TLAČIDLÁ
-============================ */
 .btn-main {
     background-color: #35694c;
     border-color: #2c543d;
@@ -90,12 +74,9 @@ body {
         border-color: #264735;
     }
 
-/* ============================
-   TABUĽKY
-============================ */
 .table-wrapper {
     width: 100%;
-    overflow-x: auto; /* mobil bude scrollovať */
+    overflow-x: auto; 
 }
 
 .table-nutrition {
@@ -105,14 +86,8 @@ body {
     width: 100%;
 }
 
-/* ============================
-   RESPONZÍVNY DIZAJN
-============================ */
-
-/* --- TABLETY / MOBILY --- */
 @media (max-width: 768px) {
 
-    /* Sidebar sa zmení na hornú lištu */
     .sidebar {
         position: relative;
         width: 100%;
@@ -121,7 +96,6 @@ body {
         border-bottom: 1px solid #d5e5d3;
     }
 
-    /* Obsah sa vysunie doprava */
     .main-content {
         margin-left: 0;
         padding: 15px;
@@ -142,7 +116,6 @@ body {
     }
 }
 
-/* --- VEĽMI MALÉ MOBILY --- */
 @media (max-width: 480px) {
 
     .sidebar-title {

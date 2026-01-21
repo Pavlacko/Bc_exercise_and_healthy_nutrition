@@ -2,7 +2,49 @@
     ViewData["Title"] = "Štatistiky";
 }
 
-<h2>Štatistiky</h2>
+<h2 class="page-title">Štatistiky</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h4>Dnešný súhrn</h4>
+            <div class="small-help">Automaticky sa berie z denníka za dnešný dátum.</div>
+
+            <div class="kpi-grid mt-3">
+                <div class="kpi-item">
+                    <div class="kpi-label">Kcal</div>
+                    <div class="kpi-value" id="todayKcal">0</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-label">P (g)</div>
+                    <div class="kpi-value" id="todayP">0</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-label">C (g)</div>
+                    <div class="kpi-value" id="todayC">0</div>
+                </div>
+                <div class="kpi-item">
+                    <div class="kpi-label">F (g)</div>
+                    <div class="kpi-value" id="todayF">0</div>
+                </div>
+            </div>
+
+            <div class="mt-2 small-help">
+                Počet položiek: <strong id="todayCount">0</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h4>Kalórie posledných 7 dní</h4>
+            <canvas id="weeklyCanvas" height="180"></canvas>
+            <div class="small-help mt-2" id="weeklyHint"></div>
+        </div>
+    </div>
+</div>
+
+<hr />
 
 <div class="card-custom" style="max-width: 400px;">
     <h4>Rýchly BMI kalkulátor</h4>
@@ -24,4 +66,5 @@
 
 @section Scripts {
     <script src="~/js/bmi-calculator.js"></script>
+    <script src="~/js/stats.js"></script>
 }

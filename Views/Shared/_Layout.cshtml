@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿!DOCTYPE html>
 <html lang="sk">
 <head>
     <meta charset="utf-8" />
@@ -10,31 +10,48 @@
 </head>
 
 <body>
-    <!-- LEFT SIDEBAR -->
+    @{
+        var loggedIn = Context.Session.GetString("LoggedIn") == "true";
+        var role = Context.Session.GetString("UserRole");
+    }
+
     <div class="sidebar">
         <h2 class="sidebar-title">Nutričná aplikácia</h2>
 
         <ul class="nav flex-column">
+
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Home" asp-action="Index">Prehľad</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Food" asp-action="Add">Pridať jedlo</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Food" asp-action="Index">Databáza jedál</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Stats" asp-action="Index">Štatistiky</a>
-            </li>
-            @if (Context.Session.GetString("UserRole") == "Admin") {
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="User" asp-action="Index">Používatelia</a>
-            </li>
+
+            @if (loggedIn)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Diary" asp-action="Index">Denník</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Stats" asp-action="Index">Štatistiky</a>
+                </li>
             }
-            <li class="nav-item">
-                <a class="nav-link text-danger" asp-controller="User" asp-action="Logout">Odhlásiť sa</a>
-            </li>
+
+            @if (loggedIn && role == "Admin")
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Food" asp-action="Index">Databáza jedál</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="User" asp-action="Index">Používatelia</a>
+                </li>
+            }
+
+            @if (loggedIn)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-danger" asp-controller="User" asp-action="Logout">Odhlásiť sa</a>
+                </li>
+            }
         </ul>
     </div>
 
