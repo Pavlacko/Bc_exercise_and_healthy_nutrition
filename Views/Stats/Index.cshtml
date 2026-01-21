@@ -28,6 +28,18 @@
                 </div>
             </div>
 
+            <div class="card-custom mt-3" id="goalBox" style="display:none;">
+                <h5>Denný cieľ</h5>
+                <div>Kcal: <strong id="gKcal"></strong> (<span id="pKcal"></span>%)</div>
+                <div>P: <strong id="gP"></strong> g (<span id="pP"></span>%)</div>
+                <div>C: <strong id="gC"></strong> g (<span id="pC"></span>%)</div>
+                <div>F: <strong id="gF"></strong> g (<span id="pF"></span>%)</div>
+            </div>
+
+            <div class="text-muted mt-2" id="goalMissing" style="display:none;">
+                Denný cieľ zatiaľ nie je nastavený.
+            </div>
+
             <div class="mt-2 small-help">
                 Počet položiek: <strong id="todayCount">0</strong>
             </div>
@@ -48,3 +60,5 @@
 @section Scripts {
     <script src="~/js/stats.js"></script>
 }
+
+@* generovane pomocou AI *@

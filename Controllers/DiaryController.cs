@@ -42,7 +42,9 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                     .Include(e => e.FoodItem)
                     .Where(e => e.AppUserId == userId.Value && e.Date == d)
                     .OrderByDescending(e => e.Id)
-                    .ToList()
+                    .ToList(),
+
+                Goal = _context.DailyGoals.FirstOrDefault(g => g.AppUserId == userId.Value && g.Date == d)
             };
 
             return View(vm);
@@ -140,6 +142,42 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return Json(new { ok = true });
         }
 
+        [HttpPost]
+        public IActionResult SaveGoal([FromBody] SaveGoalDto dto)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return Unauthorized();
+
+            var d = dto.Date.Date;
+
+            if (dto.KcalGoal < 0 || dto.KcalGoal > 10000) return BadRequest("Neplatný cieľ kcal.");
+            if (dto.ProteinGoal < 0 || dto.ProteinGoal > 500) return BadRequest("Neplatný cieľ proteínu.");
+            if (dto.CarbsGoal < 0 || dto.CarbsGoal > 1000) return BadRequest("Neplatný cieľ sacharidov.");
+            if (dto.FatGoal < 0 || dto.FatGoal > 500) return BadRequest("Neplatný cieľ tukov.");
+
+            var goal = _context.DailyGoals
+                .FirstOrDefault(g => g.AppUserId == userId.Value && g.Date == d);
+
+            if (goal == null)
+            {
+                goal = new DailyGoal
+                {
+                    AppUserId = userId.Value,
+                    Date = d
+                };
+                _context.DailyGoals.Add(goal);
+            }
+
+            goal.KcalGoal = dto.KcalGoal;
+            goal.ProteinGoal = dto.ProteinGoal;
+            goal.CarbsGoal = dto.CarbsGoal;
+            goal.FatGoal = dto.FatGoal;
+
+            _context.SaveChanges();
+
+            return Json(new { ok = true });
+        }
+
         [HttpGet]
         public IActionResult Summary(DateTime date)
         {
@@ -192,6 +230,15 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             public int FoodItemId { get; set; }
             public double Grams { get; set; }
             public DateTime Date { get; set; }
+        }
+
+        public class SaveGoalDto
+        {
+            public DateTime Date { get; set; }
+            public double KcalGoal { get; set; }
+            public double ProteinGoal { get; set; }
+            public double CarbsGoal { get; set; }
+            public double FatGoal { get; set; }
         }
     }
 }

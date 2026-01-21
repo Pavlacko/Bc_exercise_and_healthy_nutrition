@@ -1,9 +1,20 @@
 ﻿(async function () {
+    //generovane pomocou AI
     const todayKcal = document.getElementById("todayKcal");
     const todayP = document.getElementById("todayP");
     const todayC = document.getElementById("todayC");
     const todayF = document.getElementById("todayF");
     const todayCount = document.getElementById("todayCount");
+
+    const goalBox = document.getElementById("goalBox");
+    const goalMissing = document.getElementById("goalMissing");
+
+    const gKcal = document.getElementById("gKcal");
+    const gP = document.getElementById("gP");
+    const gC = document.getElementById("gC");
+    const gF = document.getElementById("gF");
+
+ 
 
     const canvas = document.getElementById("weeklyCanvas");
     const hint = document.getElementById("weeklyHint");
@@ -14,11 +25,37 @@
         if (!resp.ok) return;
 
         const data = await resp.json();
+
         todayKcal.textContent = data.kcal;
         todayP.textContent = data.protein;
         todayC.textContent = data.carbs;
         todayF.textContent = data.fat;
         todayCount.textContent = data.count;
+
+        if (goalBox && goalMissing) {
+            if (!data.goal) {
+                goalBox.style.display = "none";
+                goalMissing.style.display = "block";
+            } else {
+                goalMissing.style.display = "none";
+                goalBox.style.display = "block";
+
+                gKcal.textContent = data.goal.kcalGoal;
+                gP.textContent = data.goal.proteinGoal;
+                gC.textContent = data.goal.carbsGoal;
+                gF.textContent = data.goal.fatGoal;
+
+                const pct = (value, goal) => {
+                    if (!goal || goal <= 0) return 0;
+                    return Math.min(999, Math.round((value / goal) * 100));
+                };
+
+                pKcal.textContent = pct(data.kcal, data.goal.kcalGoal);
+                pP.textContent = pct(data.protein, data.goal.proteinGoal);
+                pC.textContent = pct(data.carbs, data.goal.carbsGoal);
+                pF.textContent = pct(data.fat, data.goal.fatGoal);
+            }
+        }
     }
 
     function clearCanvas() {

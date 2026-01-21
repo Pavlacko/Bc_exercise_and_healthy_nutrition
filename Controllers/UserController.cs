@@ -34,6 +34,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View();
         }
 
+        //generovane pomocou AI
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterViewModel model)
@@ -79,6 +80,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View();
         }
 
+        //generovane pomocou AI
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel model)
@@ -124,6 +126,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View(user); 
         }
 
+        //generovane pomocou AI
         [RequireAdmin]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -160,6 +163,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View(user); 
         }
 
+        //generovane pomocou AI
         [RequireAdmin]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

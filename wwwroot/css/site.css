@@ -127,3 +127,101 @@
         text-align: center;
     }
 }
+
+
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #244c37;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #355243;
+    margin-bottom: 12px;
+}
+
+
+
+.nav-link.active {
+    font-weight: 700;
+    background-color: #e7f3e6;
+    border-radius: 10px;
+    padding-left: 12px;
+}
+
+
+
+.card-custom:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s ease;
+}
+
+
+
+.alert-custom {
+    border-radius: 12px;
+    padding: 12px 16px;
+    border: 1px solid #e1e7e0;
+    margin-bottom: 15px;
+}
+
+.alert-success {
+    background-color: #eefaf0;
+    border-color: #bfe5c7;
+    color: #1d5b2f;
+}
+
+.alert-error {
+    background-color: #fff1f1;
+    border-color: #f0b7b7;
+    color: #7a1a1a;
+}
+
+
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #35694c;
+    box-shadow: 0 0 0 0.15rem rgba(53, 105, 76, 0.2);
+}
+
+
+
+.table-nutrition th,
+.table-nutrition td {
+    vertical-align: middle;
+    padding: 12px 10px;
+}
+
+.table-nutrition tbody tr:hover {
+    background-color: #f3faf2;
+}
+
+
+
+.btn-sm-rounded {
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+}
+
+
+
+.stats-box {
+    background: #ffffff;
+    border: 1px solid #e1e7e0;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+
+.text-muted-small {
+    font-size: 0.85rem;
+    color: #7b8f83;
+}
+
+/*generovane pomocou AI */

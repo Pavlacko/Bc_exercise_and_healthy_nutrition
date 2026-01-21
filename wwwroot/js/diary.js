@@ -1,4 +1,5 @@
 ﻿(function () {
+    //generovane pomocou AI
     const dateInput = document.getElementById("diaryDate");
     const foodSelect = document.getElementById("foodSelect");
     const gramsInput = document.getElementById("gramsInput");
@@ -163,4 +164,36 @@
     });
 
     refreshSummary();
+
+    const saveGoalBtn = document.getElementById("saveGoalBtn");
+
+    if (saveGoalBtn) {
+        saveGoalBtn.addEventListener("click", async () => {
+            const payload = {
+                date: dateInput.value,
+                kcalGoal: Number(document.getElementById("goalKcal").value),
+                proteinGoal: Number(document.getElementById("goalP").value),
+                carbsGoal: Number(document.getElementById("goalC").value),
+                fatGoal: Number(document.getElementById("goalF").value)
+            };
+
+            const resp = await fetch("/Diary/SaveGoal", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const goalMsg = document.getElementById("goalMsg");
+            goalMsg.style.display = "block";
+
+            if (!resp.ok) {
+                goalMsg.className = "text-danger mt-2";
+                goalMsg.textContent = await resp.text() || "Chyba pri ukladaní cieľa.";
+                return;
+            }
+
+            goalMsg.className = "text-success mt-2";
+            goalMsg.textContent = "Denný cieľ uložený.";
+        });
+    }
 })();

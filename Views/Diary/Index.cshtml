@@ -47,6 +47,41 @@
             <div>Sacharidy: <strong id="sumC">0</strong> g</div>
             <div>Tuky: <strong id="sumF">0</strong> g</div>
         </div>
+
+        <div class="mt-3 border rounded p-3">
+            <h5>Denný cieľ</h5>
+
+            <div class="row g-2">
+                <div class="col-6">
+                    <label class="form-label">Kcal</label>
+                    <input id="goalKcal" type="number" class="form-control"
+                           value="@(Model.Goal?.KcalGoal ?? 0)" min="0" max="10000" />
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">Protein (g)</label>
+                    <input id="goalP" type="number" class="form-control"
+                           value="@(Model.Goal?.ProteinGoal ?? 0)" min="0" max="500" />
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">Sacharidy (g)</label>
+                    <input id="goalC" type="number" class="form-control"
+                           value="@(Model.Goal?.CarbsGoal ?? 0)" min="0" max="1000" />
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">Tuky (g)</label>
+                    <input id="goalF" type="number" class="form-control"
+                           value="@(Model.Goal?.FatGoal ?? 0)" min="0" max="500" />
+                </div>
+            </div>
+
+            <button id="saveGoalBtn" class="btn btn-main mt-3">Uložiť cieľ</button>
+            <div id="goalMsg" class="mt-2" style="display:none;"></div>
+        </div>
+
+
     </div>
 </div>
 
@@ -103,3 +138,5 @@
 @section Scripts {
     <script src="~/js/diary.js"></script>
 }
+
+@* generovane pomocou AI *@

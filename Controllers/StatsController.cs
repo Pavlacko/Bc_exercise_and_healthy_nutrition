@@ -20,13 +20,14 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View();
         }
 
+        //generovane pomocou AI
         [HttpGet]
-        public IActionResult TodaySummary()
+        public IActionResult TodaySummary(DateTime? date)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return Unauthorized();
 
-            var d = DateTime.Today;
+            var d = (date ?? DateTime.Today).Date;
 
             var entries = _context.MealEntries
                 .Include(e => e.FoodItem)
@@ -44,6 +45,9 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 f += mul * e.FoodItem!.FatPer100g;
             }
 
+            var goal = _context.DailyGoals
+                .FirstOrDefault(g => g.AppUserId == userId.Value && g.Date == d);
+
             return Json(new
             {
                 date = d.ToString("yyyy-MM-dd"),
@@ -51,10 +55,18 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 kcal = Math.Round(kcal, 1),
                 protein = Math.Round(p, 1),
                 carbs = Math.Round(c, 1),
-                fat = Math.Round(f, 1)
+                fat = Math.Round(f, 1),
+
+                goal = goal == null ? null : new
+                {
+                    kcalGoal = goal.KcalGoal,
+                    proteinGoal = goal.ProteinGoal,
+                    carbsGoal = goal.CarbsGoal,
+                    fatGoal = goal.FatGoal
+                }
             });
         }
-
+        //generovane pomocou AI
         [HttpGet]
         public IActionResult WeeklyCalories(int days = 7)
         {
