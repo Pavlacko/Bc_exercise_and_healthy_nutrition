@@ -34,7 +34,7 @@
             <input id="gramsInput" type="number" class="form-control" min="1" max="5000" value="100" />
         </div>
 
-        <button id="addEntryBtn" class="btn btn-primary">Pridať</button>
+        <button type="button" id="addEntryBtn" class="btn btn-primary">Pridať</button>
         <div id="addError" class="text-danger mt-2" style="display:none;"></div>
     </div>
 
@@ -127,8 +127,8 @@
                 <td class="f">@Math.Round(mul * e.FoodItem!.FatPer100g, 1)</td>
 
                 <td style="white-space:nowrap;">
-                    <button class="btn btn-sm btn-warning saveBtn">Uložiť</button>
-                    <button class="btn btn-sm btn-danger delBtn">Zmazať</button>
+                    <button type="button" class="btn btn-sm btn-warning saveBtn">Uložiť</button>
+                    <button type="button" class="btn btn-sm btn-danger delBtn">Zmazať</button>
                 </td>
             </tr>
         }

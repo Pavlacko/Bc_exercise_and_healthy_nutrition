@@ -50,14 +50,23 @@
         tr.setAttribute("data-id", item.id);
 
         tr.innerHTML = `
-            <td>${escapeHtml(item.foodName)}</td>
-            <td>${item.grams}</td>
-            <td>${item.kcal}</td>
-            <td>${item.protein}</td>
-            <td>${item.carbs}</td>
-            <td>${item.fat}</td>
-            <td><button class="btn btn-sm btn-danger delBtn">Zmazať</button></td>
-        `;
+        <td>${escapeHtml(item.foodName)}</td>
+
+        <td style="max-width:110px;">
+            <input class="form-control form-control-sm entryGrams"
+                   type="number" min="1" max="5000" value="${item.grams}" />
+        </td>
+
+        <td class="kcal">${item.kcal}</td>
+        <td class="p">${item.protein}</td>
+        <td class="c">${item.carbs}</td>
+        <td class="f">${item.fat}</td>
+
+        <td style="white-space:nowrap;">
+            <button type="button" class="btn btn-sm btn-warning saveBtn">Uložiť</button>
+            <button type="button" class="btn btn-sm btn-danger delBtn">Zmazať</button>
+        </td>
+    `;
 
         entriesBody.prepend(tr);
     }
@@ -116,7 +125,6 @@
         if (!tr) return;
 
         const id = Number(tr.dataset.id);
-        const date = dateInput.value;
 
         if (e.target.closest(".delBtn")) {
             await deleteEntry(id);
@@ -124,7 +132,6 @@
         }
 
         if (e.target.closest(".saveBtn")) {
-            const foodItemId = Number(tr.querySelector(".entryFood").value);
             const grams = Number(tr.querySelector(".entryGrams").value);
 
             if (!grams || grams < 1 || grams > 5000) {
@@ -135,12 +142,7 @@
             const resp = await fetch("/Diary/UpdateEntry", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    id,
-                    foodItemId,
-                    grams,
-                    date
-                })
+                body: JSON.stringify({ id, grams })
             });
 
             if (!resp.ok) {

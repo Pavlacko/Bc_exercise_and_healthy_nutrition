@@ -87,6 +87,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             });
         }
 
+
         [HttpPost]
         public IActionResult UpdateEntry([FromBody] UpdateEntryDto dto)
         {
@@ -103,13 +104,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             if (entry == null) return NotFound();
             if (entry.AppUserId != userId.Value) return Forbid();
 
-            var food = _context.FoodItems.Find(dto.FoodItemId);
-            if (food == null) return BadRequest("Jedlo neexistuje.");
-
-            entry.FoodItemId = dto.FoodItemId;
             entry.Grams = dto.Grams;
-            entry.Date = dto.Date.Date;
-
             _context.SaveChanges();
 
             var mul = entry.Grams / 100.0;
@@ -117,12 +112,11 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return Json(new
             {
                 id = entry.Id,
-                foodName = food.Name,
                 grams = entry.Grams,
-                kcal = Math.Round(mul * food.KcalPer100g, 1),
-                protein = Math.Round(mul * food.ProteinPer100g, 1),
-                carbs = Math.Round(mul * food.CarbsPer100g, 1),
-                fat = Math.Round(mul * food.FatPer100g, 1)
+                kcal = Math.Round(mul * entry.FoodItem!.KcalPer100g, 1),
+                protein = Math.Round(mul * entry.FoodItem!.ProteinPer100g, 1),
+                carbs = Math.Round(mul * entry.FoodItem!.CarbsPer100g, 1),
+                fat = Math.Round(mul * entry.FoodItem!.FatPer100g, 1)
             });
         }
 
@@ -227,9 +221,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         public class UpdateEntryDto
         {
             public int Id { get; set; }
-            public int FoodItemId { get; set; }
             public double Grams { get; set; }
-            public DateTime Date { get; set; }
         }
 
         public class SaveGoalDto
@@ -242,3 +234,5 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         }
     }
 }
+
+//generovane pomocou AI
