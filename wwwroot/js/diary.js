@@ -110,13 +110,52 @@
 
     addBtn.addEventListener("click", addEntry);
 
-    entriesBody.addEventListener("click", function (e) {
-        const btn = e.target.closest(".delBtn");
-        if (!btn) return;
-
+    entriesBody.addEventListener("click", async function (e) {
         const tr = e.target.closest("tr");
-        const id = Number(tr.getAttribute("data-id"));
-        deleteEntry(id);
+        if (!tr) return;
+
+        const id = Number(tr.dataset.id);
+        const date = dateInput.value;
+
+        if (e.target.closest(".delBtn")) {
+            await deleteEntry(id);
+            return;
+        }
+
+        if (e.target.closest(".saveBtn")) {
+            const foodItemId = Number(tr.querySelector(".entryFood").value);
+            const grams = Number(tr.querySelector(".entryGrams").value);
+
+            if (!grams || grams < 1 || grams > 5000) {
+                alert("Zadaj gramáž 1–5000 g");
+                return;
+            }
+
+            const resp = await fetch("/Diary/UpdateEntry", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id,
+                    foodItemId,
+                    grams,
+                    date
+                })
+            });
+
+            if (!resp.ok) {
+                alert("Nepodarilo sa uložiť zmenu");
+                return;
+            }
+
+            const data = await resp.json();
+
+            tr.querySelector(".kcal").textContent = data.kcal;
+            tr.querySelector(".p").textContent = data.protein;
+            tr.querySelector(".c").textContent = data.carbs;
+            tr.querySelector(".f").textContent = data.fat;
+
+            await refreshSummary();
+        }
     });
 
     dateInput.addEventListener("change", function () {

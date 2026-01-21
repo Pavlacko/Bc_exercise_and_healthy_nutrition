@@ -71,13 +71,30 @@
         {
             var mul = e.Grams / 100.0;
             <tr data-id="@e.Id">
-                <td>@e.FoodItem!.Name</td>
-                <td>@e.Grams</td>
-                <td>@Math.Round(mul * e.FoodItem!.KcalPer100g, 1)</td>
-                <td>@Math.Round(mul * e.FoodItem!.ProteinPer100g, 1)</td>
-                <td>@Math.Round(mul * e.FoodItem!.CarbsPer100g, 1)</td>
-                <td>@Math.Round(mul * e.FoodItem!.FatPer100g, 1)</td>
-                <td><button class="btn btn-sm btn-danger delBtn">Zmazať</button></td>
+                <td style="min-width:260px;">
+                    <select class="form-select form-select-sm entryFood">
+                        @foreach (var f in Model.Foods)
+                        {
+                            <option value="@f.Value" selected="@(f.Value == e.FoodItemId.ToString() ? "selected" : null)">
+                                @f.Text
+                            </option>
+                        }
+                    </select>
+                </td>
+
+                <td style="max-width:110px;">
+                    <input class="form-control form-control-sm entryGrams" type="number" min="1" max="5000" value="@e.Grams" />
+                </td>
+
+                <td class="kcal">@Math.Round(mul * e.FoodItem!.KcalPer100g, 1)</td>
+                <td class="p">@Math.Round(mul * e.FoodItem!.ProteinPer100g, 1)</td>
+                <td class="c">@Math.Round(mul * e.FoodItem!.CarbsPer100g, 1)</td>
+                <td class="f">@Math.Round(mul * e.FoodItem!.FatPer100g, 1)</td>
+
+                <td style="white-space:nowrap;">
+                    <button class="btn btn-sm btn-warning saveBtn">Uložiť</button>
+                    <button class="btn btn-sm btn-danger delBtn">Zmazať</button>
+                </td>
             </tr>
         }
     </tbody>

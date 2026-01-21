@@ -11,8 +11,7 @@ namespace Bc_exercise_and_healthy_nutrition.Filters
 
             if (role != "Admin")
             {
-                context.Result = new RedirectToActionResult(
-                    "Index", "Welcome", null);
+                context.Result = new RedirectToActionResult("Index", "Welcome", null);
             }
         }
     }

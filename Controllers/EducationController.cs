@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Bc_exercise_and_healthy_nutrition.Filters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Bc_exercise_and_healthy_nutrition.Controllers
 {
+    [RequireLogin]
     public class EducationController : Controller
     {
         public IActionResult Index()

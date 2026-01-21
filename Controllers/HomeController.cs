@@ -1,9 +1,11 @@
-using System.Diagnostics;
+using Bc_exercise_and_healthy_nutrition.Filters;
 using Bc_exercise_and_healthy_nutrition.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Bc_exercise_and_healthy_nutrition.Controllers
 {
+    [RequireLogin]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

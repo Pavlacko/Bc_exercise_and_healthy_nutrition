@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Bc_exercise_and_healthy_nutrition.Filters;
+using Bc_exercise_and_healthy_nutrition.ViewModels;
 
 namespace Bc_exercise_and_healthy_nutrition.Controllers
 {
