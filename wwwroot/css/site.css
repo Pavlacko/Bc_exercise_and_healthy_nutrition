@@ -302,3 +302,96 @@ body {
         text-align: center;
     }
 }
+
+.soft-hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(31,45,38,.12), transparent);
+    margin: 14px 0;
+}
+
+.stats-mini {
+    display: grid;
+    gap: 6px;
+    font-size: 0.95rem;
+    color: #2b3b33;
+}
+
+    .stats-mini strong {
+        color: var(--green-900);
+    }
+
+.table-card {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-bottom: 0;
+}
+
+    .table-card thead th {
+        font-size: .85rem;
+        color: var(--muted);
+        font-weight: 700;
+        border: 0 !important;
+        padding: 8px 10px;
+    }
+
+    .table-card tbody tr {
+        background: #fff;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    }
+
+    .table-card tbody td {
+        border: 0 !important;
+        padding: 10px;
+        vertical-align: middle;
+    }
+
+    .table-card tbody tr td:first-child {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+
+    .table-card tbody tr td:last-child {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+
+    .table-card .form-control-sm,
+    .table-card .form-select-sm {
+        border-radius: 10px;
+    }
+
+    .table-card tbody tr:hover {
+        transform: translateY(-1px);
+        transition: transform .12s ease;
+    }
+
+.btn-outline-main {
+    border: 1px solid rgba(63,163,108,.45);
+    color: var(--green-700);
+    background: #fff;
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 6px 12px;
+}
+
+    .btn-outline-main:hover {
+        background: rgba(63,163,108,.10);
+        border-color: rgba(63,163,108,.70);
+        color: var(--green-900);
+    }
+
+.btn-outline-danger {
+    border: 1px solid rgba(201,43,43,.35);
+    color: #c92b2b;
+    background: #fff;
+    border-radius: 999px;
+    font-weight: 700;
+    padding: 6px 12px;
+}
+
+    .btn-outline-danger:hover {
+        background: rgba(201,43,43,.08);
+        border-color: rgba(201,43,43,.55);
+        color: #c92b2b;
+    }

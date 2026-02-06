@@ -8,14 +8,6 @@
   const err = $("addError");
   const body = $("entriesBody");
 
-  const sum = {
-    count: $("sumCount"),
-    kcal: $("sumKcal"),
-    p: $("sumP"),
-    c: $("sumC"),
-    f: $("sumF")
-  };
-
   const esc = (s) => String(s)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;")
     .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
@@ -29,18 +21,6 @@
     if (!r.ok) throw new Error((await r.text()) || "Request failed");
     const ct = r.headers.get("content-type") || "";
     return ct.includes("application/json") ? r.json() : null;
-  };
-
-  const refreshSummary = async () => {
-    const d = date?.value;
-    if (!d) return;
-    const s = await reqJson(`/Diary/Summary?date=${encodeURIComponent(d)}`);
-    if (!s) return;
-    sum.count.textContent = s.count;
-    sum.kcal.textContent = s.kcal;
-    sum.p.textContent = s.protein;
-    sum.c.textContent = s.carbs;
-    sum.f.textContent = s.fat;
   };
 
   const rowHtml = (x) => `
@@ -72,7 +52,6 @@
       });
 
       body.insertAdjacentHTML("afterbegin", rowHtml(data));
-      await refreshSummary();
     } catch (e) {
       showErr(e.message);
     }
@@ -91,7 +70,6 @@
           body: JSON.stringify({ id })
         });
         tr.remove();
-        return refreshSummary();
       }
 
       if (e.target.closest(".saveBtn")) {
@@ -108,7 +86,6 @@
         tr.querySelector(".p").textContent = data.protein;
         tr.querySelector(".c").textContent = data.carbs;
         tr.querySelector(".f").textContent = data.fat;
-        await refreshSummary();
       }
     } catch (e2) {
       alert(e2.message || "Chyba.");
@@ -139,5 +116,4 @@
     }
   });
 
-  refreshSummary().catch(() => {});
 })();

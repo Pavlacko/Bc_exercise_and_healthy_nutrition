@@ -1,5 +1,4 @@
 ﻿(async function () {
-    console.log("STATS.JS LOADED");
 
     const el = (id) => document.getElementById(id);
 

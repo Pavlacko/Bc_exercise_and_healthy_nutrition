@@ -4,52 +4,48 @@
     ViewData["Title"] = "Denník stravy";
 }
 
-<h2>Denník stravy</h2>
+<h2 class="page-title">Denník stravy</h2>
 
-<div class="row">
-    <div class="col-md-4">
-        <label class="form-label">Dátum</label>
-        <input id="diaryDate" type="date" class="form-control" value="@Model.Date.ToString("yyyy-MM-dd")" />
+
+<div class="row g-3 align-items-stretch">
+    <div class="col-lg-6">
+        <div class="card-custom">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="section-title mb-0">Pridať jedlo</h4>
+
+                <div style="max-width:160px;">
+                    <input id="diaryDate"
+                           type="date"
+                           class="form-control form-control-sm"
+                           value="@Model.Date.ToString("yyyy-MM-dd")" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Jedlo</label>
+                <select id="foodSelect" class="form-select">
+                    @foreach (var item in Model.Foods)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Gramáž (g)</label>
+                <input id="gramsInput" type="number" class="form-control" min="1" max="5000" value="100" />
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <button type="button" id="addEntryBtn" class="btn btn-main">Pridať</button>
+                <div id="addError" class="text-danger" style="display:none;"></div>
+            </div>
+        </div>
     </div>
-</div>
 
-<hr />
-
-<div class="row">
-    <div class="col-md-6">
-        <h4>Pridať jedlo</h4>
-
-        <div class="mb-3">
-            <label class="form-label">Jedlo</label>
-            <select id="foodSelect" class="form-select">
-                @foreach (var item in Model.Foods)
-                {
-                    <option value="@item.Value">@item.Text</option>
-                }
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Gramáž (g)</label>
-            <input id="gramsInput" type="number" class="form-control" min="1" max="5000" value="100" />
-        </div>
-
-        <button type="button" id="addEntryBtn" class="btn btn-primary">Pridať</button>
-        <div id="addError" class="text-danger mt-2" style="display:none;"></div>
-    </div>
-
-    <div class="col-md-6">
-        <h4>Denný súhrn</h4>
-        <div class="border rounded p-3">
-            <div>Počet položiek: <strong id="sumCount">0</strong></div>
-            <div>Kcal: <strong id="sumKcal">0</strong></div>
-            <div>Proteín: <strong id="sumP">0</strong> g</div>
-            <div>Sacharidy: <strong id="sumC">0</strong> g</div>
-            <div>Tuky: <strong id="sumF">0</strong> g</div>
-        </div>
-
-        <div class="mt-3 border rounded p-3">
-            <h5>Denný cieľ</h5>
+    <div class="col-lg-6">
+        <div class="card-custom">
+            <h4 class="section-title mb-3">Denný cieľ</h4>
 
             <div class="row g-2">
                 <div class="col-6">
@@ -59,7 +55,7 @@
                 </div>
 
                 <div class="col-6">
-                    <label class="form-label">Protein (g)</label>
+                    <label class="form-label">Proteín (g)</label>
                     <input id="goalP" type="number" class="form-control"
                            value="@(Model.Goal?.ProteinGoal ?? 0)" min="0" max="500" />
                 </div>
@@ -77,64 +73,69 @@
                 </div>
             </div>
 
-            <button id="saveGoalBtn" class="btn btn-main mt-3">Uložiť cieľ</button>
-            <div id="goalMsg" class="mt-2" style="display:none;"></div>
+            <div class="d-flex align-items-center gap-2 mt-3">
+                <button id="saveGoalBtn" class="btn btn-main">Uložiť cieľ</button>
+                <div id="goalMsg" style="display:none;"></div>
+            </div>
         </div>
-
-
     </div>
 </div>
 
-<hr />
+<div class="card-custom mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h4 class="section-title mb-0">Záznamy</h4>
+        <div class="text-muted-small">Uprav gramáž a klikni Uložiť</div>
+    </div>
 
-<h4>Záznamy</h4>
+    <div class="table-responsive">
+        <table class="table table-card align-middle">
+            <thead>
+                <tr>
+                    <th>Jedlo</th>
+                    <th style="width:120px;">g</th>
+                    <th style="width:90px;">Kcal</th>
+                    <th style="width:70px;">P</th>
+                    <th style="width:70px;">C</th>
+                    <th style="width:70px;">F</th>
+                    <th style="width:170px;"></th>
+                </tr>
+            </thead>
+            <tbody id="entriesBody">
+                @foreach (var e in Model.Entries)
+                {
+                    var mul = e.Grams / 100.0;
+                    <tr data-id="@e.Id">
+                        <td style="min-width:260px;">
+                            <select class="form-select form-select-sm entryFood">
+                                @foreach (var f in Model.Foods)
+                                {
+                                    <option value="@f.Value" selected="@(f.Value == e.FoodItemId.ToString() ? "selected" : null)">
+                                        @f.Text
+                                    </option>
+                                }
+                            </select>
+                        </td>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Jedlo</th>
-            <th>g</th>
-            <th>Kcal</th>
-            <th>P</th>
-            <th>C</th>
-            <th>F</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody id="entriesBody">
-        @foreach (var e in Model.Entries)
-        {
-            var mul = e.Grams / 100.0;
-            <tr data-id="@e.Id">
-                <td style="min-width:260px;">
-                    <select class="form-select form-select-sm entryFood">
-                        @foreach (var f in Model.Foods)
-                        {
-                            <option value="@f.Value" selected="@(f.Value == e.FoodItemId.ToString() ? "selected" : null)">
-                                @f.Text
-                            </option>
-                        }
-                    </select>
-                </td>
+                        <td>
+                            <input class="form-control form-control-sm entryGrams" type="number" min="1" max="5000" value="@e.Grams" />
+                        </td>
 
-                <td style="max-width:110px;">
-                    <input class="form-control form-control-sm entryGrams" type="number" min="1" max="5000" value="@e.Grams" />
-                </td>
+                        <td class="kcal">@Math.Round(mul * e.FoodItem!.KcalPer100g, 1)</td>
+                        <td class="p">@Math.Round(mul * e.FoodItem!.ProteinPer100g, 1)</td>
+                        <td class="c">@Math.Round(mul * e.FoodItem!.CarbsPer100g, 1)</td>
+                        <td class="f">@Math.Round(mul * e.FoodItem!.FatPer100g, 1)</td>
 
-                <td class="kcal">@Math.Round(mul * e.FoodItem!.KcalPer100g, 1)</td>
-                <td class="p">@Math.Round(mul * e.FoodItem!.ProteinPer100g, 1)</td>
-                <td class="c">@Math.Round(mul * e.FoodItem!.CarbsPer100g, 1)</td>
-                <td class="f">@Math.Round(mul * e.FoodItem!.FatPer100g, 1)</td>
-
-                <td style="white-space:nowrap;">
-                    <button type="button" class="btn btn-sm btn-warning saveBtn">Uložiť</button>
-                    <button type="button" class="btn btn-sm btn-danger delBtn">Zmazať</button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                        <td class="text-end" style="white-space:nowrap;">
+                            <button type="button" class="btn btn-sm btn-outline-main saveBtn">Uložiť</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger delBtn">Zmazať</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 @section Scripts {
-    <script src="~/js/diary.js"></script>
+    <script src="~/js/diary.js" asp-append-version="true"></script>
 }
