@@ -13,6 +13,8 @@ namespace Bc_exercise_and_healthy_nutrition.Models
         [EmailAddress(ErrorMessage = "Zadajte platný email.")]
         public string Email { get; set; } = string.Empty;
 
+        public string? AvatarPath { get; set; }
+
         [Required(ErrorMessage = "Vek je povinný.")]
         [Range(10, 100, ErrorMessage = "Vek musí byť medzi 10 a 100 rokmi.")]
         public int Vek { get; set; }

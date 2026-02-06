@@ -8,15 +8,18 @@ using System.Linq;
 using Bc_exercise_and_healthy_nutrition.Filters;
 using Bc_exercise_and_healthy_nutrition.ViewModels;
 
+
 namespace Bc_exercise_and_healthy_nutrition.Controllers
 {
     public class UserController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public UserController(AppDbContext context)
+        public UserController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         [RequireAdmin]
@@ -181,5 +184,105 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        /////////////////////////////////////
+        [HttpGet]
+        [RequireLogin]
+        public IActionResult Profile()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login");
+
+            var user = _context.Users.First(u => u.Id == userId.Value);
+            return View(user);
+        }
+
+        [HttpPost]
+        [RequireLogin]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UploadAvatar(IFormFile avatar)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return Unauthorized();
+
+            if (avatar == null || avatar.Length == 0)
+            {
+                TempData["Err"] = "Vyber súbor.";
+                return RedirectToAction(nameof(Profile));
+            }
+
+            if (avatar.Length > 2 * 1024 * 1024)
+            {
+                TempData["Err"] = "Súbor je príliš veľký (max 2 MB).";
+                return RedirectToAction(nameof(Profile));
+            }
+
+            var ext = Path.GetExtension(avatar.FileName).ToLowerInvariant();
+            var allowed = new[] { ".jpg", ".jpeg", ".png" };
+            if (!allowed.Contains(ext))
+            {
+                TempData["Err"] = "Povolené formáty: JPG, PNG.";
+                return RedirectToAction(nameof(Profile));
+            }
+
+            var ct = (avatar.ContentType ?? "").ToLowerInvariant();
+            if (ct != "image/jpeg" && ct != "image/png")
+            {
+                TempData["Err"] = "Neplatný typ súboru.";
+                return RedirectToAction(nameof(Profile));
+            }
+
+            var user = await _context.Users.FirstAsync(u => u.Id == userId.Value);
+
+            var uploadDir = Path.Combine(_env.WebRootPath, "uploads", "avatars");
+            Directory.CreateDirectory(uploadDir);
+
+            // zmaž starú fotku (aj s inou príponou)
+            foreach (var oldExt in allowed)
+            {
+                var p = Path.Combine(uploadDir, $"{user.Id}{oldExt}");
+                if (System.IO.File.Exists(p)) System.IO.File.Delete(p);
+            }
+
+            var fileName = $"{user.Id}{ext}";
+            var fullPath = Path.Combine(uploadDir, fileName);
+
+            using (var fs = new FileStream(fullPath, FileMode.Create))
+            {
+                await avatar.CopyToAsync(fs);
+            }
+
+            user.AvatarPath = $"/uploads/avatars/{fileName}";
+            await _context.SaveChangesAsync();
+
+            TempData["Ok"] = "Profilová fotka uložená.";
+            return RedirectToAction(nameof(Profile));
+        }
+
+        [HttpPost]
+        [RequireLogin]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAvatar()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return Unauthorized();
+
+            var user = await _context.Users.FirstAsync(u => u.Id == userId.Value);
+
+            var uploadDir = Path.Combine(_env.WebRootPath, "uploads", "avatars");
+            var allowed = new[] { ".jpg", ".jpeg", ".png" };
+
+            foreach (var ext in allowed)
+            {
+                var p = Path.Combine(uploadDir, $"{user.Id}{ext}");
+                if (System.IO.File.Exists(p)) System.IO.File.Delete(p);
+            }
+
+            user.AvatarPath = null;
+            await _context.SaveChangesAsync();
+
+            TempData["Ok"] = "Profilová fotka zmazaná.";
+            return RedirectToAction(nameof(Profile));
+        }
+
     }
 }

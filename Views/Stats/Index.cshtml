@@ -7,41 +7,56 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card-custom">
-            <h4>Dnešný súhrn</h4>
-
-            <div class="kpi-grid mt-3">
-                <div class="kpi-item">
-                    <div class="kpi-label">Kcal</div>
-                    <div class="kpi-value" id="todayKcal">0</div>
+            <div class="summary-card">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="summary-title">Dnešný súhrn</div>
+                    <div class="text-muted-small">Položky: <strong id="todayCount">0</strong></div>
                 </div>
-                <div class="kpi-item">
-                    <div class="kpi-label">P (g)</div>
-                    <div class="kpi-value" id="todayP">0</div>
-                </div>
-                <div class="kpi-item">
-                    <div class="kpi-label">C (g)</div>
-                    <div class="kpi-value" id="todayC">0</div>
-                </div>
-                <div class="kpi-item">
-                    <div class="kpi-label">F (g)</div>
-                    <div class="kpi-value" id="todayF">0</div>
-                </div>
-            </div>
 
-            <div class="card-custom mt-3" id="goalBox" style="display:none;">
-                <h5>Denný cieľ</h5>
-                <div>Kcal: <strong id="gKcal"></strong> (<span id="pKcal"></span>%)</div>
-                <div>P: <strong id="gP"></strong> g (<span id="pP"></span>%)</div>
-                <div>C: <strong id="gC"></strong> g (<span id="pC"></span>%)</div>
-                <div>F: <strong id="gF"></strong> g (<span id="pF"></span>%)</div>
-            </div>
+                <div class="macro-block">
+                    <div class="macro-head">
+                        <span>Kalórie</span>
+                        <span><strong id="todayKcal">0</strong> kcal / <span id="gKcal">0</span> kcal <span id="pctKcal" class="pct">(—)</span></span>
+                    </div>
+                    <div class="progress macro-progress">
+                        <div id="barKcal" class="macro-bar progress-none" style="width:100%"></div>
+                    </div>
+                </div>
 
-            <div class="text-muted mt-2" id="goalMissing" style="display:none;">
-                Denný cieľ zatiaľ nie je nastavený.
-            </div>
+                <div class="macro-block">
+                    <div class="macro-head">
+                        <span>Proteín</span>
+                        <span><strong id="todayP">0</strong> g / <span id="gP">0</span> g <span id="pctP" class="pct">(—)</span></span>
+                    </div>
+                    <div class="progress macro-progress">
+                        <div id="barP" class="progress-bar progress-none" style="width:100%"></div>
+                    </div>
+                </div>
 
-            <div class="mt-2 small-help">
-                Počet položiek: <strong id="todayCount">0</strong>
+                <div class="macro-block">
+                    <div class="macro-head">
+                        <span>Sacharidy</span>
+                        <span><strong id="todayC">0</strong> g / <span id="gC">0</span> g <span id="pctC" class="pct">(—)</span></span>
+                    </div>
+                    <div class="progress macro-progress">
+                        <div id="barC" class="progress-bar progress-ok" style="width:0%"></div>
+                    </div>
+
+                </div>
+
+                <div class="macro-block mb-0">
+                    <div class="macro-head">
+                        <span>Tuky</span>
+                        <span><strong id="todayF">0</strong> g / <span id="gF">0</span> g <span id="pctF" class="pct">(—)</span></span>
+                    </div>
+                    <div class="progress macro-progress">
+                        <div id="barF" class="progress-bar progress-none" style="width:100%"></div>
+                    </div>
+                </div>
+
+                <div id="goalMissing" class="text-muted-small mt-3" style="display:none;">
+                    Nemáš nastavený denný cieľ.
+                </div>
             </div>
         </div>
     </div>
@@ -58,7 +73,9 @@
 <hr />
 
 @section Scripts {
-    <script src="~/js/stats.js"></script>
+    <script>
+        console.log("STATS VIEW LOADED", new Date().toISOString());
+    </script>
+    <script src="~/js/stats.js?v=999"></script>
 }
 
-@* generovane pomocou AI *@

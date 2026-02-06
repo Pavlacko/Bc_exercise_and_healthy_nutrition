@@ -1,0 +1,34 @@
+﻿@model Bc_exercise_and_healthy_nutrition.Models.AppUser
+@{
+    ViewData["Title"] = "Profil";
+}
+
+<h2>Profil</h2>
+
+@if (TempData["Err"] != null)
+{
+    <div class="alert alert-danger">@TempData["Err"]</div>
+}
+@if (TempData["Ok"] != null)
+{
+    <div class="alert alert-success">@TempData["Ok"]</div>
+}
+
+<div class="mb-3">
+    <div class="mb-2">
+        <img src="@(Model.AvatarPath ?? "/img/default-avatar.png")"
+             style="width:120px;height:120px;object-fit:cover;border-radius:50%;border:1px solid #ddd;" />
+    </div>
+
+    <form asp-controller="User" asp-action="UploadAvatar" method="post" enctype="multipart/form-data"
+          class="d-flex gap-2 align-items-center">
+        @Html.AntiForgeryToken()
+        <input type="file" name="avatar" accept="image/png,image/jpeg" class="form-control" style="max-width:320px;" />
+        <button class="btn btn-primary" type="submit">Nahrať</button>
+    </form>
+
+    <form asp-controller="User" asp-action="DeleteAvatar" method="post" class="mt-2">
+        @Html.AntiForgeryToken()
+        <button class="btn btn-outline-danger" type="submit">Zmazať fotku</button>
+    </form>
+</div>

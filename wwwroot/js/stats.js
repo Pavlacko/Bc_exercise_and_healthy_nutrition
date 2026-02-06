@@ -1,24 +1,66 @@
 ﻿(async function () {
-    //generovane pomocou AI
-    const todayKcal = document.getElementById("todayKcal");
-    const todayP = document.getElementById("todayP");
-    const todayC = document.getElementById("todayC");
-    const todayF = document.getElementById("todayF");
-    const todayCount = document.getElementById("todayCount");
+    console.log("STATS.JS LOADED");
 
-    const goalBox = document.getElementById("goalBox");
-    const goalMissing = document.getElementById("goalMissing");
+    const el = (id) => document.getElementById(id);
 
-    const gKcal = document.getElementById("gKcal");
-    const gP = document.getElementById("gP");
-    const gC = document.getElementById("gC");
-    const gF = document.getElementById("gF");
+    const todayKcal = el("todayKcal");
+    const todayP = el("todayP");
+    const todayC = el("todayC");
+    const todayF = el("todayF");
+    const todayCount = el("todayCount");
 
- 
+    const goalMissing = el("goalMissing");
 
-    const canvas = document.getElementById("weeklyCanvas");
-    const hint = document.getElementById("weeklyHint");
-    const ctx = canvas.getContext("2d");
+    const gKcal = el("gKcal");
+    const gP = el("gP");
+    const gC = el("gC");
+    const gF = el("gF");
+
+    const barKcal = el("barKcal");
+    const barP = el("barP");
+    const barC = el("barC");
+    const barF = el("barF");
+
+    const pctKcalEl = el("pctKcal");
+    const pctPEl = el("pctP");
+    const pctCEl = el("pctC");
+    const pctFEl = el("pctF");
+
+    const canvas = el("weeklyCanvas");
+    const hint = el("weeklyHint");
+    const ctx = canvas ? canvas.getContext("2d") : null;
+
+    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
+    function setBar(barEl, pctEl, value, goal) {
+        if (!barEl || !pctEl) return;
+
+        const v = Number(value) || 0;
+        const g = Number(goal) || 0;
+
+        if (g <= 0) {
+            barEl.className = "progress-bar progress-none";
+            barEl.style.width = "0%";
+            pctEl.textContent = "(—)";
+            pctEl.className = "pct";
+            return;
+        }
+
+        const pct = Math.round((v / g) * 100);
+        const w = Math.max(0, Math.min(160, pct));
+        barEl.style.width = w + "%";
+
+        let clsBar = "progress-ok";
+        let clsPct = "pct ok";
+
+        if (pct > 120) { clsBar = "progress-over"; clsPct = "pct over"; }
+        else if (pct > 100) { clsBar = "progress-warn"; clsPct = "pct warn"; }
+
+        barEl.className = "progress-bar " + clsBar;
+        pctEl.textContent = `(${pct}%)`;
+        pctEl.className = clsPct;
+    }
+
 
     async function loadToday() {
         const resp = await fetch("/Stats/TodaySummary");
@@ -26,57 +68,64 @@
 
         const data = await resp.json();
 
-        todayKcal.textContent = data.kcal;
-        todayP.textContent = data.protein;
-        todayC.textContent = data.carbs;
-        todayF.textContent = data.fat;
-        todayCount.textContent = data.count;
+        if (todayKcal) todayKcal.textContent = data.kcal;
+        if (todayP) todayP.textContent = data.protein;
+        if (todayC) todayC.textContent = data.carbs;
+        if (todayF) todayF.textContent = data.fat;
+        if (todayCount) todayCount.textContent = data.count;
 
-        if (goalBox && goalMissing) {
-            if (!data.goal) {
-                goalBox.style.display = "none";
-                goalMissing.style.display = "block";
-            } else {
-                goalMissing.style.display = "none";
-                goalBox.style.display = "block";
+        const goal = data.goal;
 
-                gKcal.textContent = data.goal.kcalGoal;
-                gP.textContent = data.goal.proteinGoal;
-                gC.textContent = data.goal.carbsGoal;
-                gF.textContent = data.goal.fatGoal;
+        if (!goal) {
+            if (goalMissing) goalMissing.style.display = "block";
 
-                const pct = (value, goal) => {
-                    if (!goal || goal <= 0) return 0;
-                    return Math.min(999, Math.round((value / goal) * 100));
-                };
+            if (gKcal) gKcal.textContent = "0";
+            if (gP) gP.textContent = "0";
+            if (gC) gC.textContent = "0";
+            if (gF) gF.textContent = "0";
 
-                pKcal.textContent = pct(data.kcal, data.goal.kcalGoal);
-                pP.textContent = pct(data.protein, data.goal.proteinGoal);
-                pC.textContent = pct(data.carbs, data.goal.carbsGoal);
-                pF.textContent = pct(data.fat, data.goal.fatGoal);
-            }
+            setBar(barKcal, pctKcalEl, 0, 0);
+            setBar(barP, pctPEl, 0, 0);
+            setBar(barC, pctCEl, 0, 0);
+            setBar(barF, pctFEl, 0, 0);
+            return;
         }
+
+        if (goalMissing) goalMissing.style.display = "none";
+
+        if (gKcal) gKcal.textContent = goal.kcalGoal;
+        if (gP) gP.textContent = goal.proteinGoal;
+        if (gC) gC.textContent = goal.carbsGoal;
+        if (gF) gF.textContent = goal.fatGoal;
+
+        setBar(barKcal, pctKcalEl, data.kcal, goal.kcalGoal);
+        setBar(barP, pctPEl, data.protein, goal.proteinGoal);
+        setBar(barC, pctCEl, data.carbs, goal.carbsGoal);
+        setBar(barF, pctFEl, data.fat, goal.fatGoal);
     }
 
     function clearCanvas() {
+        if (!ctx || !canvas) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
     function drawBars(items) {
-        clearCanvas();
+        if (!ctx || !canvas) return;
 
-        const parentWidth = canvas.parentElement.clientWidth;
+        const parentWidth = canvas.parentElement?.clientWidth ?? canvas.width;
         canvas.width = parentWidth;
+
+        clearCanvas();
 
         const w = canvas.width;
         const h = canvas.height;
-
-        const max = Math.max(...items.map(x => x.kcal), 10);
         const pad = 14;
 
+        const max = Math.max(...items.map(x => Number(x.kcal) || 0), 10);
+
         const barAreaW = w - pad * 2;
-        const barW = barAreaW / items.length * 0.65;
-        const gap = barAreaW / items.length * 0.35;
+        const barW = (barAreaW / items.length) * 0.65;
+        const gap = (barAreaW / items.length) * 0.35;
 
         ctx.beginPath();
         ctx.moveTo(pad, h - pad);
@@ -85,7 +134,9 @@
         ctx.stroke();
 
         items.forEach((x, i) => {
-            const barH = ((h - pad * 2) * x.kcal) / max;
+            const kcal = Number(x.kcal) || 0;
+            const barH = ((h - pad * 2) * kcal) / max;
+
             const xPos = pad + i * (barW + gap) + gap / 2;
             const yPos = (h - pad) - barH;
 
@@ -94,16 +145,16 @@
 
             ctx.fillStyle = "#444";
             ctx.font = "11px Segoe UI";
-            const day = x.date.slice(5); 
+            const day = String(x.date || "").slice(5);
             ctx.fillText(day, xPos, h - 2);
 
             ctx.fillStyle = "#222";
             ctx.font = "10px Segoe UI";
-            ctx.fillText(String(x.kcal), xPos, yPos - 4);
+            ctx.fillText(String(kcal), xPos, yPos - 4);
         });
 
-        const avg = (items.reduce((s, a) => s + a.kcal, 0) / items.length).toFixed(1);
-        hint.textContent = `Priemer: ${avg} kcal / deň`;
+        const avg = (items.reduce((s, a) => s + (Number(a.kcal) || 0), 0) / (items.length || 1)).toFixed(1);
+        if (hint) hint.textContent = `Priemer: ${avg} kcal / deň`;
     }
 
     async function loadWeekly() {
