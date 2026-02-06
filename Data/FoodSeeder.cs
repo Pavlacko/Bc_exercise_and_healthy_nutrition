@@ -5,7 +5,6 @@ namespace Bc_exercise_and_healthy_nutrition.Data
 {
     public static class FoodSeeder
     {
-        //generovane pomocou AI
         public static void SeedFoods(AppDbContext db, IWebHostEnvironment env)
         {
             if (db.FoodItems.Any())
@@ -22,7 +21,6 @@ namespace Bc_exercise_and_healthy_nutrition.Data
             db.SaveChanges();
         }
 
-        //generovane pomocou AI
         private static List<FoodItem> LoadFoodsFromCsv(string path)
         {
             var lines = File.ReadAllLines(path);

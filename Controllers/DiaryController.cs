@@ -234,5 +234,3 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         }
     }
 }
-
-//generovane pomocou AI

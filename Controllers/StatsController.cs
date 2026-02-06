@@ -20,7 +20,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View();
         }
 
-        //generovane pomocou AI
+
         [HttpGet]
         public IActionResult TodaySummary(DateTime? date)
         {
@@ -66,7 +66,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 }
             });
         }
-        //generovane pomocou AI
+
         [HttpGet]
         public IActionResult WeeklyCalories(int days = 7)
         {

@@ -1,201 +1,143 @@
-﻿(function () {
-    //generovane pomocou AI
-    const dateInput = document.getElementById("diaryDate");
-    const foodSelect = document.getElementById("foodSelect");
-    const gramsInput = document.getElementById("gramsInput");
-    const addBtn = document.getElementById("addEntryBtn");
-    const addError = document.getElementById("addError");
-    const entriesBody = document.getElementById("entriesBody");
+﻿(() => {
+    const $ = (id) => document.getElementById(id);
 
-    const sumCount = document.getElementById("sumCount");
-    const sumKcal = document.getElementById("sumKcal");
-    const sumP = document.getElementById("sumP");
-    const sumC = document.getElementById("sumC");
-    const sumF = document.getElementById("sumF");
+    const date = $("diaryDate");
+    const food = $("foodSelect");
+    const grams = $("gramsInput");
+    const addBtn = $("addEntryBtn");
+    const err = $("addError");
+    const body = $("entriesBody");
 
-    function showError(msg) {
-        addError.style.display = "block";
-        addError.textContent = msg;
-    }
+    const sum = {
+        count: $("sumCount"),
+        kcal: $("sumKcal"),
+        p: $("sumP"),
+        c: $("sumC"),
+        f: $("sumF")
+    };
 
-    function hideError() {
-        addError.style.display = "none";
-        addError.textContent = "";
-    }
+    const esc = (s) => String(s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
 
-    async function refreshSummary() {
-        const d = dateInput.value;
-        const resp = await fetch(`/Diary/Summary?date=${encodeURIComponent(d)}`);
-        if (!resp.ok) return;
+    const showErr = (m) => { if (!err) return; err.style.display = "block"; err.textContent = m; };
+    const hideErr = () => { if (!err) return; err.style.display = "none"; err.textContent = ""; };
 
-        const data = await resp.json();
-        sumCount.textContent = data.count;
-        sumKcal.textContent = data.kcal;
-        sumP.textContent = data.protein;
-        sumC.textContent = data.carbs;
-        sumF.textContent = data.fat;
-    }
+    const reqJson = async (url, opt) => {
+        const r = await fetch(url, opt);
+        if (!r.ok) throw new Error((await r.text()) || "Request failed");
+        const ct = r.headers.get("content-type") || "";
+        return ct.includes("application/json") ? r.json() : null;
+    };
 
-    function escapeHtml(str) {
-        return String(str)
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#039;");
-    }
+    const refreshSummary = async () => {
+        const d = date?.value;
+        if (!d) return;
+        const s = await reqJson(`/Diary/Summary?date=${encodeURIComponent(d)}`);
+        if (!s) return;
+        sum.count.textContent = s.count;
+        sum.kcal.textContent = s.kcal;
+        sum.p.textContent = s.protein;
+        sum.c.textContent = s.carbs;
+        sum.f.textContent = s.fat;
+    };
 
-    function addRow(item) {
-        const tr = document.createElement("tr");
-        tr.setAttribute("data-id", item.id);
+    const rowHtml = (x) => `
+    <tr data-id="${x.id}">
+      <td>${esc(x.foodName)}</td>
+      <td style="max-width:110px;">
+        <input class="form-control form-control-sm entryGrams" type="number" min="1" max="5000" value="${x.grams}">
+      </td>
+      <td class="kcal">${x.kcal}</td>
+      <td class="p">${x.protein}</td>
+      <td class="c">${x.carbs}</td>
+      <td class="f">${x.fat}</td>
+      <td style="white-space:nowrap;">
+        <button type="button" class="btn btn-sm btn-warning saveBtn">Uložiť</button>
+        <button type="button" class="btn btn-sm btn-danger delBtn">Zmazať</button>
+      </td>
+    </tr>`;
 
-        tr.innerHTML = `
-        <td>${escapeHtml(item.foodName)}</td>
+    addBtn?.addEventListener("click", async () => {
+        try {
+            hideErr();
+            const g = Number(grams.value);
+            if (!g || g < 1 || g > 5000) return showErr("Zadaj gramáž 1–5000 g.");
 
-        <td style="max-width:110px;">
-            <input class="form-control form-control-sm entryGrams"
-                   type="number" min="1" max="5000" value="${item.grams}" />
-        </td>
+            const data = await reqJson("/Diary/AddEntry", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ foodItemId: Number(food.value), grams: g, date: date.value })
+            });
 
-        <td class="kcal">${item.kcal}</td>
-        <td class="p">${item.protein}</td>
-        <td class="c">${item.carbs}</td>
-        <td class="f">${item.fat}</td>
-
-        <td style="white-space:nowrap;">
-            <button type="button" class="btn btn-sm btn-warning saveBtn">Uložiť</button>
-            <button type="button" class="btn btn-sm btn-danger delBtn">Zmazať</button>
-        </td>
-    `;
-
-        entriesBody.prepend(tr);
-    }
-
-    async function addEntry() {
-        hideError();
-
-        const grams = Number(gramsInput.value);
-        if (!grams || grams < 1 || grams > 5000) {
-            showError("Zadaj gramáž 1–5000 g.");
-            return;
+            body.insertAdjacentHTML("afterbegin", rowHtml(data));
+            await refreshSummary();
+        } catch (e) {
+            showErr(e.message);
         }
+    });
 
-        const payload = {
-            foodItemId: Number(foodSelect.value),
-            grams: grams,
-            date: dateInput.value
-        };
-
-        const resp = await fetch("/Diary/AddEntry", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (!resp.ok) {
-            const txt = await resp.text();
-            showError(txt || "Nepodarilo sa pridať záznam.");
-            return;
-        }
-
-        const data = await resp.json();
-        addRow(data);
-        await refreshSummary();
-    }
-
-    async function deleteEntry(id) {
-        const resp = await fetch("/Diary/DeleteEntry", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id })
-        });
-
-        if (!resp.ok) return;
-
-        const tr = entriesBody.querySelector(`tr[data-id="${id}"]`);
-        if (tr) tr.remove();
-
-        await refreshSummary();
-    }
-
-    addBtn.addEventListener("click", addEntry);
-
-    entriesBody.addEventListener("click", async function (e) {
+    body?.addEventListener("click", async (e) => {
         const tr = e.target.closest("tr");
         if (!tr) return;
-
         const id = Number(tr.dataset.id);
 
-        if (e.target.closest(".delBtn")) {
-            await deleteEntry(id);
-            return;
-        }
-
-        if (e.target.closest(".saveBtn")) {
-            const grams = Number(tr.querySelector(".entryGrams").value);
-
-            if (!grams || grams < 1 || grams > 5000) {
-                alert("Zadaj gramáž 1–5000 g");
-                return;
+        try {
+            if (e.target.closest(".delBtn")) {
+                await reqJson("/Diary/DeleteEntry", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id })
+                });
+                tr.remove();
+                return refreshSummary();
             }
 
-            const resp = await fetch("/Diary/UpdateEntry", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ id, grams })
-            });
+            if (e.target.closest(".saveBtn")) {
+                const g = Number(tr.querySelector(".entryGrams")?.value);
+                if (!g || g < 1 || g > 5000) return alert("Zadaj gramáž 1–5000 g.");
 
-            if (!resp.ok) {
-                alert("Nepodarilo sa uložiť zmenu");
-                return;
+                const data = await reqJson("/Diary/UpdateEntry", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id, grams: g })
+                });
+
+                tr.querySelector(".kcal").textContent = data.kcal;
+                tr.querySelector(".p").textContent = data.protein;
+                tr.querySelector(".c").textContent = data.carbs;
+                tr.querySelector(".f").textContent = data.fat;
+                await refreshSummary();
             }
-
-            const data = await resp.json();
-
-            tr.querySelector(".kcal").textContent = data.kcal;
-            tr.querySelector(".p").textContent = data.protein;
-            tr.querySelector(".c").textContent = data.carbs;
-            tr.querySelector(".f").textContent = data.fat;
-
-            await refreshSummary();
+        } catch (e2) {
+            alert(e2.message || "Chyba.");
         }
     });
 
-    dateInput.addEventListener("change", function () {
-        window.location.href = `/Diary/Index?date=${encodeURIComponent(dateInput.value)}`;
+    date?.addEventListener("change", () => {
+        location.href = `/Diary/Index?date=${encodeURIComponent(date.value)}`;
     });
 
-    refreshSummary();
-
-    const saveGoalBtn = document.getElementById("saveGoalBtn");
-
-    if (saveGoalBtn) {
-        saveGoalBtn.addEventListener("click", async () => {
-            const payload = {
-                date: dateInput.value,
-                kcalGoal: Number(document.getElementById("goalKcal").value),
-                proteinGoal: Number(document.getElementById("goalP").value),
-                carbsGoal: Number(document.getElementById("goalC").value),
-                fatGoal: Number(document.getElementById("goalF").value)
-            };
-
-            const resp = await fetch("/Diary/SaveGoal", {
+    $("saveGoalBtn")?.addEventListener("click", async () => {
+        const goalMsg = $("goalMsg");
+        try {
+            await reqJson("/Diary/SaveGoal", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
+                body: JSON.stringify({
+                    date: date.value,
+                    kcalGoal: Number($("goalKcal").value),
+                    proteinGoal: Number($("goalP").value),
+                    carbsGoal: Number($("goalC").value),
+                    fatGoal: Number($("goalF").value)
+                })
             });
+            if (goalMsg) { goalMsg.style.display = "block"; goalMsg.className = "text-success mt-2"; goalMsg.textContent = "Denný cieľ uložený."; }
+        } catch (e) {
+            if (goalMsg) { goalMsg.style.display = "block"; goalMsg.className = "text-danger mt-2"; goalMsg.textContent = e.message || "Chyba."; }
+        }
+    });
 
-            const goalMsg = document.getElementById("goalMsg");
-            goalMsg.style.display = "block";
-
-            if (!resp.ok) {
-                goalMsg.className = "text-danger mt-2";
-                goalMsg.textContent = await resp.text() || "Chyba pri ukladaní cieľa.";
-                return;
-            }
-
-            goalMsg.className = "text-success mt-2";
-            goalMsg.textContent = "Denný cieľ uložený.";
-        });
-    }
+    refreshSummary().catch(() => { });
 })();

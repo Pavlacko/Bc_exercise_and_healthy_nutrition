@@ -5,7 +5,6 @@ namespace Bc_exercise_and_healthy_nutrition.Data
 {
     public static class AdminSeeder
     {
-        //generovane pomocou AI
         public static void SeedAdmin(AppDbContext context)
         {
             if (context.Users.Any(u => u.Rola == "Admin"))
