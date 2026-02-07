@@ -87,6 +87,13 @@
         <div class="text-muted-small">Uprav gramáž a klikni Uložiť</div>
     </div>
 
+    <select id="foodOptionsTemplate" class="d-none">
+        @foreach (var f in Model.Foods)
+        {
+            <option value="@f.Value">@f.Text</option>
+        }
+    </select>
+
     <div class="table-responsive">
         <table class="table table-card align-middle">
             <thead>
