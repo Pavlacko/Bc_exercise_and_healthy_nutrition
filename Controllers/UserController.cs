@@ -184,7 +184,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        /////////////////////////////////////
+
         [HttpGet]
         [RequireLogin]
         public IActionResult Profile()
@@ -236,7 +236,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             var uploadDir = Path.Combine(_env.WebRootPath, "uploads", "avatars");
             Directory.CreateDirectory(uploadDir);
 
-            // zmaž starú fotku (aj s inou príponou)
             foreach (var oldExt in allowed)
             {
                 var p = Path.Combine(uploadDir, $"{user.Id}{oldExt}");
@@ -284,5 +283,106 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return RedirectToAction(nameof(Profile));
         }
 
+        [HttpGet]
+        [RequireLogin]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [RequireLogin]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangePassword(string oldPassword, string newPassword, string newPassword2)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login");
+
+            if (string.IsNullOrWhiteSpace(oldPassword) ||
+                string.IsNullOrWhiteSpace(newPassword) ||
+                string.IsNullOrWhiteSpace(newPassword2))
+            {
+                TempData["Err"] = "Vyplň všetky polia.";
+                return RedirectToAction(nameof(ChangePassword));
+            }
+
+            if (newPassword.Length < 6)
+            {
+                TempData["Err"] = "Nové heslo musí mať aspoň 6 znakov.";
+                return RedirectToAction(nameof(ChangePassword));
+            }
+
+            if (newPassword != newPassword2)
+            {
+                TempData["Err"] = "Nové heslá sa nezhodujú.";
+                return RedirectToAction(nameof(ChangePassword));
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId.Value);
+            if (user == null) return RedirectToAction("Login");
+
+            var hasher = new PasswordHasher<AppUser>();
+            var check = hasher.VerifyHashedPassword(user, user.PasswordHash, oldPassword);
+
+            if (check == PasswordVerificationResult.Failed)
+            {
+                TempData["Err"] = "Aktuálne heslo nie je správne.";
+                return RedirectToAction(nameof(ChangePassword));
+            }
+
+            user.PasswordHash = hasher.HashPassword(user, newPassword);
+            _context.SaveChanges();
+
+            TempData["Ok"] = "Heslo bolo zmenené.";
+            return RedirectToAction(nameof(Profile));
+        }
+
+        [HttpPost]
+        [RequireLogin]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateProfile(int id, string meno, string email, int vek, int vyska, double vaha)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login");
+
+            if (userId.Value != id)
+                return Unauthorized();
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null) return NotFound();
+
+            if (string.IsNullOrWhiteSpace(meno))
+            {
+                TempData["Err"] = "Meno je povinné.";
+                return RedirectToAction(nameof(Profile));
+            }
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                TempData["Err"] = "Email je povinný.";
+                return RedirectToAction(nameof(Profile));
+            }
+
+            var emailExists = _context.Users.Any(u => u.Email == email && u.Id != id);
+            if (emailExists)
+            {
+                TempData["Err"] = "Používateľ s týmto emailom už existuje.";
+                return RedirectToAction(nameof(Profile));
+            }
+
+            user.Meno = meno.Trim();
+            user.Email = email.Trim();
+            user.Vek = vek;
+            user.Vyska = vyska;
+            user.Vaha = vaha;
+
+            _context.SaveChanges();
+
+            HttpContext.Session.SetString("UserEmail", user.Email);
+
+            TempData["Ok"] = "Profil uložený.";
+            return RedirectToAction(nameof(Profile));
+        }
+
     }
 }
+

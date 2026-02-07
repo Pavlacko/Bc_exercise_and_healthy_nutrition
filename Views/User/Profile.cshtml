@@ -3,32 +3,93 @@
     ViewData["Title"] = "Profil";
 }
 
-<h2>Profil</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="page-title mb-0">Profil</h2>
+
+    <a class="btn btn-sm btn-outline-main" asp-controller="User" asp-action="ChangePassword">
+        Zmeniť heslo
+    </a>
+</div>
 
 @if (TempData["Err"] != null)
 {
-    <div class="alert alert-danger">@TempData["Err"]</div>
+    <div class="alert-custom alert-error">@TempData["Err"]</div>
 }
 @if (TempData["Ok"] != null)
 {
-    <div class="alert alert-success">@TempData["Ok"]</div>
+    <div class="alert-custom alert-success">@TempData["Ok"]</div>
 }
 
-<div class="mb-3">
-    <div class="mb-2">
-        <img src="@(Model.AvatarPath ?? "/img/default-avatar.png")"
-             style="width:120px;height:120px;object-fit:cover;border-radius:50%;border:1px solid #ddd;" />
+<div class="card-custom">
+    <h4 class="section-title mb-3">Moje údaje</h4>
+
+    <form asp-controller="User" asp-action="UpdateProfile" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Id" value="@Model.Id" />
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Meno</label>
+                <input name="Meno" class="form-control" value="@Model.Meno" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input name="Email" class="form-control" value="@Model.Email" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Vek</label>
+                <input name="Vek" type="number" class="form-control" value="@Model.Vek" min="10" max="100" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Výška (cm)</label>
+                <input name="Vyska" type="number" class="form-control" value="@Model.Vyska" min="50" max="250" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Váha (kg)</label>
+                <input name="Vaha" type="number" step="0.1" class="form-control" value="@Model.Vaha" min="20" max="300" />
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-main">Uložiť zmeny</button>
+        </div>
+    </form>
+</div>
+
+<div class="card-custom mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="section-title mb-0">Profilová fotka</h4>
+        <div class="text-muted-small">PNG/JPG, max 2 MB</div>
     </div>
 
-    <form asp-controller="User" asp-action="UploadAvatar" method="post" enctype="multipart/form-data"
-          class="d-flex gap-2 align-items-center">
-        @Html.AntiForgeryToken()
-        <input type="file" name="avatar" accept="image/png,image/jpeg" class="form-control" style="max-width:320px;" />
-        <button class="btn btn-primary" type="submit">Nahrať</button>
-    </form>
+    <div class="d-flex align-items-center gap-3 flex-wrap">
+        <img class="avatar-lg"
+             src="@(string.IsNullOrWhiteSpace(Model.AvatarPath) ? "/img/default-avatar.png" : Model.AvatarPath)"
+             alt="Avatar" />
 
-    <form asp-controller="User" asp-action="DeleteAvatar" method="post" class="mt-2">
-        @Html.AntiForgeryToken()
-        <button class="btn btn-outline-danger" type="submit">Zmazať fotku</button>
-    </form>
+        <form asp-controller="User"
+              asp-action="UploadAvatar"
+              method="post"
+              enctype="multipart/form-data"
+              class="d-flex gap-2 align-items-center flex-wrap">
+            @Html.AntiForgeryToken()
+
+            <input type="file"
+                   name="avatar"
+                   accept="image/png,image/jpeg"
+                   class="form-control"
+                   style="max-width:320px;" />
+
+            <button class="btn btn-main" type="submit">Nahrať</button>
+        </form>
+
+        <form asp-controller="User" asp-action="DeleteAvatar" method="post">
+            @Html.AntiForgeryToken()
+            <button class="btn btn-outline-danger" type="submit">Zmazať fotku</button>
+        </form>
+    </div>
 </div>
