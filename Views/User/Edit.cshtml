@@ -4,43 +4,66 @@
     ViewData["Title"] = "Upraviť používateľa";
 }
 
-<h2>Upraviť používateľa</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="page-title mb-0">Upraviť používateľa</h2>
+    <a class="btn btn-sm btn-outline-main" asp-controller="User" asp-action="Index">Späť</a>
+</div>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
+<div class="card-custom" style="max-width: 900px;">
+    <form asp-action="Edit" method="post" novalidate>
+        <input type="hidden" asp-for="Id" />
 
-    <div class="mb-3">
-        <label asp-for="Meno" class="form-label"></label>
-        <input asp-for="Meno" class="form-control" />
-        <span asp-validation-for="Meno" class="text-danger"></span>
-    </div>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Meno</label>
+                <input asp-for="Meno" class="form-control" />
+                <span asp-validation-for="Meno" class="text-danger"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="Vek" class="form-label"></label>
-        <input asp-for="Vek" class="form-control" />
-        <span asp-validation-for="Vek" class="text-danger"></span>
-    </div>
+            <div class="col-md-6">
+                <label class="form-label">Vek</label>
+                <input asp-for="Vek" class="form-control" />
+                <span asp-validation-for="Vek" class="text-danger"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="Vyska" class="form-label"></label>
-        <input asp-for="Vyska" class="form-control" />
-        <span asp-validation-for="Vyska" class="text-danger"></span>
-    </div>
+            <div class="col-md-6">
+                <label class="form-label">Výška (cm)</label>
+                <input asp-for="Vyska" class="form-control" />
+                <span asp-validation-for="Vyska" class="text-danger"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="Vaha" class="form-label"></label>
-        <input asp-for="Vaha" class="form-control" />
-        <span asp-validation-for="Vaha" class="text-danger"></span>
-    </div>
+            <div class="col-md-6">
+                <label class="form-label">Váha (kg)</label>
+                <input asp-for="Vaha" class="form-control" />
+                <span asp-validation-for="Vaha" class="text-danger"></span>
+            </div>
 
-    <button type="submit" class="btn btn-primary">Uložiť</button>
-    <a asp-action="Index" class="btn btn-secondary">Späť</a>
-</form>
+            <div class="col-md-6">
+                <label class="form-label">Rola</label>
+                <select asp-for="Rola" class="form-select">
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                </select>
+                <span asp-validation-for="Rola" class="text-danger"></span>
+            </div>
 
+            <div class="col-12">
+                <label class="form-label">AvatarPath</label>
+                <input asp-for="AvatarPath" class="form-control" />
+                <span asp-validation-for="AvatarPath" class="text-danger"></span>
+                <div class="text-muted-small mt-1">Ak nepoužívaš, môže ostať prázdne.</div>
+            </div>
+        </div>
 
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-main">Uložiť</button>
+            <a class="btn btn-outline-main" asp-controller="User" asp-action="Index">Zrušiť</a>
+        </div>
+    </form>
+</div>

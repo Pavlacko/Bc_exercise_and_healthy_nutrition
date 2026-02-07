@@ -4,13 +4,33 @@
     ViewData["Title"] = "Zmazať používateľa";
 }
 
-<h2>Zmazať používateľa</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="page-title mb-0">Zmazať používateľa</h2>
+    <a class="btn btn-sm btn-outline-main" asp-controller="User" asp-action="Index">Späť</a>
+</div>
 
-<p>Naozaj chceš zmazať používateľa <strong>@Model.Meno</strong>?</p>
+<div class="card-custom" style="max-width: 900px;">
+    <div class="alert alert-error alert-custom mb-3">
+        Naozaj chceš zmazať používateľa <strong>@Model.Meno</strong>?
+    </div>
 
-<form asp-action="Delete" method="post">
-    <input type="hidden" asp-for="Id" />
-    <button type="submit" class="btn btn-danger">Áno, zmazať</button>
-    <a asp-action="Index" class="btn btn-secondary">Nie, späť</a>
-</form>
+    <div class="table-responsive">
+        <table class="table table-card align-middle">
+            <tbody>
+                <tr><th style="width:180px;">Id</th><td>@Model.Id</td></tr>
+                <tr><th>Meno</th><td>@Model.Meno</td></tr>
+                <tr><th>Email</th><td>@Model.Email</td></tr>
+                <tr><th>Vek</th><td>@Model.Vek</td></tr>
+                <tr><th>Výška</th><td>@Model.Vyska cm</td></tr>
+                <tr><th>Váha</th><td>@Model.Vaha kg</td></tr>
+                <tr><th>Rola</th><td>@Model.Rola</td></tr>
+            </tbody>
+        </table>
+    </div>
 
+    <form asp-action="Delete" method="post" class="d-flex gap-2 mt-3">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Zmazať</button>
+        <a class="btn btn-outline-main" asp-controller="User" asp-action="Index">Zrušiť</a>
+    </form>
+</div>

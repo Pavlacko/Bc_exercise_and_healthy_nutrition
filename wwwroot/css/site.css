@@ -395,3 +395,39 @@ body {
         border-color: rgba(201,43,43,.55);
         color: #c92b2b;
     }
+
+
+
+.table-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    margin: 0;
+}
+
+    .table-card thead th {
+        font-weight: 700;
+        color: #355243;
+        background: #f6faf6;
+        border-bottom: 1px solid #e7eee7;
+    }
+
+    .table-card td, .table-card th {
+        border-top: 1px solid #eef3ee;
+    }
+
+.btn-outline-main {
+    border: 1px solid #3fa36c;
+    color: #2c7a52;
+    background: transparent;
+    border-radius: 999px;
+}
+
+    .btn-outline-main:hover {
+        background: #e9f3ec;
+        color: #1f3d2b;
+    }
+
+.btn-outline-danger {
+    border-radius: 999px;
+}

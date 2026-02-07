@@ -4,39 +4,51 @@
     ViewData["Title"] = "Zoznam používateľov";
 }
 
-<h2>Zoznam používateľov</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="page-title mb-0">Zoznam používateľov</h2>
+</div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Meno</th>
-            <th>Email</th>
-            <th>Vek</th>
-            <th>Výška</th>
-            <th>Váha</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var u in Model)
-        {
-            <tr>
-                <td>@u.Id</td>
-                <td>@u.Meno</td>
-                <td>@u.Email</td>
-                <td>@u.Vek</td>
-                <td>@u.Vyska</td>
-                <td>@u.Vaha</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@u.Id" class="btn btn-sm btn-warning">Upraviť</a>
-                    @if (u.Rola != "Admin")
-                    {
-                        <a asp-action="Delete" asp-route-id="@u.Id" class="btn btn-sm btn-danger">Zmazať</a>   
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+<div class="card-custom">
+    <div class="table-responsive">
+        <table class="table table-card align-middle">
+            <thead>
+                <tr>
+                    <th style="width:80px;">Id</th>
+                    <th>Meno</th>
+                    <th>Email</th>
+                    <th style="width:90px;">Vek</th>
+                    <th style="width:100px;">Výška</th>
+                    <th style="width:100px;">Váha</th>
+                    <th style="width:140px;">Rola</th>
+                    <th style="width:170px;" class="text-end"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var u in Model)
+                {
+                    <tr>
+                        <td>@u.Id</td>
+                        <td class="fw-600">@u.Meno</td>
+                        <td class="text-muted">@u.Email</td>
+                        <td>@u.Vek</td>
+                        <td>@u.Vyska cm</td>
+                        <td>@u.Vaha kg</td>
+                        <td>
+                            <span class="badge bg-light text-dark border">@u.Rola</span>
+                        </td>
+                        <td class="text-end" style="white-space:nowrap;">
+                            <a class="btn btn-sm btn-outline-main"
+                               asp-controller="User" asp-action="Edit" asp-route-id="@u.Id">
+                                Upraviť
+                            </a>
+                            <a class="btn btn-sm btn-outline-danger"
+                               asp-controller="User" asp-action="Delete" asp-route-id="@u.Id">
+                                Zmazať
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
