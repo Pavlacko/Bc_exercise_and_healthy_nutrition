@@ -1,40 +1,59 @@
 ﻿@model IEnumerable<Bc_exercise_and_healthy_nutrition.Models.FoodItem>
 
 @{
-    ViewData["Title"] = "Jedlá";
+    ViewData["Title"] = "Databáza jedla";
 }
 
-<h2>Databáza jedál</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="page-title mb-0">Databáza jedál</h2>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">+ Pridať jedlo</a>
-</p>
+    <a class="btn btn-main"
+       asp-controller="Food"
+       asp-action="Create">
+        + Pridať jedlo
+    </a>
+</div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Názov</th>
-            <th>kcal/100g</th>
-            <th>P/100g</th>
-            <th>C/100g</th>
-            <th>F/100g</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var f in Model)
-        {
-            <tr>
-                <td>@f.Name</td>
-                <td>@f.KcalPer100g</td>
-                <td>@f.ProteinPer100g</td>
-                <td>@f.CarbsPer100g</td>
-                <td>@f.FatPer100g</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@f.Id" class="btn btn-sm btn-warning">Upraviť</a>
-                    <a asp-action="Delete" asp-route-id="@f.Id" class="btn btn-sm btn-danger">Zmazať</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="card-custom">
+    <div class="table-responsive">
+        <table class="table table-card align-middle">
+            <thead>
+                <tr>
+                    <th>Názov</th>
+                    <th style="width:120px;">kcal/100g</th>
+                    <th style="width:110px;">P/100g</th>
+                    <th style="width:110px;">C/100g</th>
+                    <th style="width:110px;">F/100g</th>
+                    <th style="width:180px;" class="text-end"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var f in Model)
+                {
+                    <tr>
+                        <td class="fw-600">@f.Name</td>
+                        <td>@f.KcalPer100g</td>
+                        <td>@f.ProteinPer100g</td>
+                        <td>@f.CarbsPer100g</td>
+                        <td>@f.FatPer100g</td>
+                        <td class="text-end" style="white-space:nowrap;">
+                            <a class="btn btn-sm btn-outline-main"
+                               asp-controller="Food"
+                               asp-action="Edit"
+                               asp-route-id="@f.Id">
+                                Upraviť
+                            </a>
+
+                            <a class="btn btn-sm btn-outline-danger"
+                               asp-controller="Food"
+                               asp-action="Delete"
+                               asp-route-id="@f.Id">
+                                Zmazať
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

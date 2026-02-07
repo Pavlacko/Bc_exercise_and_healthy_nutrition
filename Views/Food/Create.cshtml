@@ -3,42 +3,52 @@
 @{
     ViewData["Title"] = "Pridať jedlo";
 }
-@* generovane pomocou AI *@
-<h2>Pridať jedlo</h2>
 
-<form asp-action="Create" method="post">
-    @Html.AntiForgeryToken()
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="page-title mb-0">Pridať jedlo</h2>
 
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
+    <a class="btn btn-sm btn-outline-main" asp-controller="Food" asp-action="Index">← Späť</a>
+</div>
 
-    <div class="mb-3">
-        <label asp-for="KcalPer100g" class="form-label"></label>
-        <input asp-for="KcalPer100g" class="form-control" />
-        <span asp-validation-for="KcalPer100g" class="text-danger"></span>
-    </div>
+<div class="card-custom">
+    <form asp-action="Create" method="post" class="form-grid">
+        <div asp-validation-summary="ModelOnly" class="alert-custom alert-error" role="alert"></div>
 
-    <div class="mb-3">
-        <label asp-for="ProteinPer100g" class="form-label"></label>
-        <input asp-for="ProteinPer100g" class="form-control" />
-        <span asp-validation-for="ProteinPer100g" class="text-danger"></span>
-    </div>
+        <div class="row g-3">
+            <div class="col-12">
+                <label asp-for="Name" class="form-label">Názov</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="CarbsPer100g" class="form-label"></label>
-        <input asp-for="CarbsPer100g" class="form-control" />
-        <span asp-validation-for="CarbsPer100g" class="text-danger"></span>
-    </div>
+            <div class="col-sm-6 col-lg-3">
+                <label asp-for="KcalPer100g" class="form-label">kcal / 100g</label>
+                <input asp-for="KcalPer100g" class="form-control" />
+                <span asp-validation-for="KcalPer100g" class="text-danger"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="FatPer100g" class="form-label"></label>
-        <input asp-for="FatPer100g" class="form-control" />
-        <span asp-validation-for="FatPer100g" class="text-danger"></span>
-    </div>
+            <div class="col-sm-6 col-lg-3">
+                <label asp-for="ProteinPer100g" class="form-label">P / 100g</label>
+                <input asp-for="ProteinPer100g" class="form-control" />
+                <span asp-validation-for="ProteinPer100g" class="text-danger"></span>
+            </div>
 
-    <button type="submit" class="btn btn-primary">Uložiť</button>
-    <a asp-action="Index" class="btn btn-secondary">Späť</a>
-</form>
+            <div class="col-sm-6 col-lg-3">
+                <label asp-for="CarbsPer100g" class="form-label">C / 100g</label>
+                <input asp-for="CarbsPer100g" class="form-control" />
+                <span asp-validation-for="CarbsPer100g" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+                <label asp-for="FatPer100g" class="form-label">F / 100g</label>
+                <input asp-for="FatPer100g" class="form-control" />
+                <span asp-validation-for="FatPer100g" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-main">Uložiť</button>
+            <a class="btn btn-outline-main" asp-controller="Food" asp-action="Index">Zrušiť</a>
+        </div>
+    </form>
+</div>
