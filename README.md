@@ -1,19 +1,33 @@
-Nutričná aplikácia pre začiatočníkov je webová aplikácia vytvorená v rámci semestrálnej práce z predmetu VAII. Cieľom aplikácie je poskytnúť používateľom základný prehľad o stravovaní, nutričných hodnotách potravín a dennom kalorickom príjme. Aplikácia je určená najmä pre začiatočníkov v oblasti zdravej výživy a cvičenia a slúži ako jednoduchá úvodná príručka.
+Healthy Start – webová aplikácia na predmet VAII
 
-Aplikácia je implementovaná ako webová aplikácia postavená na architektúre Model–View–Controller (MVC) s využitím technológie ASP.NET Core MVC vo verzii .NET 8. Na prácu s databázou je použitý Entity Framework Core ako ORM nástroj a databázový systém Microsoft SQL Server (LocalDB). Používateľské rozhranie je realizované pomocou Razor Views, Bootstrap 5 a vlastných CSS štýlov, pričom dynamické časti aplikácie využívajú JavaScript a AJAX komunikáciu prostredníctvom Fetch API.
+Upozornenie k použitiu AI:
+Pri vývoji tejto aplikácie bola využívaná umelá inteligencia ako podporný nástroj 
+na konzultáciu návrhu architektúry, používateľského rozhrania a riešenia konkrétnych 
+technických problémov. Umelá inteligencia bola využitá aj pri tvorbe tejto dokumentácie
 
-Pre spustenie aplikácie je potrebné mať nainštalovaný .NET SDK vo verzii 8 alebo novšej, vývojové prostredie Visual Studio 2022 alebo kompatibilný editor a databázový systém SQL Server LocalDB. Konfigurácia databázového pripojenia sa nachádza v súbore appsettings.json. Databáza je vytváraná automaticky pomocou Entity Framework Core migrácií, ktoré zabezpečujú vytvorenie všetkých potrebných tabuliek.
+Použité technologie:
+- ASP.NET Core (MVC) – hlavný aplikačný framework
+- C# – implementácia serverovej logiky
+- Entity Framework Core – práca s databázou
+- SQL Server / LocalDB – perzistentné ukladanie dát
+- HTML, CSS, Bootstrap – používateľské rozhranie
+- JavaScript (Fetch API) – asynchrónna komunikácia (AJAX)
+- Git – verzovanie zdrojového kódu
 
-Aplikácia obsahuje viacero databázových entít. Medzi hlavné patrí entita používateľa, entita jedla s nutričnými hodnotami, záznamy jedál v denníku a entita denných cieľov. Používateľ môže mať viacero záznamov v denníku a na každý deň si môže nastaviť jeden denný cieľ pre kalórie a makroživiny. Jednotlivé jedlá sú uložené v databáze a môžu byť opakovane používané pri zapisovaní do denníka.
+Inštalácia a spustenie aplikácie:
+1.Inštalácia a spustenie aplikácie
+2.Otvorte projekt v prostredí Visual Studio.
+3.Skontrolujte pripojenie k databáze v súbore appsettings.json.
+4.Spustite databázové migrácie (ak je potrebné).
+5.Spustite aplikáciu pomocou IIS Express alebo lokálneho servera.
+6.Aplikácia bude dostupná v prehliadači na lokálnej adrese.
 
-Súčasťou aplikácie je vlastná autentifikácia a autorizácia používateľov. Používatelia sa môžu registrovať a prihlasovať do systému. Aplikácia rozlišuje rolu bežného používateľa a administrátora. Administrátor má prístup k správe používateľov a k databáze jedál, nad ktorou môže vykonávať CRUD operácie. Bežný používateľ má prístup len k funkciám denníka, štatistík a edukačných častí aplikácie. Prístup k jednotlivým častiam aplikácie je chránený pomocou vlastných autorizačných filtrov.
+O aplikácii:
+Healthy Start je webová aplikácia zameraná na sledovanie stravovania a základných 
+nutričných hodnôt. Umožňuje používateľom evidovať jedlá v denníku stravy, pracovať 
+s databázou potravín a spravovať svoj používateľský profil. Aplikácia rozlišuje 
+používateľské role a obsahuje administrátorskú časť na správu dát. Dôraz je kladený 
+na prehľadné používateľské rozhranie, bezpečné spracovanie údajov a serverovú 
+validáciu vstupov.
 
-Jednou z hlavných funkcií aplikácie je denný stravovací denník. Používateľ si môže vybrať jedlo z databázy, zadať jeho gramáž a pridať ho do denníka pre konkrétny deň. Aplikácia automaticky vypočíta kalorickú hodnotu a množstvo bielkovín, sacharidov a tukov na základe zadaných údajov. Záznamy je možné odstraňovať bez nutnosti opätovného načítania stránky, pričom sa využíva AJAX komunikácia.
 
-Aplikácia ďalej obsahuje sekciu štatistík, kde používateľ vidí denný súhrn prijatých kalórií a makroživín. Súčasťou štatistík je porovnanie reálneho denného príjmu s nastaveným denným cieľom, ktoré je zobrazované v percentách. Okrem toho aplikácia zobrazuje týždenný prehľad kalorického príjmu pomocou jednoduchého grafu vykresleného na HTML canvas elemente.
-
-V aplikácii sú implementované aj edukačné a informačné časti, ktoré slúžia ako úvod do problematiky zdravej výživy. Používateľ má k dispozícii kalkulačku BMI, kalkulačku BMR a nástroje na výpočet odporúčaného denného kalorického príjmu. Tieto časti sú realizované ako samostatné dynamické stránky a doplnené o statický text s vysvetlením a odporúčaniami.
-
-Používateľské rozhranie aplikácie je responzívne a prispôsobené rôznym veľkostiam obrazoviek. Sidebar navigácia sa na menších zariadeniach upravuje pomocou media queries. Aplikácia používa vlastné CSS komponenty, ako sú karty, alerty, tabuľky a formuláre, čím sa odlišuje od základného vzhľadu Bootstrapu.
-
-Aplikácia spĺňa požiadavky zadania na použitie MVC architektúry, databázových vzťahov, CRUD operácií, autentifikácie a autorizácie používateľov, dynamickej klient–server komunikácie pomocou AJAX a responzívneho dizajnu. Projekt je pripravený na spustenie lokálne a je vhodný na demonštráciu základných princípov webového vývoja v prostredí ASP.NET Core.
