@@ -24,6 +24,7 @@
         return ct.includes("application/json") ? r.json() : null;
     };
 
+    //vytvara riadok ktory sa potom vlozi do DOM
     const rowHtml = (x) => {
         const options = foodTpl ? foodTpl.innerHTML : "";
         return `
@@ -68,9 +69,10 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
             });
-
+            //pridanie riadku do ktory sa vytvoril v UI, afterbegin vlozi na vrch
             body.insertAdjacentHTML("afterbegin", rowHtml(data));
 
+            //po vložení nového záznamu vyhľadajú novovytvorený riadok v DOM, nájdu v ňom select pre jedlo a nastavia jeho hodnotu tak, aby UI zodpovedalo dátam uloženým na serveri.
             const tr = body.querySelector(`tr[data-id="${data.id}"]`);
             const sel = tr?.querySelector(".entryFood");
 
@@ -83,9 +85,10 @@
     });
 
     body?.addEventListener("click", async (e) => {
+        //najde najblizsi riadok podla targetu na ktory sme klikli
         const tr = e.target.closest("tr");
         if (!tr) return;
-
+        //vytiahneme z riadku ID zaznamu
         const id = Number(tr.dataset.id);
 
         try {
@@ -95,11 +98,13 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ id })
                 });
+                //odstranenie riadku 
                 tr.remove();
                 return;
             }
 
             if (e.target.closest(".saveBtn")) {
+                //v rámci toho riadku (tr) nájde input class entryGrams
                 const g = Number(tr.querySelector(".entryGrams")?.value);
                 if (!g || g < 1 || g > 5000) return alert("Zadaj gramáž 1–5000 g.");
 
@@ -111,6 +116,7 @@
                     body: JSON.stringify({ id, grams: g, foodItemId: foodId })
                 });
 
+                //zmena udajov podla recieved JSON
                 tr.querySelector(".kcal").textContent = data.kcal;
                 tr.querySelector(".p").textContent = data.protein;
                 tr.querySelector(".c").textContent = data.carbs;

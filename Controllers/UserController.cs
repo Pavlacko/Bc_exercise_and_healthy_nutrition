@@ -233,9 +233,11 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             var user = await _context.Users.FirstAsync(u => u.Id == userId.Value);
 
+            //vytvori subor, ak uz existuje, nic sa nestane
             var uploadDir = Path.Combine(_env.WebRootPath, "uploads", "avatars");
             Directory.CreateDirectory(uploadDir);
 
+            //zabezpecenie, ze existuje len jeden avatar na usera
             foreach (var oldExt in allowed)
             {
                 var p = Path.Combine(uploadDir, $"{user.Id}{oldExt}");
@@ -245,11 +247,13 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             var fileName = $"{user.Id}{ext}";
             var fullPath = Path.Combine(uploadDir, fileName);
 
+            //streamovanie súboru na disk
             using (var fs = new FileStream(fullPath, FileMode.Create))
             {
                 await avatar.CopyToAsync(fs);
             }
 
+            //ulozenie cesty na disk
             user.AvatarPath = $"/uploads/avatars/{fileName}";
             await _context.SaveChangesAsync();
 

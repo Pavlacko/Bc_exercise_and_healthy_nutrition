@@ -24,6 +24,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return RedirectToAction("Login", "User");
 
+            //ak nepride parameter, tak berie dnesok .Date - bez casu
             var d = (date ?? DateTime.Today).Date;
 
             var vm = new DiaryIndexViewModel
@@ -144,7 +145,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             var d = dto.Date.Date;
 
-            if (dto.KcalGoal < 0 || dto.KcalGoal > 10000) return BadRequest("Neplatný cieľ kcal.");
+            if (dto.KcalGoal < 0 || dto.KcalGoal > 15000) return BadRequest("Neplatný cieľ kcal.");
             if (dto.ProteinGoal < 0 || dto.ProteinGoal > 500) return BadRequest("Neplatný cieľ proteínu.");
             if (dto.CarbsGoal < 0 || dto.CarbsGoal > 1000) return BadRequest("Neplatný cieľ sacharidov.");
             if (dto.FatGoal < 0 || dto.FatGoal > 500) return BadRequest("Neplatný cieľ tukov.");
