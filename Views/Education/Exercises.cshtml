@@ -1,0 +1,37 @@
+﻿@model List<Bc_exercise_and_healthy_nutrition.Models.Exercise>
+
+@{
+    ViewData["Title"] = "Databáza cvikov";
+}
+
+<div class="exercise-library-page">
+    <div class="exercise-library-header">
+        <h1>Databáza cvikov</h1>
+        <p>Vyber si cvik podľa svalovej partie a pozri si jeho prevedenie.</p>
+    </div>
+
+    @foreach (var group in Model.GroupBy(e => e.MuscleGroup))
+    {
+        <section class="exercise-group-section">
+            <h2 class="exercise-group-title">@group.Key</h2>
+
+            <div class="exercise-grid">
+                @foreach (var exercise in group)
+                {
+                    <div class="exercise-card">
+                        <div class="exercise-video-wrapper">
+                            <video controls preload="none">
+                                <source src="@exercise.VideoPath" type="video/mp4" />
+                            </video>
+                        </div>
+
+                        <div class="exercise-card-body">
+                            <h3>@exercise.Name</h3>
+                            <p>@exercise.MuscleGroup</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+</div>
