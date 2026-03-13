@@ -14,6 +14,7 @@ namespace Bc_exercise_and_healthy_nutrition.Data
         public DbSet<FoodItem> FoodItems { get; set; }
         public DbSet<MealEntry> MealEntries { get; set; }
         public DbSet<DailyGoal> DailyGoals { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

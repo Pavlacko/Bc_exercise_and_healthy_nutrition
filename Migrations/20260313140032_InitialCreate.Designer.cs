@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bc_exercise_and_healthy_nutrition.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260120200324_AddDiaryEntities")]
-    partial class AddDiaryEntities
+    [Migration("20260313140032_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AvatarPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -61,6 +64,68 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.DailyGoal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("CarbsGoal")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("FatGoal")
+                        .HasColumnType("float");
+
+                    b.Property<double>("KcalGoal")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ProteinGoal")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId", "Date")
+                        .IsUnique();
+
+                    b.ToTable("DailyGoals");
+                });
+
+            modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.Exercise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MuscleGroup")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Exercises");
                 });
 
             modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.FoodItem", b =>
@@ -120,6 +185,17 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                     b.HasIndex("FoodItemId");
 
                     b.ToTable("MealEntries");
+                });
+
+            modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.DailyGoal", b =>
+                {
+                    b.HasOne("Bc_exercise_and_healthy_nutrition.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.MealEntry", b =>

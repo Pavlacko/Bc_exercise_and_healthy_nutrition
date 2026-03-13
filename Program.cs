@@ -40,4 +40,10 @@ using (var scope = app.Services.CreateScope())
 
 }
 
+app.MapGet("/dev/import-exercises", async (IServiceProvider services, IWebHostEnvironment env) =>
+{
+    int added = await Bc_exercise_and_healthy_nutrition.Data.ExerciseSeeder.ImportExercisesAsync(services, env);
+    return Results.Ok($"Imported {added} exercises.");
+});
+
 app.Run();
