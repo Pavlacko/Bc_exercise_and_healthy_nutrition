@@ -2,20 +2,47 @@
     ViewData["Title"] = "Tutorialy";
 }
 
-<h2 class="page-title">Základy výživy</h2>
+<div class="education-page">
+    <div class="education-header">
+        <h1>Tutorialy</h1>
+        <p>Vyber si oblasť, ktorú chceš preskúmať.</p>
+    </div>
 
-<div class="card-custom">
-    <p>
-        Táto sekcia slúži ako úvodná príručka pre ľudí, ktorí začínajú
-        so zdravým stravovaním a sledovaním svojho energetického príjmu.
-    </p>
+    <div class="education-grid">
+        <a href="#" class="education-card">
+            <img src="@Url.Content("~/images/education/nutrition.jpg")" alt="Základy výživy" />
+            <div class="education-overlay"></div>
+            <div class="education-content">
+                <h2>Základy výživy</h2>
+                <p>Kalórie, makrá a zdravé stravovanie</p>
+            </div>
+        </a>
 
-    <ul>
-        <li><a asp-action="Calories">Čo sú kalórie a energetická bilancia</a></li>
-        <li><a asp-action="Macros">Makroživiny – proteíny, sacharidy, tuky</a></li>
-        <li><a asp-action="Tips">Praktické tipy a časté chyby</a></li>
-        <li><a asp-controller="Calculators" asp-action="BMI">BMI kalkulačka (index telesnej hmotnosti) </a></li>
-        <li><a asp-controller="Calculators" asp-action="BMR">BMR kalkulačka (bazálny metabolizmus)</a></li>
-        <li><a asp-controller="Calculators" asp-action="Calories">Odporúčaný denný kalorický príjem</a></li>
-    </ul>
+        <a href="#" class="education-card">
+            <img src="@Url.Content("~/images/education/training.jpg")" alt="Ako cvičiť" />
+            <div class="education-overlay"></div>
+            <div class="education-content">
+                <h2>Základy tréningu</h2>
+                <p>Základy tréningu pre začiatočníkov</p>
+            </div>
+        </a>
+
+        <a href="#" class="education-card">
+            <img src="@Url.Content("~/images/education/exercises.jpg")" alt="Databáza cvikov" />
+            <div class="education-overlay"></div>
+            <div class="education-content">
+                <h2>Databáza cvikov</h2>
+                <p>Videá cvikov podľa svalových partií</p>
+            </div>
+        </a>
+
+        <a asp-controller="Calculators" asp-action="Index" class="education-card">
+            <img src="@Url.Content("~/images/education/calculators.jpg")" alt="Kalkulačky" />
+            <div class="education-overlay"></div>
+            <div class="education-content">
+                <h2>Kalkulačky</h2>
+                <p>BMI, BMR a denný kalorický príjem</p>
+            </div>
+        </a>
+    </div>
 </div>

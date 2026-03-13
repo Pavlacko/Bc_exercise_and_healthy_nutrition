@@ -11,19 +11,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View();
         }
 
-        public IActionResult Calories()
-        {
-            return View();
-        }
-
-        public IActionResult Macros()
-        {
-            return View();
-        }
-
-        public IActionResult Tips()
-        {
-            return View();
-        }
+    
     }
 }
