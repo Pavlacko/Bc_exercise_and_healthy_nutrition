@@ -602,3 +602,95 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.exercise-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.exercise-filter-btn {
+    border: none;
+    background: #e7efe9;
+    color: #18392b;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .exercise-filter-btn:hover {
+        background: #d7e6dc;
+    }
+
+    .exercise-filter-btn.active {
+        background: #18392b;
+        color: white;
+    }
+
+
+.exercise-details-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #18392b;
+    font-weight: 600;
+}
+
+.exercise-details-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 20px 0;
+    color: #18392b;
+}
+
+.exercise-details-video {
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+    .exercise-details-video video {
+        width: 100%;
+        height: auto;
+    }
+
+.exercise-details-info {
+    display: grid;
+    gap: 20px;
+}
+
+.exercise-info-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+    .exercise-info-card h3 {
+        margin-bottom: 10px;
+        color: #18392b;
+    }
+
+
+.exercise-details-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #18392b;
+    color: white;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+    .exercise-details-btn:hover {
+        background: #0f241b;
+    }

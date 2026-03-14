@@ -29,5 +29,17 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             return View(exercises);
         }
+
+        public async Task<IActionResult> ExerciseDetails(int id)
+        {
+            var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Id == id);
+
+            if (exercise == null)
+            {
+                return NotFound();
+            }
+
+            return View(exercise);
+        }
     }
 }

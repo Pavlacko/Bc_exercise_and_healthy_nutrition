@@ -1,0 +1,49 @@
+﻿@model Bc_exercise_and_healthy_nutrition.Models.Exercise
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="exercise-details-page">
+
+    <a asp-controller="Education" asp-action="Exercises" class="back-link">
+        ← Späť na databázu cvikov
+    </a>
+
+    <h1 class="exercise-details-title">@Model.Name</h1>
+
+    <div class="exercise-details-video">
+        <video controls>
+            <source src="@Model.VideoPath" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="exercise-details-info">
+
+        <div class="exercise-info-card">
+            <h3>Základné informácie</h3>
+            <p><strong>Svalová partia:</strong> @Model.MuscleGroup</p>
+            <p><strong>Hlavný sval:</strong> @Model.PrimaryMuscle</p>
+            <p><strong>Vedľajšie svaly:</strong> @Model.SecondaryMuscles</p>
+            <p><strong>Vybavenie:</strong> @Model.Equipment</p>
+            <p><strong>Obtiažnosť:</strong> @Model.Difficulty</p>
+        </div>
+
+        <div class="exercise-info-card">
+            <h3>Popis cviku</h3>
+            <p>@Model.Description</p>
+        </div>
+
+        <div class="exercise-info-card">
+            <h3>Postup prevedenia</h3>
+            <p>@Model.Instructions</p>
+        </div>
+
+        <div class="exercise-info-card">
+            <h3>Tipy a časté chyby</h3>
+            <p>@Model.Tips</p>
+        </div>
+
+    </div>
+
+</div>

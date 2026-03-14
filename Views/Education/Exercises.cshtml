@@ -2,6 +2,11 @@
 
 @{
     ViewData["Title"] = "Databáza cvikov";
+    var muscleGroups = Model
+        .Select(e => e.MuscleGroup)
+        .Distinct()
+        .OrderBy(x => x)
+        .ToList();
 }
 
 <div class="exercise-library-page">
@@ -10,9 +15,20 @@
         <p>Vyber si cvik podľa svalovej partie a pozri si jeho prevedenie.</p>
     </div>
 
+    <div class="exercise-filters">
+        <button type="button" class="exercise-filter-btn active" data-filter="all">Všetko</button>
+
+        @foreach (var group in muscleGroups)
+        {
+            <button type="button" class="exercise-filter-btn" data-filter="@group">
+                @group
+            </button>
+        }
+    </div>
+
     @foreach (var group in Model.GroupBy(e => e.MuscleGroup))
     {
-        <section class="exercise-group-section">
+        <section class="exercise-group-section" data-muscle-group="@group.Key">
             <h2 class="exercise-group-title">@group.Key</h2>
 
             <div class="exercise-grid">
@@ -28,6 +44,8 @@
                         <div class="exercise-card-body">
                             <h3>@exercise.Name</h3>
                             <p>@exercise.MuscleGroup</p>
+
+                            <a asp-controller="Education" asp-action="ExerciseDetails" asp-route-id="@exercise.Id"class="exercise-details-btn"> Podrobnosti </a>
                         </div>
                     </div>
                 }
@@ -35,3 +53,31 @@
         </section>
     }
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".exercise-filter-btn");
+            const sections = document.querySelectorAll(".exercise-group-section");
+
+            buttons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const filter = this.dataset.filter;
+
+                    buttons.forEach(btn => btn.classList.remove("active"));
+                    this.classList.add("active");
+
+                    sections.forEach(section => {
+                        const muscleGroup = section.dataset.muscleGroup;
+
+                        if (filter === "all" || muscleGroup === filter) {
+                            section.style.display = "block";
+                        } else {
+                            section.style.display = "none";
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+}
