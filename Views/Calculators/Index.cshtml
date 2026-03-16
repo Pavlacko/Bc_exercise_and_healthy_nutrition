@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Kalkulačky";
+}
+
+<div class="container calculators-page">
+
+    <h1 class="mb-2">Kalkulačky</h1>
+    <p class="text-muted mb-4">Vyber si kalkulačku, ktorú chceš použiť.</p>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <a asp-controller="Calculators" asp-action="Calories" class="calculator-card">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">Kalorická kalkulačka</h4>
+                        <p class="card-text">
+                            Vypočíta odporúčaný denný kalorický príjem podľa tvojich údajov.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a asp-controller="Calculators" asp-action="Bmr" class="calculator-card">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">BMR kalkulačka</h4>
+                        <p class="card-text">
+                            Vypočíta bazálny metabolizmus – koľko kalórií telo spáli v pokoji.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a asp-controller="Calculators" asp-action="Bmi" class="calculator-card">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">BMI kalkulačka</h4>
+                        <p class="card-text">
+                            Vypočíta index telesnej hmotnosti podľa výšky a váhy.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+</div>

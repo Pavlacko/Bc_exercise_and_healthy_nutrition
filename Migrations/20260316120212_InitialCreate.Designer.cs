@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bc_exercise_and_healthy_nutrition.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260314154312_AddExerciseDetailsFields")]
-    partial class AddExerciseDetailsFields
+    [Migration("20260316120212_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

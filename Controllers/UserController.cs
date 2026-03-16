@@ -360,6 +360,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 TempData["Err"] = "Meno je povinné.";
                 return RedirectToAction(nameof(Profile));
             }
+
             if (string.IsNullOrWhiteSpace(email))
             {
                 TempData["Err"] = "Email je povinný.";

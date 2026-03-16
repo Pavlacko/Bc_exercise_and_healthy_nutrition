@@ -29,8 +29,6 @@
     const hint = el("weeklyHint");
     const ctx = canvas ? canvas.getContext("2d") : null;
 
-    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
-
     function setBar(barEl, pctEl, value, goal) {
         if (!barEl || !pctEl) return;
 

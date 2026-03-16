@@ -20,7 +20,13 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MuscleGroup = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VideoPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PrimaryMuscle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecondaryMuscles = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Equipment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Instructions = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tips = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
