@@ -710,3 +710,49 @@ body {
         transform: translateY(-4px);
         box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
+
+
+
+.nutrition-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.nutrition-intro {
+    max-width: 850px;
+}
+
+.nutrition-section {
+    border-radius: 20px;
+}
+
+    .nutrition-section .card-body {
+        border-radius: 20px;
+    }
+
+.info-box {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 18px;
+    height: 100%;
+}
+
+.nutrition-page h1,
+.nutrition-page h2,
+.nutrition-page h3 {
+    color: #1f2937;
+}
+
+.nutrition-page p,
+.nutrition-page li {
+    color: #4b5563;
+    line-height: 1.75;
+}
+
+.nutrition-list {
+    padding-left: 1.2rem;
+}
+
+    .nutrition-list li {
+        margin-bottom: 10px;
+    }

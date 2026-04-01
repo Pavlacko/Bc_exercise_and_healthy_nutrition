@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Tutorialy";
+    ViewData["Title"] = "Tutoriály";
 }
 
 <div class="education-page">
     <div class="education-header">
-        <h1>Tutorialy</h1>
+        <h1>Tutoriály</h1>
         <p>Vyber si oblasť, ktorú chceš preskúmať.</p>
     </div>
 
     <div class="education-grid">
-        <a href="#" class="education-card">
+        <a asp-controller="Education" asp-action="NutritionBasics" class="education-card">
             <img src="@Url.Content("~/images/education/nutrition.jpg")" alt="Základy výživy" />
             <div class="education-overlay"></div>
             <div class="education-content">
@@ -18,7 +18,7 @@
             </div>
         </a>
 
-        <a href="#" class="education-card">
+        <a asp-controller="Education" asp-action="TrainingBasics" class="education-card">
             <img src="@Url.Content("~/images/education/training.jpg")" alt="Ako cvičiť" />
             <div class="education-overlay"></div>
             <div class="education-content">
