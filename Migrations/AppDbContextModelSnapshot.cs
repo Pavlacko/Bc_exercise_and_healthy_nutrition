@@ -97,6 +97,29 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
                     b.ToTable("DailyGoals");
                 });
 
+            modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.EmailVerificationCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Expiration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailVerificationCodes");
+                });
+
             modelBuilder.Entity("Bc_exercise_and_healthy_nutrition.Models.Exercise", b =>
                 {
                     b.Property<int>("Id")

@@ -16,6 +16,12 @@ builder.Services.Configure<TurnstileSettings>(
 
 builder.Services.AddHttpClient<TurnstileVerificationService>();
 
+
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings"));
+
+builder.Services.AddTransient<EmailSender>();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

@@ -12,6 +12,21 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "EmailVerificationCodes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Expiration = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmailVerificationCodes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Exercises",
                 columns: table => new
                 {
@@ -144,6 +159,9 @@ namespace Bc_exercise_and_healthy_nutrition.Migrations
         {
             migrationBuilder.DropTable(
                 name: "DailyGoals");
+
+            migrationBuilder.DropTable(
+                name: "EmailVerificationCodes");
 
             migrationBuilder.DropTable(
                 name: "Exercises");

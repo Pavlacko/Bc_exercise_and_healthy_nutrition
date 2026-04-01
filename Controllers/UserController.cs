@@ -1,13 +1,14 @@
 ﻿using Bc_exercise_and_healthy_nutrition.Data;
+using Bc_exercise_and_healthy_nutrition.Filters;
 using Bc_exercise_and_healthy_nutrition.Models;
+using Bc_exercise_and_healthy_nutrition.Services;
+using Bc_exercise_and_healthy_nutrition.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using Bc_exercise_and_healthy_nutrition.Filters;
-using Bc_exercise_and_healthy_nutrition.ViewModels;
-using Bc_exercise_and_healthy_nutrition.Services;
 
 
 namespace Bc_exercise_and_healthy_nutrition.Controllers
@@ -18,13 +19,15 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         private readonly IWebHostEnvironment _env;
         private readonly TurnstileVerificationService _turnstileVerificationService;
         private readonly string _turnstileSiteKey;
+        private readonly EmailSender _emailSender;
 
-        public UserController(AppDbContext context, IWebHostEnvironment env, TurnstileVerificationService turnstileVerificationService, IConfiguration configuration)
+        public UserController(AppDbContext context, IWebHostEnvironment env, TurnstileVerificationService turnstileVerificationService, IConfiguration configuration, EmailSender emailSender)
         {
             _context = context;
             _env = env;
             _turnstileVerificationService = turnstileVerificationService;
             _turnstileSiteKey = configuration["TurnstileSettings:SiteKey"] ?? "";
+            _emailSender = emailSender;
         }
 
         [RequireAdmin]
@@ -135,13 +138,98 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 return View(model);
             }
 
+            var code = new Random().Next(100000, 999999).ToString();
+
+            var verification = new EmailVerificationCode
+            {
+                UserId = user.Id,
+                Code = code,
+                Expiration = DateTime.UtcNow.AddMinutes(5)
+            };
+
+            _context.EmailVerificationCodes.Add(verification);
+            _context.SaveChanges();
+
+            await _emailSender.SendAsync(user.Email, "Overovací kód", $"Tvoj kód je: {code}");
+
+            HttpContext.Session.SetInt32("TwoFactorUserId", user.Id);
+
+            return RedirectToAction("VerifyTwoFactor");
+        }
+
+        [HttpGet]
+        public IActionResult VerifyTwoFactor()
+        {
+            var userId = HttpContext.Session.GetInt32("TwoFactorUserId");
+
+            if (userId == null)
+                return RedirectToAction("Login");
+
+            return View(new VerifyTwoFactorViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult VerifyTwoFactor(VerifyTwoFactorViewModel model)
+        {
+            var userId = HttpContext.Session.GetInt32("TwoFactorUserId");
+
+            if (userId == null)
+                return RedirectToAction("Login");
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var verificationCode = _context.EmailVerificationCodes
+                .Where(x => x.UserId == userId.Value)
+                .OrderByDescending(x => x.Id)
+                .FirstOrDefault();
+
+            if (verificationCode == null)
+            {
+                TempData["Err"] = "Overovací kód nebol nájdený. Prihlás sa znova.";
+                return RedirectToAction("Login");
+            }
+
+            if (verificationCode.Expiration <= DateTime.UtcNow)
+            {
+                _context.EmailVerificationCodes.Remove(verificationCode);
+                _context.SaveChanges();
+
+                HttpContext.Session.Remove("TwoFactorUserId");
+
+                TempData["Err"] = "Platnosť overovacieho kódu vypršala. Prihlás sa znova.";
+                return RedirectToAction("Login");
+            }
+
+            if (verificationCode.Code != model.Code)
+            {
+                ModelState.AddModelError(string.Empty, "Zadaný kód nie je správny.");
+                return View(model);
+            }
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId.Value);
+
+            if (user == null)
+            {
+                HttpContext.Session.Remove("TwoFactorUserId");
+                return RedirectToAction("Login");
+            }
+
+            _context.EmailVerificationCodes.RemoveRange(
+                _context.EmailVerificationCodes.Where(x => x.UserId == userId.Value)
+            );
+            _context.SaveChanges();
+
             HttpContext.Session.SetString("LoggedIn", "true");
             HttpContext.Session.SetString("UserRole", user.Rola);
             HttpContext.Session.SetString("UserEmail", user.Email);
             HttpContext.Session.SetInt32("UserId", user.Id);
+            HttpContext.Session.Remove("TwoFactorUserId");
 
             return RedirectToAction("Index", "Home");
         }
+
 
         public IActionResult Logout()
         {

@@ -1,0 +1,28 @@
+﻿@model Bc_exercise_and_healthy_nutrition.ViewModels.VerifyTwoFactorViewModel
+
+@{
+    Layout = "_AuthLayout";
+}
+
+<div class="form-container">
+    <h2>Dvojstupňové overenie</h2>
+
+    <p>Zadaj kód, ktorý sme ti poslali na email.</p>
+
+    @if (TempData["Err"] != null)
+    {
+        <div class="text-danger mb-3">@TempData["Err"]</div>
+    }
+
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+    <form asp-action="VerifyTwoFactor" method="post">
+        <div class="mb-3">
+            <label asp-for="Code" class="form-label">Overovací kód</label>
+            <input asp-for="Code" class="form-control" autocomplete="one-time-code" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-main">Overiť</button>
+    </form>
+</div>
