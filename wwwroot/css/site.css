@@ -756,3 +756,29 @@ body {
     .nutrition-list li {
         margin-bottom: 10px;
     }
+
+
+.training-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.training-intro {
+    max-width: 850px;
+}
+
+.training-section {
+    border-radius: 20px;
+}
+
+    .training-section .card-body {
+        border-radius: 20px;
+    }
+
+.training-list {
+    padding-left: 1.2rem;
+}
+
+    .training-list li {
+        margin-bottom: 10px;
+    }

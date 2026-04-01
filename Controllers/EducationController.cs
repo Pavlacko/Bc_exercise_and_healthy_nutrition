@@ -46,5 +46,11 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         {
             return View();
         }
+
+
+        public IActionResult TrainingBasics()
+        {
+            return View();
+        }
     }
 }
