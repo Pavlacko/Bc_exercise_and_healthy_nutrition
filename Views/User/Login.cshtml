@@ -6,7 +6,6 @@
 }
 
 <div class="form-container">
-
     <h2>Prihlásenie</h2>
 
     <div asp-validation-summary="All" class="text-danger mb-3"></div>
@@ -24,9 +23,21 @@
             <span asp-validation-for="Heslo" class="text-danger"></span>
         </div>
 
+        <input asp-for="TurnstileToken" type="hidden" id="turnstile-token-login" />
+
+        <div class="cf-turnstile mb-3"
+             data-sitekey="@ViewBag.TurnstileSiteKey"
+             data-callback="onTurnstileLoginSuccess">
+        </div>
+
         <button type="submit" class="btn btn-main">Prihlásiť</button>
     </form>
 </div>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-
+<script>
+    function onTurnstileLoginSuccess(token) {
+    document.getElementById("turnstile-token-login").value = token;
+    }
+</script>

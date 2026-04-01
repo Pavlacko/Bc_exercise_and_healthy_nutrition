@@ -1,50 +1,67 @@
 ﻿@using Bc_exercise_and_healthy_nutrition.ViewModels
+@model RegisterViewModel
+
 @{
     Layout = "_AuthLayout";
 }
 
-@model RegisterViewModel
+<div class="form-container">
+    <h2>Registrácia</h2>
 
-<h2>Registrácia</h2>
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-<form asp-action="Register" method="post">
-    <div class="mb-3">
-        <label asp-for="Meno" class="form-label"></label>
-        <input asp-for="Meno" class="form-control" />
-        <span asp-validation-for="Meno" class="text-danger"></span>
-    </div>
+    <form asp-action="Register" method="post">
+        <div class="mb-3">
+            <label asp-for="Meno" class="form-label"></label>
+            <input asp-for="Meno" class="form-control" />
+            <span asp-validation-for="Meno" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Heslo" class="form-label"></label>
-        <input asp-for="Heslo" class="form-control" type="password" />
-        <span asp-validation-for="Heslo" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Heslo" class="form-label"></label>
+            <input asp-for="Heslo" class="form-control" type="password" />
+            <span asp-validation-for="Heslo" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Vek" class="form-label"></label>
-        <input asp-for="Vek" class="form-control" />
-        <span asp-validation-for="Vek" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Vek" class="form-label"></label>
+            <input asp-for="Vek" class="form-control" />
+            <span asp-validation-for="Vek" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Vaha" class="form-label"></label>
-        <input asp-for="Vaha" class="form-control" />
-        <span asp-validation-for="Vaha" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Vaha" class="form-label"></label>
+            <input asp-for="Vaha" class="form-control" />
+            <span asp-validation-for="Vaha" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Vyska" class="form-label"></label>
-        <input asp-for="Vyska" class="form-control" />
-        <span asp-validation-for="Vyska" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Vyska" class="form-label"></label>
+            <input asp-for="Vyska" class="form-control" />
+            <span asp-validation-for="Vyska" class="text-danger"></span>
+        </div>
 
-    <button type="submit" class="btn btn-success">Registrovať</button>
-</form>
+        <input asp-for="TurnstileToken" type="hidden" id="turnstile-token-register" />
 
+        <div class="cf-turnstile mb-3"
+             data-sitekey="@ViewBag.TurnstileSiteKey"
+             data-callback="onTurnstileRegisterSuccess">
+        </div>
 
+        <button type="submit" class="btn btn-success">Registrovať</button>
+    </form>
+</div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+    function onTurnstileRegisterSuccess(token) {
+    document.getElementById("turnstile-token-register").value = token;
+    }
+</script>

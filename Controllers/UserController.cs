@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Bc_exercise_and_healthy_nutrition.Filters;
 using Bc_exercise_and_healthy_nutrition.ViewModels;
+using Bc_exercise_and_healthy_nutrition.Services;
 
 
 namespace Bc_exercise_and_healthy_nutrition.Controllers
@@ -15,11 +16,15 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly TurnstileVerificationService _turnstileVerificationService;
+        private readonly string _turnstileSiteKey;
 
-        public UserController(AppDbContext context, IWebHostEnvironment env)
+        public UserController(AppDbContext context, IWebHostEnvironment env, TurnstileVerificationService turnstileVerificationService, IConfiguration configuration)
         {
             _context = context;
             _env = env;
+            _turnstileVerificationService = turnstileVerificationService;
+            _turnstileSiteKey = configuration["TurnstileSettings:SiteKey"] ?? "";
         }
 
         [RequireAdmin]
@@ -34,16 +39,27 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.TurnstileSiteKey = _turnstileSiteKey;
             return View();
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            ViewBag.TurnstileSiteKey = _turnstileSiteKey;
+
             if (!ModelState.IsValid)
                 return View(model);
+
+            var isTurnstileValid = await _turnstileVerificationService.VerifyAsync(model.TurnstileToken);
+
+            if (!isTurnstileValid)
+            {
+                ModelState.AddModelError(string.Empty, "Potvrď, že nie si robot.");
+                return View(model);
+            }
 
             var exists = _context.Users.Any(u => u.Email == model.Email);
             if (exists)
@@ -80,14 +96,28 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.TurnstileSiteKey = _turnstileSiteKey;
             return View();
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
+            ViewBag.TurnstileSiteKey = _turnstileSiteKey;
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var isTurnstileValid = await _turnstileVerificationService.VerifyAsync(model.TurnstileToken);
+
+            if (!isTurnstileValid)
+            {
+                ModelState.AddModelError(string.Empty, "Potvrď, že nie si robot.");
+                return View(model);
+            }
+
             var user = _context.Users.FirstOrDefault(u => u.Email == model.Email);
 
             if (user == null)
@@ -233,11 +263,9 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             var user = await _context.Users.FirstAsync(u => u.Id == userId.Value);
 
-            //vytvori subor, ak uz existuje, nic sa nestane
             var uploadDir = Path.Combine(_env.WebRootPath, "uploads", "avatars");
             Directory.CreateDirectory(uploadDir);
 
-            //zabezpecenie, ze existuje len jeden avatar na usera
             foreach (var oldExt in allowed)
             {
                 var p = Path.Combine(uploadDir, $"{user.Id}{oldExt}");
@@ -247,13 +275,11 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             var fileName = $"{user.Id}{ext}";
             var fullPath = Path.Combine(uploadDir, fileName);
 
-            //streamovanie súboru na disk
             using (var fs = new FileStream(fullPath, FileMode.Create))
             {
                 await avatar.CopyToAsync(fs);
             }
 
-            //ulozenie cesty na disk
             user.AvatarPath = $"/uploads/avatars/{fileName}";
             await _context.SaveChangesAsync();
 

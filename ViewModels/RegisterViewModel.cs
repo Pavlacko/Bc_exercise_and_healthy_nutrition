@@ -26,5 +26,7 @@ namespace Bc_exercise_and_healthy_nutrition.ViewModels
         [Required(ErrorMessage = "Heslo je povinné.")]
         [MinLength(6, ErrorMessage = "Heslo musí mať aspoň 6 znakov.")]
         public string Heslo { get; set; }
+
+        public string TurnstileToken { get; set; }
     }
 }

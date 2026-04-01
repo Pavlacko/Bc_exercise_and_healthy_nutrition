@@ -1,5 +1,7 @@
 using Bc_exercise_and_healthy_nutrition.Data;
 using Microsoft.EntityFrameworkCore;
+using Bc_exercise_and_healthy_nutrition.Models;
+using Bc_exercise_and_healthy_nutrition.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,11 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.Configure<TurnstileSettings>(
+    builder.Configuration.GetSection("TurnstileSettings"));
+
+builder.Services.AddHttpClient<TurnstileVerificationService>();
 
 var app = builder.Build();
 
