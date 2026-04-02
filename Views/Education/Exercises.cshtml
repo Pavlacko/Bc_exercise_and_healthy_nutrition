@@ -4,6 +4,7 @@
     ViewData["Title"] = "Databáza cvikov";
     var muscleGroups = Model
         .Select(e => e.MuscleGroup)
+        .Where(g => !string.IsNullOrWhiteSpace(g))
         .Distinct()
         .OrderBy(x => x)
         .ToList();
@@ -26,7 +27,9 @@
         }
     </div>
 
-    @foreach (var group in Model.GroupBy(e => e.MuscleGroup))
+    @foreach (var group in Model
+            .Where(e => !string.IsNullOrWhiteSpace(e.MuscleGroup))
+            .GroupBy(e => e.MuscleGroup))
     {
         <section class="exercise-group-section" data-muscle-group="@group.Key">
             <h2 class="exercise-group-title">@group.Key</h2>
@@ -41,12 +44,15 @@
                             </video>
                         </div>
 
-                        <div class="exercise-card-body">
-                            <h3>@exercise.Name</h3>
-                            <p>@exercise.MuscleGroup</p>
-
-                            <a asp-controller="Education" asp-action="ExerciseDetails" asp-route-id="@exercise.Id"class="exercise-details-btn"> Podrobnosti </a>
-                        </div>
+                        <a asp-controller="Education" asp-action="ExerciseDetails" asp-route-id="@exercise.Id" class="exercise-card-body-link">
+                            <div class="exercise-card-body">
+                                <h3>@exercise.Name</h3>
+                                <p>@exercise.MuscleGroup</p>
+                                <span class="exercise-open-text">
+                                    Zobraziť podrobnosti <span class="exercise-arrow">→</span>
+                                </span>
+                            </div>
+                        </a>
                     </div>
                 }
             </div>

@@ -138,6 +138,18 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 return View(model);
             }
 
+            bool requiresEmailVerification = user.Rola != "Admin";
+
+            if (!requiresEmailVerification)
+            {
+                HttpContext.Session.SetString("LoggedIn", "true");
+                HttpContext.Session.SetInt32("UserId", user.Id);
+                HttpContext.Session.SetString("UserRole", user.Rola);
+                HttpContext.Session.SetString("UserEmail", user.Email);
+
+                return RedirectToAction("Index", "Home");
+            }
+
             var code = new Random().Next(100000, 999999).ToString();
 
             var verification = new EmailVerificationCode

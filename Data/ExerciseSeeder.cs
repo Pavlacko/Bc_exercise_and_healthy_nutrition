@@ -26,8 +26,11 @@ namespace Bc_exercise_and_healthy_nutrition.Data
 
                 foreach (var videoFile in videoFiles)
                 {
-                    string fileName = Path.GetFileNameWithoutExtension(videoFile);
-                    string relativePath = $"/videos/{muscleGroup}/{Path.GetFileName(videoFile)}";
+                    string fileNameWithExtension = Path.GetFileName(videoFile);
+                    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(videoFile);
+
+                    string relativePath = $"/videos/{muscleGroup}/{fileNameWithExtension}";
+                    string exerciseName = fileNameWithoutExtension.Trim();
 
                     bool exists = await db.Exercises.AnyAsync(e => e.VideoPath == relativePath);
 
@@ -35,7 +38,7 @@ namespace Bc_exercise_and_healthy_nutrition.Data
                     {
                         db.Exercises.Add(new Exercise
                         {
-                            Name = fileName,
+                            Name = exerciseName,
                             MuscleGroup = muscleGroup,
                             VideoPath = relativePath
                         });
