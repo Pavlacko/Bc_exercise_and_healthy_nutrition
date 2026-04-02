@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Rozpažovanie na zadné ramená",
+    "muscleGroup": "Ramená",
+    "description": "Cvik zameraný na zadnú časť ramien a hornú časť chrbta.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky alebo stroj",
+    "instructions": "Predkloň sa s rovným chrbtom a drž jednoručky pod telom. S výdychom rozpaž ruky do strán. Následne ich kontrolovane spusti späť.",
+    "primaryMuscle": "Deltoideus posterior",
+    "secondaryMuscles": "Trapezius, rhomboideus",
+    "tips": "Drž mierne pokrčené lakte a kontroluj pohyb."
+  },
+  {
+    "name": "Tlaky na ramená na stroji",
+    "muscleGroup": "Ramená",
+    "description": "Strojový cvik na ramená vhodný pre začiatočníkov.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj",
+    "instructions": "Sadni si na stroj a uchop rukoväte. S výdychom tlač záťaž smerom hore. Pomaly sa vráť späť.",
+    "primaryMuscle": "Deltoideus anterior",
+    "secondaryMuscles": "Deltoideus lateralis, triceps brachii",
+    "tips": "Nezamykaj lakte v hornej pozícii."
+  },
+  {
+    "name": "Tlaky nad hlavu",
+    "muscleGroup": "Ramená",
+    "description": "Základný tlakový cvik na ramená vykonávaný nad hlavou.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Veľká činka alebo jednoručky",
+    "instructions": "Postav sa alebo sadni a drž činku na úrovni ramien. S výdychom ju tlač nad hlavu. Následne ju kontrolovane spusti späť.",
+    "primaryMuscle": "Deltoideus anterior",
+    "secondaryMuscles": "Deltoideus lateralis, triceps brachii",
+    "tips": "Drž pevný stred tela a neprehýbaj sa v chrbte."
+  },
+  {
+    "name": "Upažovanie na kladke",
+    "muscleGroup": "Ramená",
+    "description": "Izolačný cvik na strednú časť ramien s konštantným napätím.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka",
+    "instructions": "Postav sa vedľa kladky a uchop rukoväť. Zdvihni ruku do strany až do úrovne ramena. Pomaly ju spusti späť.",
+    "primaryMuscle": "Deltoideus lateralis",
+    "secondaryMuscles": "Deltoideus anterior",
+    "tips": "Nevykonávaj švihové pohyby a drž kontrolu nad váhou."
+  },
+  {
+    "name": "Upažovanie na stroji",
+    "muscleGroup": "Ramená",
+    "description": "Cvik na strednú časť ramien vykonávaný na stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj",
+    "instructions": "Sadni si na stroj a opri ruky o opierky. Zdvihni ruky do strán. Pomaly sa vráť späť do východiskovej polohy.",
+    "primaryMuscle": "Deltoideus lateralis",
+    "secondaryMuscles": "Deltoideus anterior",
+    "tips": "Drž pohyb plynulý a kontrolovaný."
+  },
+  {
+    "name": "Upažovanie s jednoručkami",
+    "muscleGroup": "Ramená",
+    "description": "Základný cvik na strednú časť ramien vykonávaný s jednoručkami.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky",
+    "instructions": "Postav sa vzpriamene a drž jednoručky po bokoch. Zdvihni ruky do strán do úrovne ramien. Pomaly ich spusti späť.",
+    "primaryMuscle": "Deltoideus lateralis",
+    "secondaryMuscles": "Deltoideus anterior",
+    "tips": "Drž mierne pokrčené lakte počas celého pohybu."
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Mŕtvy ťah",
+    "muscleGroup": "Zadné stehná",
+    "description": "Komplexný silový cvik na zadnú časť tela zameraný na hamstringy, sedacie svaly a spodný chrbát.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Veľká činka",
+    "instructions": "Postav sa k činke na šírku ramien. Predkloň sa s rovným chrbtom a uchop činku. Zdvihni ju vystretím nôh a narovnaním trupu. Následne ju kontrolovane spusti späť na zem.",
+    "primaryMuscle": "Hamstrings",
+    "secondaryMuscles": "Gluteus maximus, erector spinae",
+    "tips": "Drž chrbát rovný a nekrúť chrbticou počas pohybu."
+  },
+  {
+    "name": "Rumunský mŕtvy ťah na Smith stroji",
+    "muscleGroup": "Zadné stehná",
+    "description": "Variácia mŕtveho ťahu na Smith stroji zameraná na hamstringy.",
+    "difficulty": "Začiatočník",
+    "equipment": "Smith stroj",
+    "instructions": "Postav sa pod os a uchop ju nadhmatom. S mierne pokrčenými kolenami spúšťaj činku dole pozdĺž nôh. Následne sa vráť späť hore.",
+    "primaryMuscle": "Hamstrings",
+    "secondaryMuscles": "Gluteus maximus",
+    "tips": "Drž činku čo najbližšie pri tele počas celého pohybu."
+  },
+  {
+    "name": "Rumunský mŕtvy ťah",
+    "muscleGroup": "Zadné stehná",
+    "description": "Izolačnejšia variácia mŕtveho ťahu zameraná na hamstringy.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Veľká činka alebo jednoručky",
+    "instructions": "Drž činku pred sebou a mierne pokrč kolená. Spúšťaj ju dole predklonom v bokoch. Následne sa vráť späť hore.",
+    "primaryMuscle": "Hamstrings",
+    "secondaryMuscles": "Gluteus maximus",
+    "tips": "Pohyb začínaj v bokoch, nie v kolenách."
+  },
+  {
+    "name": "Zakopávanie v ľahu",
+    "muscleGroup": "Zadné stehná",
+    "description": "Izolačný cvik na hamstringy vykonávaný na stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj",
+    "instructions": "Ľahni si na stroj a umiestni nohy pod opierku. S výdychom ohýbaj nohy v kolenách. Pomaly sa vráť späť do východiskovej polohy.",
+    "primaryMuscle": "Hamstrings",
+    "secondaryMuscles": "—",
+    "tips": "Nevykonávaj švihové pohyby a kontroluj tempo."
+  }
+]

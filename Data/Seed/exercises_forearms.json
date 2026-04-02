@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Zápästné zdvihy s tyčkou",
+    "muscleGroup": "Predlaktie",
+    "description": "Cvik zameraný na posilnenie svalov predlaktia pomocou pohybu v zápästí.",
+    "difficulty": "Začiatočník",
+    "equipment": "Veľká činka alebo EZ tyč",
+    "instructions": "Sadni si a polož predlaktia na stehná alebo lavičku. Uchop činku podhmatom alebo nadhmatom. Pohyb vykonávaj len v zápästí – zdvíhaj činku hore a následne ju pomaly spúšťaj dole.",
+    "primaryMuscle": "Flexor carpi radialis",
+    "secondaryMuscles": "Flexor carpi ulnaris, extensor carpi",
+    "tips": "Pohyb vykonávaj pomaly a kontrolovane bez zapojenia lakťov."
+  },
+  {
+    "name": "Zápästný zdvih nadhmatom na kladke",
+    "muscleGroup": "Predlaktie",
+    "description": "Cvik na extenzory predlaktia vykonávaný na kladke.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka",
+    "instructions": "Postav sa pred spodnú kladku a uchop adaptér nadhmatom. Pohyb vykonávaj v zápästí – zdvíhaj rukoväť smerom hore. Následne ju pomaly spúšťaj späť.",
+    "primaryMuscle": "Extensor carpi radialis",
+    "secondaryMuscles": "Extensor carpi ulnaris",
+    "tips": "Drž predlaktia stabilné a sústreď sa len na pohyb zápästia."
+  },
+  {
+    "name": "Zápästný zdvih podhmatom na kladke",
+    "muscleGroup": "Predlaktie",
+    "description": "Cvik zameraný na flexory predlaktia vykonávaný na kladke.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka",
+    "instructions": "Postav sa pred spodnú kladku a uchop adaptér podhmatom. Pohyb vykonávaj len v zápästí – zdvíhaj rukoväť smerom hore. Následne ju pomaly spúšťaj späť.",
+    "primaryMuscle": "Flexor carpi radialis",
+    "secondaryMuscles": "Flexor carpi ulnaris",
+    "tips": "Nevyužívaj pohyb lakťov, izoluj len zápästie."
+  }
+]

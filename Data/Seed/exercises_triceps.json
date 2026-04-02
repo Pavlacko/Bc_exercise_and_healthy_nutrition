@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Bench press s úzkym úchopom",
+    "muscleGroup": "Triceps",
+    "description": "Variácia bench pressu zameraná viac na triceps než na hrudník.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Veľká činka, lavička",
+    "instructions": "Ľahni si na lavičku a uchop činku užšie než na šírku ramien. Spúšťaj ju kontrolovane na hrudník. Následne ju vytlač späť hore.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Pectoralis major, deltoideus anterior",
+    "tips": "Drž lakte bližšie pri tele počas celého pohybu."
+  },
+  {
+    "name": "Kľuky na bradlách",
+    "muscleGroup": "Triceps",
+    "description": "Komplexný cvik na triceps vykonávaný s vlastnou váhou.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Bradlá",
+    "instructions": "Zaves sa na bradlá a drž telo vzpriamené. Spúšťaj sa dole ohýbaním lakťov. Následne sa vytlač späť hore.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Pectoralis major, deltoideus anterior",
+    "tips": "Drž telo čo najviac vzpriamené pre väčšie zapojenie tricepsu."
+  },
+  {
+    "name": "Kľuky na stroji",
+    "muscleGroup": "Triceps",
+    "description": "Strojová varianta kľukov vhodná pre začiatočníkov.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj",
+    "instructions": "Sadni si na stroj a uchop rukoväte. Spúšťaj telo dole ohýbaním lakťov. Následne sa vytlač späť hore.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Pectoralis major",
+    "tips": "Pohyb vykonávaj kontrolovane bez švihu."
+  },
+  {
+    "name": "Skullcrusher",
+    "muscleGroup": "Triceps",
+    "description": "Izolačný cvik na triceps vykonávaný v ľahu s činkou.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "EZ tyč alebo jednoručky",
+    "instructions": "Ľahni si na lavičku a drž činku nad hlavou. Spúšťaj ju smerom k čelu ohýbaním lakťov. Následne ju vytlač späť hore.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "—",
+    "tips": "Drž lakte stabilné a nevykláňaj ich do strán."
+  },
+  {
+    "name": "Stláčanie kladky s lanom",
+    "muscleGroup": "Triceps",
+    "description": "Cvik na triceps vykonávaný na kladke s lanovým adaptérom.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka",
+    "instructions": "Postav sa pred kladku a uchop lano. S výdychom tlač ruky smerom dole. V spodnej pozícii mierne roztiahni lano do strán. Pomaly sa vráť späť.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "—",
+    "tips": "Drž lakte pri tele počas celého pohybu."
+  },
+  {
+    "name": "Stláčanie kladky s tyčou",
+    "muscleGroup": "Triceps",
+    "description": "Základný cvik na triceps vykonávaný na kladke s rovnou tyčou.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka",
+    "instructions": "Postav sa pred kladku a uchop tyč nadhmatom. S výdychom tlač tyč smerom dole. Pomaly sa vráť späť.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "—",
+    "tips": "Nevytláčaj lakte od tela a kontroluj pohyb."
+  },
+  {
+    "name": "Tricepsové tlaky nad hlavou na kladke",
+    "muscleGroup": "Triceps",
+    "description": "Cvik zameraný na dlhú hlavu tricepsu vykonávaný nad hlavou.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka",
+    "instructions": "Postav sa chrbtom ku kladke a uchop lano nad hlavou. S výdychom vystieraj ruky dopredu. Pomaly sa vráť späť.",
+    "primaryMuscle": "Triceps brachii (long head)",
+    "secondaryMuscles": "—",
+    "tips": "Drž lakte stabilné a smeruj ich dopredu."
+  },
+  {
+    "name": "Tricepsový tlak s jednoručkou nad hlavou v sede",
+    "muscleGroup": "Triceps",
+    "description": "Izolačný cvik na triceps vykonávaný s jednoručkou nad hlavou.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručka",
+    "instructions": "Sadni si a drž jednoručku nad hlavou. Spúšťaj ju za hlavu ohýbaním lakťa. Následne ju vytlač späť hore.",
+    "primaryMuscle": "Triceps brachii (long head)",
+    "secondaryMuscles": "—",
+    "tips": "Drž lakeť čo najviac stabilný."
+  }
+]

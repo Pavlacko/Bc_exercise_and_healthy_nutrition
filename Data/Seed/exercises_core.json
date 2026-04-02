@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Skracovačky na kladke",
+    "muscleGroup": "Stred tela",
+    "description": "Cvik na brušné svaly vykonávaný na kladke s dôrazom na kontrakciu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka",
+    "instructions": "Kľakni si pred kladku a uchop lano. S výdychom sa zhrb a sťahuj hrudník smerom k panve. Pomaly sa vráť späť do východiskovej polohy.",
+    "primaryMuscle": "Rectus abdominis",
+    "secondaryMuscles": "Obliquus externus abdominis",
+    "tips": "Pohyb vykonávaj brušnými svalmi, nie ťahom rúk."
+  },
+  {
+    "name": "Skracovačky na stroji",
+    "muscleGroup": "Stred tela",
+    "description": "Izolačný cvik na brušné svaly vykonávaný na stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj",
+    "instructions": "Sadni si na stroj a opri sa o opierku. S výdychom sa predkloň a stiahni brušné svaly. Pomaly sa vráť späť.",
+    "primaryMuscle": "Rectus abdominis",
+    "secondaryMuscles": "Obliquus externus abdominis",
+    "tips": "Sústreď sa na pomalé a kontrolované skracovanie."
+  },
+  {
+    "name": "Zdvíhanie nôh na bradlách",
+    "muscleGroup": "Stred tela",
+    "description": "Cvik na spodnú časť brucha vykonávaný vo vise na bradlách.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Bradlá",
+    "instructions": "Zaves sa na bradlá a stabilizuj telo. S výdychom zdvíhaj nohy smerom hore. Pomaly ich spúšťaj späť dole.",
+    "primaryMuscle": "Rectus abdominis",
+    "secondaryMuscles": "Hip flexors",
+    "tips": "Nevykopávaj nohami a kontroluj pohyb."
+  }
+]

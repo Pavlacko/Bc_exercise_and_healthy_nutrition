@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Krčenie ramien na Smith stroji",
+    "muscleGroup": "Chrbát",
+    "description": "Cvik zameraný na trapézové svaly vykonávaný na Smith stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Smith stroj",
+    "instructions": "Postav sa pod os Smith stroja a uchop ju nadhmatom. S výdychom zdvihni ramená smerom hore k ušiam. Krátko podrž v hornej pozícii a následne kontrolovane spusti ramená dole.",
+    "primaryMuscle": "Musculus trapezius",
+    "secondaryMuscles": "Levator scapulae",
+    "tips": "Neotáčaj ramenami do kruhu, pohyb vykonávaj len hore a dole."
+  },
+  {
+    "name": "Krčenie ramien s jednoručkami",
+    "muscleGroup": "Chrbát",
+    "description": "Izolovaný cvik na trapézy vykonávaný s jednoručkami.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky",
+    "instructions": "Postav sa vzpriamene a drž jednoručky po bokoch tela. Zdvihni ramená smerom hore k ušiam. Krátko podrž a potom kontrolovane spusti dole.",
+    "primaryMuscle": "Musculus trapezius",
+    "secondaryMuscles": "Levator scapulae",
+    "tips": "Drž ruky vystreté a nehýb nimi počas cviku."
+  },
+  {
+    "name": "Sťahovanie kladky na hruď",
+    "muscleGroup": "Chrbát",
+    "description": "Základný cvik na rozvoj širokého chrbtového svalu vykonávaný na hornej kladke.",
+    "difficulty": "Začiatočník",
+    "equipment": "Horná kladka",
+    "instructions": "Sadni si na stroj a uchop tyč nadhmatom. S výdychom sťahuj tyč smerom k hornej časti hrudníka. Lakte ťahaj dole a dozadu. Pomaly sa vráť do východiskovej polohy.",
+    "primaryMuscle": "Latissimus dorsi",
+    "secondaryMuscles": "Biceps brachii, rhomboideus",
+    "tips": "Nezakláňaj sa príliš dozadu a ťahaj pohyb chrbtom, nie rukami."
+  },
+  {
+    "name": "Sťahovanie kladky s vystretými rukami",
+    "muscleGroup": "Chrbát",
+    "description": "Cvik zameraný na izoláciu širokého chrbtového svalu bez výrazného zapojenia bicepsov.",
+    "difficulty": "Začiatočník",
+    "equipment": "Horná kladka",
+    "instructions": "Postav sa pred kladku a uchop tyč nadhmatom s vystretými rukami. Ťahaj tyč smerom dole k stehnám bez ohýbania lakťov. Pohyb vykonávaj kontrolovane a pomaly sa vráť späť.",
+    "primaryMuscle": "Latissimus dorsi",
+    "secondaryMuscles": "Teres major",
+    "tips": "Udržuj ruky čo najviac vystreté počas celého pohybu."
+  },
+  {
+    "name": "Veslovanie na spodnej kladke",
+    "muscleGroup": "Chrbát",
+    "description": "Cvik na strednú časť chrbta vykonávaný na spodnej kladke.",
+    "difficulty": "Začiatočník",
+    "equipment": "Spodná kladka",
+    "instructions": "Sadni si k spodnej kladke a uchop adaptér. S výdychom ťahaj rukoväť smerom k bruchu. Lakte ťahaj dozadu a lopatky sťahuj k sebe. Pomaly sa vráť späť.",
+    "primaryMuscle": "Latissimus dorsi",
+    "secondaryMuscles": "Rhomboideus, trapezius, biceps brachii",
+    "tips": "Drž rovný chrbát a nehrb sa počas pohybu."
+  },
+  {
+    "name": "Veslovanie s T-tyčou",
+    "muscleGroup": "Chrbát",
+    "description": "Silový cvik na chrbát zameraný na hrúbku svalstva.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "T-tyč",
+    "instructions": "Postav sa nad T-tyč a uchop ju oboma rukami. Predkloň sa s rovným chrbtom. Ťahaj činku smerom k hrudníku. Pomaly spúšťaj späť.",
+    "primaryMuscle": "Latissimus dorsi",
+    "secondaryMuscles": "Rhomboideus, trapezius, biceps brachii",
+    "tips": "Drž pevný stred tela a nekrúť chrbtom."
+  },
+  {
+    "name": "Zhyby nadhmatom",
+    "muscleGroup": "Chrbát",
+    "description": "Základný komplexný cvik na chrbát vykonávaný na hrazde.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Hrazda",
+    "instructions": "Zaves sa na hrazdu nadhmatom širším ako ramená. S výdychom sa priťahuj smerom hore. Pokračuj, kým brada nepresiahne hrazdu. Pomaly sa spúšťaj späť.",
+    "primaryMuscle": "Latissimus dorsi",
+    "secondaryMuscles": "Biceps brachii, trapezius",
+    "tips": "Nevykopávaj nohami a snaž sa o kontrolovaný pohyb."
+  }
+]

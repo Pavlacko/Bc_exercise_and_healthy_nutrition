@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Abdukcia na stroji",
+    "muscleGroup": "Predné stehná",
+    "description": "Cvik zameraný na vonkajšiu stranu stehien a sedacie svaly.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj",
+    "instructions": "Sadni si na stroj a opri nohy o opierky. S výdychom tlač nohy smerom od seba. Pomaly sa vráť späť do východiskovej polohy.",
+    "primaryMuscle": "Gluteus medius",
+    "secondaryMuscles": "Gluteus minimus",
+    "tips": "Pohyb vykonávaj kontrolovane a nevyužívaj švih."
+  },
+  {
+    "name": "Addukcia na stroji",
+    "muscleGroup": "Predné stehná",
+    "description": "Cvik zameraný na vnútornú stranu stehien.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj",
+    "instructions": "Sadni si na stroj a opri nohy o opierky. S výdychom tlač nohy k sebe. Pomaly sa vráť späť do východiskovej polohy.",
+    "primaryMuscle": "Adductor longus",
+    "secondaryMuscles": "Adductor magnus, gracilis",
+    "tips": "Sústreď sa na pomalý a kontrolovaný pohyb."
+  },
+  {
+    "name": "Drepy na Smith stroji",
+    "muscleGroup": "Predné stehná",
+    "description": "Cvik na dolnú časť tela vykonávaný na Smith stroji so zvýšenou stabilitou.",
+    "difficulty": "Začiatočník",
+    "equipment": "Smith stroj",
+    "instructions": "Postav sa pod os a polož si ju na trapézy. Klesaj dole do drepu, kým stehná nie sú rovnobežné so zemou. Následne sa vráť späť hore.",
+    "primaryMuscle": "Quadriceps femoris",
+    "secondaryMuscles": "Gluteus maximus, hamstrings",
+    "tips": "Drž rovný chrbát a kolená smeruj v línii so špičkami."
+  },
+  {
+    "name": "Drepy s osou",
+    "muscleGroup": "Predné stehná",
+    "description": "Základný silový cvik na dolnú časť tela s veľkou činkou.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Veľká činka",
+    "instructions": "Polož činku na trapézy a postav sa na šírku ramien. Klesaj dole do drepu. Následne sa vráť späť hore do vystretých nôh.",
+    "primaryMuscle": "Quadriceps femoris",
+    "secondaryMuscles": "Gluteus maximus, hamstrings",
+    "tips": "Drž pevný stred tela a nehrb sa."
+  },
+  {
+    "name": "Hacken drep",
+    "muscleGroup": "Predné stehná",
+    "description": "Cvik na predné stehná vykonávaný na hacken stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Hacken stroj",
+    "instructions": "Postav sa do stroja a opri chrbát o opierku. Klesaj dole kontrolovaným pohybom. Následne sa vytlač späť hore.",
+    "primaryMuscle": "Quadriceps femoris",
+    "secondaryMuscles": "Gluteus maximus",
+    "tips": "Nezamykaj kolená v hornej pozícii."
+  },
+  {
+    "name": "Leg press",
+    "muscleGroup": "Predné stehná",
+    "description": "Cvik na dolnú časť tela vykonávaný na leg press stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Leg press stroj",
+    "instructions": "Sadni si do stroja a polož nohy na plošinu. Spúšťaj záťaž smerom dole. Následne ju vytlač späť hore.",
+    "primaryMuscle": "Quadriceps femoris",
+    "secondaryMuscles": "Gluteus maximus, hamstrings",
+    "tips": "Neodliepaj spodný chrbát od opierky."
+  },
+  {
+    "name": "Predkopávanie",
+    "muscleGroup": "Predné stehná",
+    "description": "Izolačný cvik na kvadricepsy vykonávaný na stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj",
+    "instructions": "Sadni si na stroj a umiestni nohy pod opierku. S výdychom vystieraj nohy. Pomaly sa vráť späť.",
+    "primaryMuscle": "Quadriceps femoris",
+    "secondaryMuscles": "—",
+    "tips": "Nevykonávaj švihové pohyby."
+  },
+  {
+    "name": "Výpady v chôdzi",
+    "muscleGroup": "Predné stehná",
+    "description": "Dynamický cvik na nohy vykonávaný striedaním krokov.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Jednoručky alebo vlastná váha",
+    "instructions": "Urob krok dopredu a klesni do výpadu. Zadné koleno smeruje k zemi. Následne sa odraz a pokračuj druhou nohou.",
+    "primaryMuscle": "Quadriceps femoris",
+    "secondaryMuscles": "Gluteus maximus, hamstrings",
+    "tips": "Drž rovnováhu a koleno smeruj nad špičku."
+  }
+]

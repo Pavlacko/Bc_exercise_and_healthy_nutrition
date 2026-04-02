@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Bicepsový zdvih na kladke",
+    "muscleGroup": "Biceps",
+    "description": "Izolovaný cvik na biceps vykonávaný na kladke, ktorý zabezpečuje konštantné napätie počas celého pohybu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka",
+    "instructions": "Postav sa pred spodnú kladku a uchop adaptér podhmatom. Drž lakte pri tele a s výdychom ťahaj rukoväť smerom k ramenám. Pohyb vykonávaj kontrolovane bez švihu. Pomaly sa vráť do východiskovej polohy.",
+    "primaryMuscle": "Musculus biceps brachii",
+    "secondaryMuscles": "Brachialis, brachioradialis",
+    "tips": "Drž lakte pevne pri tele a nevyužívaj švih tela."
+  },
+  {
+    "name": "Bicepsový zdvih na lavičke",
+    "muscleGroup": "Biceps",
+    "description": "Cvik zameraný na izoláciu bicepsu s oporou o lavičku, ktorý minimalizuje zapojenie ostatných svalov.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky, lavička",
+    "instructions": "Sadni si na lavičku a opri lakeť o stehno alebo šikmú lavičku. Drž jednoručku podhmatom a zdvíhaj ju smerom k ramenu. Pohyb vykonávaj pomaly a kontrolovane. Následne činku pomaly spusti dole.",
+    "primaryMuscle": "Musculus biceps brachii",
+    "secondaryMuscles": "Brachialis",
+    "tips": "Sústreď sa na pomalý pohyb a plné preťaženie bicepsu."
+  },
+  {
+    "name": "Bicepsový zdvih na Scottovej lavičke",
+    "muscleGroup": "Biceps",
+    "description": "Efektívny cvik na izoláciu bicepsu vykonávaný na Scottovej lavičke, ktorý eliminuje cheating.",
+    "difficulty": "Začiatočník",
+    "equipment": "Scottova lavička, EZ tyč alebo jednoručky",
+    "instructions": "Sadni si za Scottovu lavičku a opri paže o opierku. Uchop činku podhmatom a zdvíhaj ju smerom hore. Pohyb vykonávaj pomaly bez trhania. Kontrolovane spúšťaj činku späť.",
+    "primaryMuscle": "Musculus biceps brachii",
+    "secondaryMuscles": "Brachialis",
+    "tips": "Nevystieraj lakte úplne, aby si predišiel zraneniu."
+  },
+  {
+    "name": "Bicepsový zdvih s EZ tyčou",
+    "muscleGroup": "Biceps",
+    "description": "Klasický bicepsový cvik s EZ tyčou, ktorý je šetrnejší k zápästiam než rovná tyč.",
+    "difficulty": "Začiatočník",
+    "equipment": "EZ tyč",
+    "instructions": "Postav sa vzpriamene a uchop EZ tyč podhmatom. Drž lakte pri tele a zdvíhaj tyč smerom k hrudníku. Pohyb vykonávaj kontrolovane. Pomaly spúšťaj späť.",
+    "primaryMuscle": "Musculus biceps brachii",
+    "secondaryMuscles": "Brachialis, brachioradialis",
+    "tips": "Neprehýbaj sa v chrbte a nešvihaj váhou."
+  },
+  {
+    "name": "Bicepsový zdvih s jednoručkami",
+    "muscleGroup": "Biceps",
+    "description": "Základný cvik na rozvoj bicepsov vykonávaný s jednoručkami.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky",
+    "instructions": "Postav sa vzpriamene a drž jednoručky podhmatom. Striedavo alebo súčasne zdvíhaj činky smerom k ramenám. Pohyb vykonávaj kontrolovane. Pomaly spúšťaj späť.",
+    "primaryMuscle": "Musculus biceps brachii",
+    "secondaryMuscles": "Brachialis, brachioradialis",
+    "tips": "Drž lakte pri tele a nevyužívaj švih."
+  },
+  {
+    "name": "Kladivový zdvih s jednoručkami",
+    "muscleGroup": "Biceps",
+    "description": "Cvik zameraný na biceps a predlaktie, vykonávaný neutrálnym úchopom.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky",
+    "instructions": "Postav sa vzpriamene a drž jednoručky neutrálnym úchopom (dlane k sebe). Zdvíhaj činky smerom k ramenám bez otáčania zápästia. Pohyb vykonávaj kontrolovane. Pomaly spúšťaj späť.",
+    "primaryMuscle": "Brachialis",
+    "secondaryMuscles": "Musculus biceps brachii, brachioradialis",
+    "tips": "Udržuj neutrálny úchop počas celého pohybu."
+  },
+  {
+    "name": "Zhyby podhmatom",
+    "muscleGroup": "Biceps",
+    "description": "Komplexný cvik na biceps a chrbát, pri ktorom sa telo priťahuje k hrazde podhmatom.",
+    "difficulty": "Mierne pokročilý",
+    "equipment": "Hrazda",
+    "instructions": "Zaves sa na hrazdu podhmatom na šírku ramien. S výdychom sa priťahuj smerom hore, kým brada nepresiahne hrazdu. Pohyb vykonávaj kontrolovane. Pomaly sa spúšťaj dole.",
+    "primaryMuscle": "Musculus biceps brachii",
+    "secondaryMuscles": "Latissimus dorsi, brachialis",
+    "tips": "Nevykopávaj nohami a snaž sa o plný rozsah pohybu."
+  }
+]
