@@ -4,13 +4,40 @@
 
 <h2 class="page-title">Štatistiky</h2>
 
+<div class="card-custom mb-3">
+    <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label for="statsDate" class="form-label">Vybraný deň</label>
+            <input id="statsDate" type="date" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+        </div>
+
+        <div class="col-md-4">
+            <label for="statsRange" class="form-label">Obdobie grafu</label>
+            <select id="statsRange" class="form-select">
+                <option value="7">Posledných 7 dní</option>
+                <option value="30">Posledných 30 dní</option>
+                <option value="365">Posledný rok</option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <div class="text-muted-small">
+                Vyber si deň pre detailný súhrn a obdobie pre graf kalórií.
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-6">
         <div class="card-custom">
             <div class="summary-card">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="summary-title">Dnešný súhrn</div>
-                    <div class="text-muted-small">Položky: <strong id="todayCount">0</strong></div>
+                    <div class="summary-title">Súhrn dňa</div>
+                    <div class="text-muted-small">
+                        Dátum: <strong id="summaryDate">@DateTime.Today.ToString("dd.MM.yyyy")</strong>
+                        &nbsp;|&nbsp; Položky: <strong id="todayCount">0</strong>
+                    </div>
                 </div>
 
                 <div class="macro-block">
@@ -41,7 +68,6 @@
                     <div class="progress macro-progress">
                         <div id="barC" class="progress-bar progress-ok" style="width:0%"></div>
                     </div>
-
                 </div>
 
                 <div class="macro-block mb-0">
@@ -63,7 +89,7 @@
 
     <div class="col-md-6">
         <div class="card-custom">
-            <h4>Kalórie posledných 7 dní</h4>
+            <h4 id="chartTitle">Kalórie posledných 7 dní</h4>
             <canvas id="weeklyCanvas" height="180"></canvas>
             <div class="small-help mt-2" id="weeklyHint"></div>
         </div>
@@ -75,4 +101,3 @@
 @section Scripts {
     <script src="~/js/stats.js" asp-append-version="true"></script>
 }
-

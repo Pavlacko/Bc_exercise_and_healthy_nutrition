@@ -1,6 +1,10 @@
 ﻿(async function () {
-
     const el = (id) => document.getElementById(id);
+
+    const statsDate = el("statsDate");
+    const statsRange = el("statsRange");
+    const summaryDate = el("summaryDate");
+    const chartTitle = el("chartTitle");
 
     const todayKcal = el("todayKcal");
     const todayP = el("todayP");
@@ -29,6 +33,33 @@
     const hint = el("weeklyHint");
     const ctx = canvas ? canvas.getContext("2d") : null;
 
+    function formatDateSk(dateStr) {
+        const d = new Date(dateStr);
+        if (Number.isNaN(d.getTime())) return dateStr;
+
+        const day = String(d.getDate()).padStart(2, "0");
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        const year = d.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+
+    function getSelectedDate() {
+        return statsDate?.value || new Date().toISOString().slice(0, 10);
+    }
+
+    function getSelectedRange() {
+        return Number(statsRange?.value || 7);
+    }
+
+    function updateChartTitle() {
+        if (!chartTitle) return;
+
+        const days = getSelectedRange();
+        if (days === 7) chartTitle.textContent = "Kalórie posledných 7 dní";
+        else if (days === 30) chartTitle.textContent = "Kalórie posledných 30 dní";
+        else chartTitle.textContent = "Kalórie posledného roka";
+    }
+
     function setBar(barEl, pctEl, value, goal) {
         if (!barEl || !pctEl) return;
 
@@ -50,21 +81,27 @@
         let clsBar = "progress-ok";
         let clsPct = "pct ok";
 
-        if (pct > 120) { clsBar = "progress-over"; clsPct = "pct over"; }
-        else if (pct > 100) { clsBar = "progress-warn"; clsPct = "pct warn"; }
+        if (pct > 120) {
+            clsBar = "progress-over";
+            clsPct = "pct over";
+        } else if (pct > 100) {
+            clsBar = "progress-warn";
+            clsPct = "pct warn";
+        }
 
         barEl.className = "progress-bar " + clsBar;
         pctEl.textContent = `(${pct}%)`;
         pctEl.className = clsPct;
     }
 
-
-    async function loadToday() {
-        const resp = await fetch("/Stats/TodaySummary");
+    async function loadSummary() {
+        const date = getSelectedDate();
+        const resp = await fetch(`/Stats/TodaySummary?date=${encodeURIComponent(date)}`);
         if (!resp.ok) return;
 
         const data = await resp.json();
 
+        if (summaryDate) summaryDate.textContent = formatDateSk(data.date);
         if (todayKcal) todayKcal.textContent = data.kcal;
         if (todayP) todayP.textContent = data.protein;
         if (todayC) todayC.textContent = data.carbs;
@@ -119,10 +156,10 @@
         const pad = 14;
 
         const max = Math.max(...items.map(x => Number(x.kcal) || 0), 10);
-
         const barAreaW = w - pad * 2;
-        const barW = (barAreaW / items.length) * 0.65;
-        const gap = (barAreaW / items.length) * 0.35;
+        const slotW = barAreaW / items.length;
+        const barW = Math.max(2, slotW * 0.65);
+        const gap = slotW * 0.35;
 
         ctx.beginPath();
         ctx.moveTo(pad, h - pad);
@@ -134,38 +171,61 @@
             const kcal = Number(x.kcal) || 0;
             const barH = ((h - pad * 2) * kcal) / max;
 
-            const xPos = pad + i * (barW + gap) + gap / 2;
+            const xPos = pad + i * slotW + gap / 2;
             const yPos = (h - pad) - barH;
 
             ctx.fillStyle = "#35694c";
             ctx.fillRect(xPos, yPos, barW, barH);
 
-            ctx.fillStyle = "#444";
-            ctx.font = "11px Segoe UI";
-            const day = String(x.date || "").slice(5);
-            ctx.fillText(day, xPos, h - 2);
+            const dateText = String(x.date || "");
+            let label = dateText.slice(5);
 
-            ctx.fillStyle = "#222";
-            ctx.font = "10px Segoe UI";
-            ctx.fillText(String(kcal), xPos, yPos - 4);
+            if (items.length > 31) {
+                label = dateText.slice(2, 7);
+            }
+
+            if (items.length <= 31 || i % 30 === 0) {
+                ctx.fillStyle = "#444";
+                ctx.font = "10px Segoe UI";
+                ctx.fillText(label, xPos, h - 2);
+            }
+
+            if (items.length <= 31 || i % 30 === 0) {
+                ctx.fillStyle = "#222";
+                ctx.font = "10px Segoe UI";
+                ctx.fillText(String(kcal), xPos, yPos - 4);
+            }
         });
 
         const avg = (items.reduce((s, a) => s + (Number(a.kcal) || 0), 0) / (items.length || 1)).toFixed(1);
         if (hint) hint.textContent = `Priemer: ${avg} kcal / deň`;
     }
 
-    async function loadWeekly() {
-        const resp = await fetch("/Stats/WeeklyCalories?days=7");
+    async function loadChart() {
+        const date = getSelectedDate();
+        const days = getSelectedRange();
+
+        updateChartTitle();
+
+        const resp = await fetch(`/Stats/CaloriesChart?date=${encodeURIComponent(date)}&days=${days}`);
         if (!resp.ok) return;
 
         const data = await resp.json();
         drawBars(data);
     }
 
+    async function reloadAll() {
+        await loadSummary();
+        await loadChart();
+    }
+
+    statsDate?.addEventListener("change", reloadAll);
+    statsRange?.addEventListener("change", loadChart);
+
     window.addEventListener("resize", () => {
-        loadWeekly();
+        loadChart();
     });
 
-    await loadToday();
-    await loadWeekly();
+    updateChartTitle();
+    await reloadAll();
 })();

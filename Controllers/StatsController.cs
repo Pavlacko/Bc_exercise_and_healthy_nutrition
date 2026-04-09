@@ -20,7 +20,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return View();
         }
 
-
         [HttpGet]
         public IActionResult TodaySummary(DateTime? date)
         {
@@ -40,13 +39,15 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             {
                 var mul = e.Grams / 100.0;
                 kcal += mul * e.FoodItem!.KcalPer100g;
-                p += mul * e.FoodItem!.ProteinPer100g;
-                c += mul * e.FoodItem!.CarbsPer100g;
-                f += mul * e.FoodItem!.FatPer100g;
+                p += mul * e.FoodItem.ProteinPer100g;
+                c += mul * e.FoodItem.CarbsPer100g;
+                f += mul * e.FoodItem.FatPer100g;
             }
 
             var goal = _context.DailyGoals
-                .FirstOrDefault(g => g.AppUserId == userId.Value && g.Date == d);
+                .Where(g => g.AppUserId == userId.Value && g.Date <= d)
+                .OrderByDescending(g => g.Date)
+                .FirstOrDefault();
 
             return Json(new
             {
@@ -68,30 +69,34 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         }
 
         [HttpGet]
-        public IActionResult WeeklyCalories(int days = 7)
+        public IActionResult CaloriesChart(DateTime? date, int days = 7)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return Unauthorized();
 
-            if (days < 3) days = 3;
-            if (days > 31) days = 31;
+            if (days != 7 && days != 30 && days != 365)
+                days = 7;
 
-            var from = DateTime.Today.AddDays(-(days - 1)).Date;
-            var to = DateTime.Today.Date;
+            var endDate = (date ?? DateTime.Today).Date;
+            var fromDate = endDate.AddDays(-(days - 1)).Date;
 
             var entries = _context.MealEntries
                 .Include(e => e.FoodItem)
-                .Where(e => e.AppUserId == userId.Value && e.Date >= from && e.Date <= to)
+                .Where(e => e.AppUserId == userId.Value && e.Date >= fromDate && e.Date <= endDate)
                 .ToList();
 
             var map = new Dictionary<DateTime, double>();
-            for (var d = from; d <= to; d = d.AddDays(1))
+            for (var d = fromDate; d <= endDate; d = d.AddDays(1))
                 map[d] = 0;
 
             foreach (var e in entries)
             {
                 var mul = e.Grams / 100.0;
-                map[e.Date.Date] += mul * e.FoodItem!.KcalPer100g;
+                var day = e.Date.Date;
+                if (map.ContainsKey(day))
+                {
+                    map[day] += mul * e.FoodItem!.KcalPer100g;
+                }
             }
 
             var result = map
