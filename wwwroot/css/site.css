@@ -1150,3 +1150,141 @@ body {
         gap: 4px;
     }
 }
+
+.summary-card {
+    min-height: 100%;
+}
+
+.stats-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.stats-card-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-card-icon {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: #edf6ef;
+    color: var(--green-700);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.stats-card-title {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--green-900);
+}
+
+.stats-card-subtitle {
+    margin-top: 2px;
+    font-size: 0.9rem;
+    color: #73837b;
+}
+
+.stats-hero {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 20px;
+    align-items: center;
+    background: linear-gradient(135deg, #f7fbf7 0%, #edf6ef 100%);
+    border: 1px solid #e5efe6;
+}
+
+.stats-hero-text h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--green-900);
+    letter-spacing: -0.5px;
+}
+
+.stats-hero-text p {
+    margin: 0;
+    max-width: 720px;
+    font-size: 1rem;
+    color: #5f7067;
+    line-height: 1.6;
+}
+
+.stats-hero-visual {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.stats-hero-icon {
+    width: 88px;
+    height: 88px;
+    display: grid;
+    place-items: center;
+    border-radius: 24px;
+    background: linear-gradient(135deg, var(--green-600), var(--green-700));
+    color: #fff;
+    font-size: 2.4rem;
+    box-shadow: 0 14px 30px rgba(63, 163, 108, 0.28);
+}
+
+.stats-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.stats-mini-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid #edf2ed;
+}
+
+.stats-mini-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.stats-mini-card-label {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #64746d;
+}
+
+.stats-mini-card-icon {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: #edf6ef;
+    color: var(--green-700);
+    font-size: 1.1rem;
+}
+
+.stats-mini-card-value {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--green-900);
+    line-height: 1.15;
+}
+
+.stats-mini-card-sub {
+    margin-top: 6px;
+    font-size: 0.88rem;
+    color: #76857d;
+}

@@ -4,15 +4,72 @@
     ViewData["Title"] = "Denník stravy";
 }
 
-<h2 class="page-title">Denník stravy</h2>
+<div class="stats-hero card-custom mb-3">
+    <div class="stats-hero-text">
+        <h1>Denník stravy</h1>
+        <p>
+            Zaznamenávaj si jedlá, sleduj denný kalorický cieľ a maj prehľad o svojom príjme
+            makroživín počas celého dňa.
+        </p>
+    </div>
+
+    <div class="stats-hero-visual">
+        <div class="stats-hero-icon">
+            <i class="bi bi-journal-check"></i>
+        </div>
+    </div>
+</div>
+
+<div class="stats-mini-grid">
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Vybraný deň</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-calendar-event"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@Model.Date.ToString("dd.MM.")</div>
+        <div class="stats-mini-card-sub">Dátum denného záznamu</div>
+    </div>
+
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Počet záznamov</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-list-check"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@Model.Entries.Count</div>
+        <div class="stats-mini-card-sub">Jedlá uložené za deň</div>
+    </div>
+
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Denný cieľ</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-bullseye"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@(Model.Goal?.KcalGoal ?? 0) kcal</div>
+        <div class="stats-mini-card-sub">Aktuálne nastavený kalorický cieľ</div>
+    </div>
+</div>
 
 <div class="row g-3 align-items-stretch">
     <div class="col-lg-6">
-        <div class="card-custom">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="section-title mb-0">Pridať jedlo</h4>
+        <div class="card-custom summary-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-plus-circle"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title">Pridať jedlo</h3>
+                        <div class="stats-card-subtitle">Vyber potravinu, dátum a gramáž</div>
+                    </div>
+                </div>
 
-                <div style="max-width:160px;">
+                <div style="max-width:170px;">
                     <input id="diaryDate"
                            type="date"
                            class="form-control form-control-sm"
@@ -43,8 +100,18 @@
     </div>
 
     <div class="col-lg-6">
-        <div class="card-custom">
-            <h4 class="section-title mb-3">Denný cieľ</h4>
+        <div class="card-custom summary-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title">Denný cieľ</h3>
+                        <div class="stats-card-subtitle">Kalorický a makro cieľ pre vybraný deň</div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row g-2">
                 <div class="col-6">
@@ -92,8 +159,17 @@
 </div>
 
 <div class="card-custom mt-3">
-    <div class="d-flex justify-content-between align-items-center mb-2">
-        <h4 class="section-title mb-0">Záznamy</h4>
+    <div class="stats-card-head">
+        <div class="stats-card-title-wrap">
+            <div class="stats-card-icon">
+                <i class="bi bi-card-list"></i>
+            </div>
+            <div>
+                <h3 class="stats-card-title">Záznamy</h3>
+                <div class="stats-card-subtitle">Uložené jedlá za vybraný deň</div>
+            </div>
+        </div>
+
         <div class="text-muted-small">Uprav gramáž a klikni Uložiť</div>
     </div>
 
@@ -104,7 +180,14 @@
         }
     </select>
 
-    <div class="table-responsive">
+    @if (!Model.Entries.Any())
+    {
+        <div class="text-muted-small mt-2">
+            Zatiaľ tu nemáš žiadne uložené jedlá pre tento deň.
+        </div>
+    }
+
+    <div class="table-responsive mt-2">
         <table class="table table-card align-middle">
             <thead>
                 <tr>
