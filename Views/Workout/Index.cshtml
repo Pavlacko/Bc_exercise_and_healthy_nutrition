@@ -5,9 +5,61 @@
     ViewData["Title"] = "Môj tréning";
     var selectedDate = (DateTime)ViewBag.SelectedDate;
     var exercises = ViewBag.Exercises as List<SelectListItem> ?? new List<SelectListItem>();
+    var exerciseCount = Model?.Exercises?.Count ?? 0;
+    var totalSets = Model?.Exercises?.Sum(x => x.Sets) ?? 0;
+    var totalVolume = Model?.Exercises?.Sum(x => x.Sets * x.Reps * x.Weight) ?? 0;
 }
 
-<h2 class="page-title">Môj tréning</h2>
+<div class="stats-hero card-custom mb-3">
+    <div class="stats-hero-text">
+        <h1>Môj tréning</h1>
+        <p>
+            Zaznamenávaj si odcvičené cviky, počet sérií, opakovaní a použitú váhu.
+            Maj prehľad o tom, čo si odtrénoval v konkrétny deň.
+        </p>
+    </div>
+
+    <div class="stats-hero-visual">
+        <div class="stats-hero-icon">
+            <i class="bi bi-calendar2-check"></i>
+        </div>
+    </div>
+</div>
+
+<div class="stats-mini-grid">
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Vybraný deň</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-calendar-event"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@selectedDate.ToString("dd.MM.")</div>
+        <div class="stats-mini-card-sub">Dátum tréningového záznamu</div>
+    </div>
+
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Počet cvikov</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-list-check"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@exerciseCount</div>
+        <div class="stats-mini-card-sub">Cviky uložené v tréningu</div>
+    </div>
+
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Objem tréningu</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-activity"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@Math.Round(totalVolume, 1) kg</div>
+        <div class="stats-mini-card-sub">Súčet série × opakovania × váha</div>
+    </div>
+</div>
 
 @if (TempData["Ok"] != null)
 {
@@ -21,9 +73,17 @@
 
 <div class="row g-3 align-items-stretch">
     <div class="col-lg-5">
-        <div class="card-custom">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="section-title mb-0">Pridať cvik</h4>
+        <div class="card-custom summary-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-plus-circle"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title">Pridať cvik</h3>
+                        <div class="stats-card-subtitle">Vyber cvik a doplň tréningové údaje</div>
+                    </div>
+                </div>
 
                 <div style="max-width:170px;">
                     <input id="workoutDate"
@@ -68,7 +128,7 @@
 
                 <div class="mt-3">
                     <label class="form-label">Poznámka k tréningu</label>
-                    <textarea name="note" class="form-control" rows="3">@Model?.Note</textarea>
+                    <textarea name="note" class="form-control" rows="4">@Model?.Note</textarea>
                 </div>
 
                 <div class="mt-3">
@@ -79,15 +139,26 @@
     </div>
 
     <div class="col-lg-7">
-        <div class="card-custom">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="section-title mb-0">Odcvičené cviky</h4>
+        <div class="card-custom summary-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-trophy"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title">Odcvičené cviky</h3>
+                        <div class="stats-card-subtitle">Prehľad tréningu za vybraný deň</div>
+                    </div>
+                </div>
+
                 <div class="text-muted-small">@selectedDate.ToString("dd.MM.yyyy")</div>
             </div>
 
             @if (Model == null || Model.Exercises == null || !Model.Exercises.Any())
             {
-                <div class="text-muted">Na tento deň zatiaľ nemáš uložený žiadny tréning.</div>
+                <div class="text-muted-small">
+                    Na tento deň zatiaľ nemáš uložený žiadny tréning.
+                </div>
             }
             else
             {
@@ -127,7 +198,7 @@
                 @if (!string.IsNullOrWhiteSpace(Model.Note))
                 {
                     <div class="workout-note-box mt-3">
-                        <h5>Poznámka</h5>
+                        <h5>Poznámka k tréningu</h5>
                         <p>@Model.Note</p>
                     </div>
                 }

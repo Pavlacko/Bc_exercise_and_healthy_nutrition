@@ -1288,3 +1288,27 @@ body {
     font-size: 0.88rem;
     color: #76857d;
 }
+
+.workout-page-empty {
+    color: #73837b;
+    font-size: 0.95rem;
+    padding: 8px 0;
+}
+
+.workout-note-box {
+    background: #f8fbf8;
+    border: 1px solid #e2ebe3;
+    border-radius: 14px;
+    padding: 16px;
+}
+
+    .workout-note-box h5 {
+        margin-bottom: 8px;
+        color: #244b3a;
+        font-weight: 700;
+    }
+
+    .workout-note-box p {
+        margin-bottom: 0;
+        color: #4d5d55;
+    }
