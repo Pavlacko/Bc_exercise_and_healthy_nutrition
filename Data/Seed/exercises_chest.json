@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Bench press na Smith stroji",
+    "muscleGroup": "Hrudník",
+    "videoPath": "/videos/Hrudník/Bench press na Smith stroji.mp4",
+    "description": "Tlakový cvik na hrudník vykonávaný na Smith stroji, ktorý poskytuje väčšiu stabilitu pohybu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Smith stroj, lavička",
+    "instructions": "Ľahni si na lavičku pod os Smith stroja a uchop ju o niečo širšie než je šírka ramien. Spusť činku kontrolovane k hrudníku a následne ju s výdychom vytlač späť hore.",
+    "primaryMuscle": "Pectoralis major",
+    "secondaryMuscles": "Triceps brachii, anterior deltoid",
+    "tips": "Drž lopatky stiahnuté a nohy pevne na zemi."
+  },
+  {
+    "name": "Bench press",
+    "muscleGroup": "Hrudník",
+    "videoPath": "/videos/Hrudník/Bench press.mp4",
+    "description": "Základný silový cvik na rozvoj hrudníka, tricepsov a prednej časti ramien.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Veľká činka, lavička",
+    "instructions": "Ľahni si na lavičku, uchop činku širšie než ramená a drž lopatky stiahnuté. Spusť činku ku hrudníku a následne ju s výdychom vytlač späť hore.",
+    "primaryMuscle": "Pectoralis major",
+    "secondaryMuscles": "Triceps brachii, anterior deltoid",
+    "tips": "Nedvíhaj zadok z lavičky a činku spúšťaj kontrolovane."
+  },
+  {
+    "name": "Pec deck",
+    "muscleGroup": "Hrudník",
+    "videoPath": "/videos/Hrudník/Pec deck.mp4",
+    "description": "Izolovaný cvik na hrudník vykonávaný na stroji, vhodný na precítenie kontrakcie prsného svalstva.",
+    "difficulty": "Začiatočník",
+    "equipment": "Pec deck stroj",
+    "instructions": "Sadni si na stroj a opri predlaktia alebo ruky o ramená stroja. S výdychom približ ruky pred telo. Krátko podrž kontrakciu a pomaly sa vráť späť.",
+    "primaryMuscle": "Pectoralis major",
+    "secondaryMuscles": "Anterior deltoid",
+    "tips": "Nepreťažuj ramená a pohyb veď plynulo bez trhania."
+  },
+  {
+    "name": "Rozpažovanie na kladkách",
+    "muscleGroup": "Hrudník",
+    "videoPath": "/videos/Hrudník/Rozpažovanie na kladkách.mp4",
+    "description": "Izolačný cvik na hrudník s konštantným napätím počas celého pohybu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladky",
+    "instructions": "Postav sa medzi dve kladky a uchop rukoväte. S mierne pokrčenými lakťami veď ruky oblúkom pred telo. Krátko podrž kontrakciu a potom sa pomaly vráť späť.",
+    "primaryMuscle": "Pectoralis major",
+    "secondaryMuscles": "Anterior deltoid",
+    "tips": "Lakte drž stále mierne pokrčené a nepreháňaj rozsah pohybu dozadu."
+  },
+  {
+    "name": "Tlaky na Smith stroji na šikmej lavičke",
+    "muscleGroup": "Hrudník",
+    "videoPath": "/videos/Hrudník/Tlaky na Smith stroji na šikmej lavičke.mp4",
+    "description": "Varianta tlakového cviku zameraná viac na hornú časť hrudníka.",
+    "difficulty": "Začiatočník",
+    "equipment": "Smith stroj, šikmá lavička",
+    "instructions": "Nastav lavičku do šikmej polohy, ľahni si pod os a uchop ju o niečo širšie než ramená. Spusť činku ku hornej časti hrudníka a s výdychom ju vytlač späť hore.",
+    "primaryMuscle": "Clavicular head of pectoralis major",
+    "secondaryMuscles": "Triceps brachii, anterior deltoid",
+    "tips": "Nezakláňaj hlavu a drž lopatky stiahnuté počas celej série."
+  },
+  {
+    "name": "Tlaky na stroji",
+    "muscleGroup": "Hrudník",
+    "videoPath": "/videos/Hrudník/Tlaky na stroji.mp4",
+    "description": "Strojová varianta tlakových cvikov vhodná na bezpečný rozvoj hrudníka.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na tlaky na hrudník",
+    "instructions": "Sadni si na stroj, uchop rukoväte a nastav sedadlo tak, aby boli ruky približne v úrovni stredu hrudníka. S výdychom vytlač rukoväte pred seba a potom ich kontrolovane vráť späť.",
+    "primaryMuscle": "Pectoralis major",
+    "secondaryMuscles": "Triceps brachii, anterior deltoid",
+    "tips": "Nenarážaj závažie a drž pohyb plynulý."
+  },
+  {
+    "name": "Tlaky s jednoručkami na rovnej lavičke",
+    "muscleGroup": "Hrudník",
+    "videoPath": "/videos/Hrudník/Tlaky s jednoručkami na rovnej lavičke.mp4",
+    "description": "Základný cvik na hrudník s väčším rozsahom pohybu než pri veľkej činke.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky, lavička",
+    "instructions": "Ľahni si na lavičku a drž jednoručky po stranách hrudníka. S výdychom ich vytlač hore nad hrudník. Potom ich pomaly spusti späť.",
+    "primaryMuscle": "Pectoralis major",
+    "secondaryMuscles": "Triceps brachii, anterior deltoid",
+    "tips": "Udržuj zápästia pevné a nevyhadzuj činky prudko hore."
+  },
+  {
+    "name": "Tlaky s jednoručkami na šikmej lavičke",
+    "muscleGroup": "Hrudník",
+    "videoPath": "/videos/Hrudník/Tlaky s jednoručkami na šikmej lavičke.mp4",
+    "description": "Varianta tlakových cvikov zameraná viac na hornú časť prsného svalstva.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky, šikmá lavička",
+    "instructions": "Ľahni si na šikmú lavičku a drž jednoručky pri hornej časti hrudníka. S výdychom ich vytlač hore. Potom ich kontrolovane spusti späť.",
+    "primaryMuscle": "Clavicular head of pectoralis major",
+    "secondaryMuscles": "Triceps brachii, anterior deltoid",
+    "tips": "Nevytáčaj ramená dopredu a drž lopatky stiahnuté."
+  }
+]

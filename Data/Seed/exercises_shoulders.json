@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Rozpažovanie na zadné ramená",
+    "muscleGroup": "Ramená",
+    "videoPath": "/videos/Ramená/Rozpažovanie na zadné ramená.mp4",
+    "description": "Izolačný cvik zameraný na zadnú časť ramien a hornú časť chrbta.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky alebo stroj",
+    "instructions": "Predkloň sa s rovným chrbtom alebo sa opri o lavičku. S mierne pokrčenými lakťami veď ruky do strán. Potom ich pomaly spusti späť.",
+    "primaryMuscle": "Posterior deltoid",
+    "secondaryMuscles": "Rhomboideus, trapezius",
+    "tips": "Nepoužívaj švih a sústreď sa na pohyb z ramien, nie z chrbta."
+  },
+  {
+    "name": "Tlaky na ramená na stroji",
+    "muscleGroup": "Ramená",
+    "videoPath": "/videos/Ramená/Tlaky na ramená na stroji.mp4",
+    "description": "Strojová varianta tlakov nad hlavu vhodná na bezpečný rozvoj ramenných svalov.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na tlaky na ramená",
+    "instructions": "Sadni si na stroj a uchop rukoväte približne vo výške ramien. S výdychom ich vytlač hore nad hlavu. Potom ich kontrolovane spusti späť.",
+    "primaryMuscle": "Deltoid",
+    "secondaryMuscles": "Triceps brachii, trapezius",
+    "tips": "Nenarážaj závažie a neprehýbaj sa v drieku."
+  },
+  {
+    "name": "Tlaky nad hlavu",
+    "muscleGroup": "Ramená",
+    "videoPath": "/videos/Ramená/Tlaky nad hlavu.mp4",
+    "description": "Základný tlakový cvik na ramená zameraný najmä na prednú a strednú časť deltových svalov.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Veľká činka alebo jednoručky",
+    "instructions": "Začni s činkou vo výške ramien. S výdychom ju vytlač nad hlavu do takmer vystretých rúk. Potom ju kontrolovane spusti späť.",
+    "primaryMuscle": "Deltoid",
+    "secondaryMuscles": "Triceps brachii, trapezius",
+    "tips": "Drž pevný stred tela a neprehýbaj sa dozadu."
+  },
+  {
+    "name": "Upažovanie na kladke",
+    "muscleGroup": "Ramená",
+    "videoPath": "/videos/Ramená/Upažovanie na kladke.mp4",
+    "description": "Izolačný cvik na strednú časť ramien s konštantným napätím počas celého pohybu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Spodná kladka",
+    "instructions": "Postav sa vedľa kladky a uchop rukoväť. S mierne pokrčenou rukou veď pažu do strany do úrovne ramena. Potom ju pomaly spusti späť.",
+    "primaryMuscle": "Lateral deltoid",
+    "secondaryMuscles": "Supraspinatus",
+    "tips": "Nezdvíhaj rameno k uchu a nešvihaj telom."
+  },
+  {
+    "name": "Upažovanie na stroji",
+    "muscleGroup": "Ramená",
+    "videoPath": "/videos/Ramená/Upažovanie na stroji.mp4",
+    "description": "Strojová varianta upažovania zameraná na stredné delty.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na upažovanie",
+    "instructions": "Sadni si na stroj a opri ruky o opierky alebo uchop držadlá. Veď ruky do strán do výšky ramien a potom ich pomaly vráť späť.",
+    "primaryMuscle": "Lateral deltoid",
+    "secondaryMuscles": "Supraspinatus",
+    "tips": "Pohyb veď plynulo a neodrážaj závažie."
+  },
+  {
+    "name": "Upažovanie s jednoručkami",
+    "muscleGroup": "Ramená",
+    "videoPath": "/videos/Ramená/Upažovanie s jednoručkami.mp4",
+    "description": "Klasický izolačný cvik na strednú časť ramien.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky",
+    "instructions": "Postav sa vzpriamene a drž jednoručky po bokoch tela. S mierne pokrčenými lakťami zdvihni ruky do strán do výšky ramien. Potom ich kontrolovane spusti späť.",
+    "primaryMuscle": "Lateral deltoid",
+    "secondaryMuscles": "Supraspinatus",
+    "tips": "Nezdvíhaj ruky príliš vysoko a nešvihaj trupom."
+  }
+]

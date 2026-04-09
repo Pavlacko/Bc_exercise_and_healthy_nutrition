@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Bicepsový zdvih na kladke",
+    "muscleGroup": "Biceps",
+    "videoPath": "/videos/Biceps/Bicepsový zdvih na kladke.mp4",
+    "description": "Izolovaný cvik na biceps vykonávaný na spodnej kladke, ktorý udržiava konštantné napätie počas celého pohybu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Spodná kladka",
+    "instructions": "Postav sa pred kladku, uchop adaptér podhmatom a drž lakte pri tele. S výdychom zdvihni rukoväť smerom k ramenám. V hornej pozícii krátko podrž a potom pomaly spusti späť.",
+    "primaryMuscle": "Biceps brachii",
+    "secondaryMuscles": "Brachialis, brachioradialis",
+    "tips": "Nehýb trupom a nešvihaj váhou. Lakte drž počas pohybu čo najviac pri tele."
+  },
+  {
+    "name": "Bicepsový zdvih na lavičke",
+    "muscleGroup": "Biceps",
+    "videoPath": "/videos/Biceps/Bicepsový zdvih na lavičke.mp4",
+    "description": "Cvik na biceps vykonávaný v sede alebo s oporou, ktorý pomáha obmedziť cheating a lepšie izolovať sval.",
+    "difficulty": "Začiatočník",
+    "equipment": "Lavička, jednoručky",
+    "instructions": "Sadni si na lavičku, uchop jednoručky podhmatom a nechaj ruky voľne visieť. S výdychom zdvihni činky smerom k ramenám. Potom ich kontrolovane spusti späť do východiskovej polohy.",
+    "primaryMuscle": "Biceps brachii",
+    "secondaryMuscles": "Brachialis, brachioradialis",
+    "tips": "Nepoužívaj švih tela. Pohyb vykonávaj pomaly a v plnom rozsahu."
+  },
+  {
+    "name": "Bicepsový zdvih na Scottovej lavičke",
+    "muscleGroup": "Biceps",
+    "videoPath": "/videos/Biceps/Bicepsový zdvih na Scottovej lavičke.mp4",
+    "description": "Klasický izolovaný cvik na biceps, pri ktorom opora paží výrazne obmedzuje zapájanie ostatných svalov.",
+    "difficulty": "Začiatočník",
+    "equipment": "Scottova lavička, EZ tyč alebo jednoručka",
+    "instructions": "Opri paže o Scottovu lavičku a uchop tyč alebo jednoručku podhmatom. S výdychom zdvihni záťaž hore smerom k ramenám. Potom ju pomaly a kontrolovane spusti späť.",
+    "primaryMuscle": "Biceps brachii",
+    "secondaryMuscles": "Brachialis, brachioradialis",
+    "tips": "Nevystieraj lakte úplne nasilu. V spodnej pozícii udržuj kontrolu nad pohybom."
+  },
+  {
+    "name": "Bicepsový zdvih s EZ tyčou",
+    "muscleGroup": "Biceps",
+    "videoPath": "/videos/Biceps/Bicepsový zdvih s EZ tyčou.mp4",
+    "description": "Základný cvik na rozvoj bicepsov, pri ktorom EZ tyč znižuje zaťaženie zápästí oproti rovnej tyči.",
+    "difficulty": "Začiatočník",
+    "equipment": "EZ tyč",
+    "instructions": "Postav sa vzpriamene, uchop EZ tyč podhmatom na šírku ramien a drž lakte pri tele. S výdychom zdvihni tyč smerom k ramenám. Potom ju pomaly spusti späť do východiskovej polohy.",
+    "primaryMuscle": "Biceps brachii",
+    "secondaryMuscles": "Brachialis, brachioradialis",
+    "tips": "Nezakláňaj sa a nešvihaj telom. Lakte drž stabilne pri bokoch."
+  },
+  {
+    "name": "Bicepsový zdvih s jednoručkami",
+    "muscleGroup": "Biceps",
+    "videoPath": "/videos/Biceps/Bicepsový zdvih s jednoručkami.mp4",
+    "description": "Univerzálny cvik na biceps, ktorý umožňuje samostatnú prácu každej ruky a lepšiu kontrolu pohybu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky",
+    "instructions": "Postav sa alebo si sadni, uchop jednoručky podhmatom a drž ruky pri tele. S výdychom zdvihni činky smerom k ramenám. Potom ich pomaly spusti späť.",
+    "primaryMuscle": "Biceps brachii",
+    "secondaryMuscles": "Brachialis, brachioradialis",
+    "tips": "Môžeš cvičiť obe ruky naraz alebo striedavo. Nevyužívaj švih a drž zápästia pevné."
+  },
+  {
+    "name": "Kladivový zdvih s jednoručkami",
+    "muscleGroup": "Biceps",
+    "videoPath": "/videos/Biceps/Kladivový zdvih s jednoručkami.mp4",
+    "description": "Varianta bicepsového zdvihu s neutrálnym úchopom, ktorá výraznejšie zapája brachialis a brachioradialis.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručky",
+    "instructions": "Postav sa vzpriamene a drž jednoručky neutrálnym úchopom, dlane smerujú k telu. S výdychom zdvihni činky hore bez otáčania zápästí. Potom ich pomaly spusti späť.",
+    "primaryMuscle": "Brachialis",
+    "secondaryMuscles": "Biceps brachii, brachioradialis",
+    "tips": "Počas celého pohybu zachovaj neutrálny úchop. Nehýb ramenami dopredu."
+  },
+  {
+    "name": "Zhyby podhmatom",
+    "muscleGroup": "Biceps",
+    "videoPath": "/videos/Biceps/Zhyby podhmatom.mp4",
+    "description": "Viackĺbový cvik s vlastnou váhou, ktorý výrazne zapája bicepsy a zároveň aj svaly chrbta.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Hrazda",
+    "instructions": "Zaves sa na hrazdu podhmatom približne na šírku ramien. S výdychom sa priťahuj hore, kým sa brada nedostane nad hrazdu. Potom sa kontrolovane spusti späť do východiskovej polohy.",
+    "primaryMuscle": "Biceps brachii",
+    "secondaryMuscles": "Latissimus dorsi, brachialis, brachioradialis",
+    "tips": "Nevykopávaj nohami a nepoužívaj švih. Pohyb veď kontrolovane celým telom."
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Zápästné zdvihy s tyčkou",
+    "muscleGroup": "Predlaktie",
+    "videoPath": "/videos/Predlaktie/Zápästné zdvihy s tyčkou.mp4",
+    "description": "Cvik zameraný na flexory predlaktia vykonávaný pohybom v zápästí.",
+    "difficulty": "Začiatočník",
+    "equipment": "Rovná tyč alebo EZ tyč, lavička",
+    "instructions": "Sadni si a opri predlaktia o stehná alebo lavičku tak, aby zápästia presahovali cez okraj. Uchop tyč podhmatom a pohybom zápästí ju dvíhaj hore. Potom ju pomaly spusti späť.",
+    "primaryMuscle": "Flexory predlaktia",
+    "secondaryMuscles": "Brachioradialis",
+    "tips": "Pohyb vykonávaj len v zápästí, nie v lakťoch."
+  },
+  {
+    "name": "Zápästný zdvih nadhmatom na kladke",
+    "muscleGroup": "Predlaktie",
+    "videoPath": "/videos/Predlaktie/Zápästný zdvih nadhmatom na kladke.mp4",
+    "description": "Cvik na extenzory predlaktia vykonávaný na kladke s nadhmatovým úchopom.",
+    "difficulty": "Začiatočník",
+    "equipment": "Spodná kladka",
+    "instructions": "Postav sa alebo sadni ku spodnej kladke a uchop adaptér nadhmatom. Predlaktia stabilizuj a pohyb vykonávaj len v zápästí smerom hore. Potom sa pomaly vráť späť.",
+    "primaryMuscle": "Extenzory predlaktia",
+    "secondaryMuscles": "Brachioradialis",
+    "tips": "Používaj ľahšiu váhu a sústreď sa na presný pohyb."
+  },
+  {
+    "name": "Zápästný zdvih podhmatom na kladke",
+    "muscleGroup": "Predlaktie",
+    "videoPath": "/videos/Predlaktie/Zápästný zdvih podhmatom na kladke.mp4",
+    "description": "Cvik zameraný na flexory predlaktia s použitím spodnej kladky.",
+    "difficulty": "Začiatočník",
+    "equipment": "Spodná kladka",
+    "instructions": "Uchop adaptér podhmatom a stabilizuj predlaktia. Pohybom v zápästí zdvihni ruky smerom hore a potom ich kontrolovane spusti späť.",
+    "primaryMuscle": "Flexory predlaktia",
+    "secondaryMuscles": "Brachioradialis",
+    "tips": "Nehýb ramenami ani lakťami. Sústreď sa len na prácu predlaktia."
+  }
+]

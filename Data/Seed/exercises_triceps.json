@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Bench press s úzkym úchopom",
+    "muscleGroup": "Triceps",
+    "videoPath": "/videos/Triceps/Bench press s úzkym úchopom.mp4",
+    "description": "Tlakový cvik zameraný výraznejšie na tricepsy pri užšom úchope činky.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Veľká činka, lavička",
+    "instructions": "Ľahni si na lavičku a uchop činku užšie než pri klasickom bench presse. Spusť ju kontrolovane ku spodnej časti hrudníka a potom ju s výdychom vytlač späť hore.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Pectoralis major, anterior deltoid",
+    "tips": "Lakte veď bližšie pri tele a nevoľ príliš extrémne úzky úchop."
+  },
+  {
+    "name": "Kliky na bradlách",
+    "muscleGroup": "Triceps",
+    "videoPath": "/videos/Triceps/Kliky na bradlách.mp4",
+    "description": "Cvik s vlastnou váhou zameraný na tricepsy a spodnú časť hrudníka.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Bradlá",
+    "instructions": "Opri sa o bradlá a drž telo pevné. Spúšťaj sa dole ohýbaním lakťov a následne sa s výdychom vytlač späť hore.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Pectoralis major, anterior deltoid",
+    "tips": "Pri tricepsovom variante drž trup viac vzpriamený a lakte bližšie pri tele."
+  },
+  {
+    "name": "Kliky na stroji",
+    "muscleGroup": "Triceps",
+    "videoPath": "/videos/Triceps/Kliky na stroji.mp4",
+    "description": "Strojová verzia dipov vhodná na bezpečnejšie precvičenie tricepsov.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na kliky",
+    "instructions": "Uchop rukoväte stroja a začni s rukami pokrčenými. S výdychom sa vytlač hore do takmer vystretých lakťov. Potom sa pomaly vráť späť.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Pectoralis major, anterior deltoid",
+    "tips": "Neprepínaj lakte úplne agresívne a pohyb drž pod kontrolou."
+  },
+  {
+    "name": "Skullcrusher",
+    "muscleGroup": "Triceps",
+    "videoPath": "/videos/Triceps/Skullcrusher.mp4",
+    "description": "Izolačný cvik na tricepsy vykonávaný v ľahu, často s EZ tyčou.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "EZ tyč alebo jednoručky, lavička",
+    "instructions": "Ľahni si na lavičku a drž činku nad hrudníkom. Pokrčením lakťov ju spúšťaj smerom k čelu alebo za hlavu. Potom ju s výdychom vytlač späť hore.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Anconeus",
+    "tips": "Lakte drž čo najstabilnejšie a nerozchádzaj ich príliš do strán."
+  },
+  {
+    "name": "Stláčanie kladky s lanom",
+    "muscleGroup": "Triceps",
+    "videoPath": "/videos/Triceps/Stláčanie kladky s lanom.mp4",
+    "description": "Veľmi obľúbený izolačný cvik na tricepsy vykonávaný na hornej kladke s lanom.",
+    "difficulty": "Začiatočník",
+    "equipment": "Horná kladka, lano",
+    "instructions": "Postav sa pred kladku a uchop lano neutrálnym úchopom. Drž lakte pri tele a s výdychom tlač lano dole. V spodnej pozícii môžeš konce lana mierne roztiahnuť, potom sa pomaly vráť späť.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Anconeus",
+    "tips": "Nehýb ramenami a lakte drž stále pri bokoch."
+  },
+  {
+    "name": "Stláčanie kladky s tyčou",
+    "muscleGroup": "Triceps",
+    "videoPath": "/videos/Triceps/Stláčanie kladky s tyčou.mp4",
+    "description": "Klasický cvik na tricepsy na hornej kladke s rovnou alebo zahnutou tyčou.",
+    "difficulty": "Začiatočník",
+    "equipment": "Horná kladka, tyč",
+    "instructions": "Postav sa pred kladku a uchop tyč nadhmatom. Lakte drž pri tele a stláčaj tyč smerom dole, až kým ruky takmer nevystrieš. Potom ju pomaly vráť späť.",
+    "primaryMuscle": "Triceps brachii",
+    "secondaryMuscles": "Anconeus",
+    "tips": "Nevyužívaj váhu tela a nedovoľ lakťom cestovať dopredu."
+  },
+  {
+    "name": "Tricepsové tlaky nad hlavou na kladke",
+    "muscleGroup": "Triceps",
+    "videoPath": "/videos/Triceps/Tricepsové tlaky nad hlavou na kladke.mp4",
+    "description": "Cvik zameraný najmä na dlhú hlavu tricepsu vykonávaný s kladkou ponad hlavu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Kladka, lano",
+    "instructions": "Postav sa chrbtom ku kladke a uchop lano ponad hlavu. S lakťami pri hlave vystri ruky dopredu alebo hore. Potom sa kontrolovane vráť späť.",
+    "primaryMuscle": "Long head of triceps brachii",
+    "secondaryMuscles": "Lateral head of triceps brachii",
+    "tips": "Lakte drž čo najviac na mieste a neprehýbaj sa v drieku."
+  },
+  {
+    "name": "Tricepsový tlak s jednoručkou nad hlavou v sede",
+    "muscleGroup": "Triceps",
+    "videoPath": "/videos/Triceps/Tricepsový tlak s jednoručkou nad hlavou v sede.mp4",
+    "description": "Jednoručný alebo obojručný cvik nad hlavou zameraný na dlhú hlavu tricepsu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Jednoručka, lavička",
+    "instructions": "Sadni si, zdvihni jednoručku nad hlavu a drž ju oboma rukami alebo jednou rukou. Pokrčením lakťov ju spusti za hlavu a potom ju s výdychom vytlač späť hore.",
+    "primaryMuscle": "Long head of triceps brachii",
+    "secondaryMuscles": "Lateral head of triceps brachii",
+    "tips": "Lakte smeruj čo najviac dopredu a nerozchádzaj ich do strán."
+  }
+]

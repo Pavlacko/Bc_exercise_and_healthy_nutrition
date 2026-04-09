@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Výpony v sede",
+    "muscleGroup": "Lýtka",
+    "videoPath": "/videos/Lýtka/Výpony v sede.mp4",
+    "description": "Cvik na lýtka zameraný viac na sval soleus, vykonávaný v sede.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na výpony v sede",
+    "instructions": "Sadni si na stroj, umiestni špičky chodidiel na oporu a kolená pod oporné podušky. Zdvihni päty čo najvyššie a potom ich pomaly spusti dole do natiahnutia.",
+    "primaryMuscle": "Soleus",
+    "secondaryMuscles": "Gastrocnemius",
+    "tips": "Pohyb vykonávaj v plnom rozsahu a neodrážaj sa prudko."
+  },
+  {
+    "name": "Výpony v stoji",
+    "muscleGroup": "Lýtka",
+    "videoPath": "/videos/Lýtka/Výpony v stoji.mp4",
+    "description": "Základný cvik na lýtka vykonávaný v stoji, výraznejšie zapája gastrocnemius.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na výpony v stoji alebo vlastná váha",
+    "instructions": "Postav sa na okraj plošiny tak, aby sa päty mohli voľne pohybovať. Zdvihni sa čo najvyššie na špičky a potom pomaly spusti päty dole pod úroveň opory.",
+    "primaryMuscle": "Gastrocnemius",
+    "secondaryMuscles": "Soleus",
+    "tips": "Nerob krátke opakovania, ale využi celý rozsah pohybu."
+  }
+]

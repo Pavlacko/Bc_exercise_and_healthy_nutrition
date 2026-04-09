@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Mŕtvy ťah",
+    "muscleGroup": "Zadné stehná",
+    "videoPath": "/videos/Zadné stehná/Mŕtvy ťah.mp4",
+    "description": "Komplexný silový cvik na zadný reťazec tela, zapájajúci hamstringy, sedacie svaly a spodný chrbát.",
+    "difficulty": "Pokročilý",
+    "equipment": "Veľká činka",
+    "instructions": "Postav sa k činke, uchop ju nadhmatom alebo zmiešaným úchopom a drž rovný chrbát. Zdvihni činku vystretím bedier a kolien. Potom ju kontrolovane spusti späť na zem.",
+    "primaryMuscle": "Hamstrings",
+    "secondaryMuscles": "Gluteus maximus, erector spinae, quadriceps",
+    "tips": "Činku drž čo najbližšie pri tele a neprehýbaj ani nezaokrúhľuj driek."
+  },
+  {
+    "name": "Rumunský mŕtvy ťah na Smith stroji",
+    "muscleGroup": "Zadné stehná",
+    "videoPath": "/videos/Zadné stehná/Rumunský mŕtvy ťah na smith stroji.mp4",
+    "description": "Varianta rumunského mŕtveho ťahu na vedenom stroji, zameraná na hamstringy a sedacie svaly.",
+    "difficulty": "Začiatočník",
+    "equipment": "Smith stroj",
+    "instructions": "Postav sa pod os Smith stroja a uchop ju nadhmatom. S mierne pokrčenými kolenami posúvaj boky dozadu a spúšťaj os popri stehnách. Potom sa s výdychom vráť späť do stoja.",
+    "primaryMuscle": "Hamstrings",
+    "secondaryMuscles": "Gluteus maximus, erector spinae",
+    "tips": "Pohyb vychádza z bedier, nie z ohýbania chrbta."
+  },
+  {
+    "name": "Rumunský mŕtvy ťah",
+    "muscleGroup": "Zadné stehná",
+    "videoPath": "/videos/Zadné stehná/Rumunský mŕtvy ťah.mp4",
+    "description": "Výborný cvik na zadné stehná a sedacie svaly s dôrazom na hip hinge pohyb.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Veľká činka alebo jednoručky",
+    "instructions": "Postav sa vzpriamene s činkou pred stehnami. S mierne pokrčenými kolenami posúvaj boky dozadu a spúšťaj činku popri nohách. Keď pocítiš natiahnutie zadných stehien, vráť sa s výdychom späť hore.",
+    "primaryMuscle": "Hamstrings",
+    "secondaryMuscles": "Gluteus maximus, erector spinae",
+    "tips": "Drž činku blízko tela a nepovoľuj chrbát."
+  },
+  {
+    "name": "Zakopávanie v ľahu",
+    "muscleGroup": "Zadné stehná",
+    "videoPath": "/videos/Zadné stehná/Zakopávanie v ľahu.mp4",
+    "description": "Izolačný cvik na hamstringy vykonávaný na stroji v ľahu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na zakopávanie v ľahu",
+    "instructions": "Ľahni si na stroj tvárou nadol a členky umiestni pod oporný valec. S výdychom pokrč nohy smerom k zadku. Potom ich pomaly spusti späť.",
+    "primaryMuscle": "Hamstrings",
+    "secondaryMuscles": "Gastrocnemius",
+    "tips": "Neodliepaj panvu od lavičky a vykonávaj pohyb kontrolovane."
+  }
+]

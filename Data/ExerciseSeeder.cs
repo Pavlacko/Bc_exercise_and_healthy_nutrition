@@ -1,4 +1,5 @@
-﻿using Bc_exercise_and_healthy_nutrition.Models;
+﻿using System.Text.Json;
+using Bc_exercise_and_healthy_nutrition.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bc_exercise_and_healthy_nutrition.Data
@@ -10,41 +11,57 @@ namespace Bc_exercise_and_healthy_nutrition.Data
             using var scope = services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-            string videosRoot = Path.Combine(env.WebRootPath, "videos");
+            string seedFolder = Path.Combine(env.ContentRootPath, "Data", "Seed");
 
-            if (!Directory.Exists(videosRoot))
+            if (!Directory.Exists(seedFolder))
                 return 0;
 
             int addedCount = 0;
 
-            var muscleFolders = Directory.GetDirectories(videosRoot);
+            var jsonFiles = Directory.GetFiles(seedFolder, "exercises_*.json");
 
-            foreach (var folder in muscleFolders)
+            foreach (var file in jsonFiles)
             {
-                string muscleGroup = Path.GetFileName(folder);
-                var videoFiles = Directory.GetFiles(folder, "*.mp4");
+                string json = await File.ReadAllTextAsync(file);
 
-                foreach (var videoFile in videoFiles)
+                var exercises = JsonSerializer.Deserialize<List<Exercise>>(json, new JsonSerializerOptions
                 {
-                    string fileNameWithExtension = Path.GetFileName(videoFile);
-                    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(videoFile);
+                    PropertyNameCaseInsensitive = true
+                });
 
-                    string relativePath = $"/videos/{muscleGroup}/{fileNameWithExtension}";
-                    string exerciseName = fileNameWithoutExtension.Trim();
+                if (exercises == null || exercises.Count == 0)
+                    continue;
 
-                    bool exists = await db.Exercises.AnyAsync(e => e.VideoPath == relativePath);
+                foreach (var exercise in exercises)
+                {
+                    if (string.IsNullOrWhiteSpace(exercise.Name))
+                        continue;
 
-                    if (!exists)
+                    bool exists = await db.Exercises.AnyAsync(e => e.Name == exercise.Name);
+
+                    if (exists)
+                        continue;
+
+                    if (!string.IsNullOrWhiteSpace(exercise.VideoPath) && !exercise.VideoPath.StartsWith("/"))
                     {
-                        db.Exercises.Add(new Exercise
-                        {
-                            Name = exerciseName,
-                            MuscleGroup = muscleGroup,
-                            VideoPath = relativePath
-                        });
-
-                        addedCount++;
+                        exercise.VideoPath = "/" + exercise.VideoPath;
                     }
+
+                    db.Exercises.Add(new Exercise
+                    {
+                        Name = exercise.Name?.Trim() ?? string.Empty,
+                        MuscleGroup = exercise.MuscleGroup?.Trim() ?? string.Empty,
+                        VideoPath = exercise.VideoPath?.Trim() ?? string.Empty,
+                        Description = exercise.Description?.Trim(),
+                        PrimaryMuscle = exercise.PrimaryMuscle?.Trim(),
+                        SecondaryMuscles = exercise.SecondaryMuscles?.Trim(),
+                        Equipment = exercise.Equipment?.Trim(),
+                        Difficulty = exercise.Difficulty?.Trim(),
+                        Instructions = exercise.Instructions?.Trim(),
+                        Tips = exercise.Tips?.Trim()
+                    });
+
+                    addedCount++;
                 }
             }
 

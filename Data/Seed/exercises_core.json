@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Skracovačky na kladke",
+    "muscleGroup": "Stred tela",
+    "videoPath": "/videos/Stred tela/Skracovačky na kladke.mp4",
+    "description": "Cvik na priame brušné svaly vykonávaný s odporom kladky.",
+    "difficulty": "Začiatočník",
+    "equipment": "Horná kladka, lano",
+    "instructions": "Kľakni si pred kladku a uchop lano pri hlave. Zatiahni brušné svaly a vykonaj skracovanie trupu smerom dole. Potom sa pomaly vráť späť.",
+    "primaryMuscle": "Rectus abdominis",
+    "secondaryMuscles": "Obliques",
+    "tips": "Neťahaj pohyb rukami, ale vedome skracuj brucho."
+  },
+  {
+    "name": "Skracovačky na stroji",
+    "muscleGroup": "Stred tela",
+    "videoPath": "/videos/Stred tela/Skracovačky na stroji.mp4",
+    "description": "Strojová varianta skracovačiek zameraná na priame brušné svaly.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na brucho",
+    "instructions": "Sadni si na stroj, opri sa o opierky a uchop rukoväte. Stiahni brušné svaly a vykonaj skracovanie trupu. Potom sa kontrolovane vráť späť.",
+    "primaryMuscle": "Rectus abdominis",
+    "secondaryMuscles": "Obliques",
+    "tips": "Neprepínaj driek a nepracuj švihom."
+  },
+  {
+    "name": "Zdvíhanie nôh na bradlách",
+    "muscleGroup": "Stred tela",
+    "videoPath": "/videos/Stred tela/Zdvíhanie nôh na bradlách.mp4",
+    "description": "Cvik na spodnú časť brucha a flexory bedier vykonávaný vo vise na opore.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Bradlá alebo opora na predlaktia",
+    "instructions": "Opri sa o bradlá a stabilizuj trup. S výdychom zdvihni nohy alebo kolená smerom hore. Potom ich pomaly spusti späť.",
+    "primaryMuscle": "Rectus abdominis",
+    "secondaryMuscles": "Hip flexors, obliques",
+    "tips": "Nekývaj sa a nevyužívaj švih nôh."
+  }
+]

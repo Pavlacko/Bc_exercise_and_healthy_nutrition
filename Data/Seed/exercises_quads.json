@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Abdukcie na stroji",
+    "muscleGroup": "Predné stehná",
+    "videoPath": "/videos/Predné stehná/Abdukcie na stroji.mp4",
+    "description": "Cvik na posilnenie svalov vonkajšej strany bokov a stabilizácie panvy vykonávaný na stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Abdukčný stroj",
+    "instructions": "Sadni si na stroj, opri nohy o opierky a nastav vhodný rozsah pohybu. S výdychom tlač nohy od seba do strán. Potom ich pomaly a kontrolovane vráť späť.",
+    "primaryMuscle": "Gluteus medius",
+    "secondaryMuscles": "Gluteus minimus, tensor fasciae latae",
+    "tips": "Nevykonávaj pohyb švihom a drž trup stabilný počas celej série."
+  },
+  {
+    "name": "Addukcie na stroji",
+    "muscleGroup": "Predné stehná",
+    "videoPath": "/videos/Predné stehná/Addukcie na stroji.mp4",
+    "description": "Izolovaný cvik na vnútornú stranu stehien vykonávaný na stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Addukčný stroj",
+    "instructions": "Sadni si na stroj a opri nohy o opierky. Začni v otvorenej pozícii a s výdychom priťahuj nohy k sebe. Potom sa pomaly vráť späť do východiskovej polohy.",
+    "primaryMuscle": "Adductors",
+    "secondaryMuscles": "Gracilis, pectineus",
+    "tips": "Nepoužívaj príliš veľkú váhu a sústreď sa na plynulý pohyb."
+  },
+  {
+    "name": "Drepy na Smith stroji",
+    "muscleGroup": "Predné stehná",
+    "videoPath": "/videos/Predné stehná/Drepy na Smith stroji.mp4",
+    "description": "Varianta drepov na vedenom stroji vhodná na rozvoj stehien a sedacích svalov s väčšou stabilitou pohybu.",
+    "difficulty": "Začiatočník",
+    "equipment": "Smith stroj",
+    "instructions": "Postav sa pod os Smith stroja, polož si ju na trapézy a nohy nastav približne na šírku ramien. Klesaj dole do drepu a potom sa s výdychom vytlač späť hore.",
+    "primaryMuscle": "Quadriceps",
+    "secondaryMuscles": "Gluteus maximus, hamstrings",
+    "tips": "Kolenná línia nech smeruje v smere špičiek a neprehýbaj driek."
+  },
+  {
+    "name": "Drepy s osou",
+    "muscleGroup": "Predné stehná",
+    "videoPath": "/videos/Predné stehná/Drepy s osou.mp4",
+    "description": "Základný komplexný cvik na rozvoj stehien, sedacích svalov a celkovej sily dolnej polovice tela.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Veľká činka",
+    "instructions": "Polož si os na trapézy, postav sa na šírku ramien a drž pevný stred tela. Klesaj do drepu kontrolovane dole a s výdychom sa vytlač späť hore.",
+    "primaryMuscle": "Quadriceps",
+    "secondaryMuscles": "Gluteus maximus, hamstrings, core",
+    "tips": "Drž rovný chrbát a päty pevne na zemi počas celého pohybu."
+  },
+  {
+    "name": "Hacken drep",
+    "muscleGroup": "Predné stehná",
+    "videoPath": "/videos/Predné stehná/Hacken drep.mp4",
+    "description": "Strojová varianta drepov výrazne zameraná na kvadricepsy.",
+    "difficulty": "Začiatočník",
+    "equipment": "Hack squat stroj",
+    "instructions": "Postav sa do hack squat stroja, ramená opri o opierky a nohy polož na platformu. Spúšťaj sa dole do drepu a následne sa s výdychom vytlač späť hore.",
+    "primaryMuscle": "Quadriceps",
+    "secondaryMuscles": "Gluteus maximus, hamstrings",
+    "tips": "Neodliepaj spodný chrbát od opory a neklesaj nekontrolovane."
+  },
+  {
+    "name": "Leg press",
+    "muscleGroup": "Predné stehná",
+    "videoPath": "/videos/Predné stehná/Leg press.mp4",
+    "description": "Základný cvik na nohy vykonávaný na stroji, vhodný na rozvoj kvadricepsov a sedacích svalov.",
+    "difficulty": "Začiatočník",
+    "equipment": "Leg press stroj",
+    "instructions": "Sadni si do stroja a polož chodidlá na platformu približne na šírku ramien. Spusť platformu smerom k telu a potom ju s výdychom vytlač späť hore bez úplného prepnutia kolien.",
+    "primaryMuscle": "Quadriceps",
+    "secondaryMuscles": "Gluteus maximus, hamstrings",
+    "tips": "Nedovoľ, aby sa spodný chrbát odlepil od operadla."
+  },
+  {
+    "name": "Predkopávanie",
+    "muscleGroup": "Predné stehná",
+    "videoPath": "/videos/Predné stehná/Predkopávanie.mp4",
+    "description": "Izolačný cvik na prednú stranu stehien vykonávaný na stroji.",
+    "difficulty": "Začiatočník",
+    "equipment": "Stroj na predkopávanie",
+    "instructions": "Sadni si na stroj a nastav oporu nad členkami. S výdychom vystri nohy hore. Potom ich pomaly spusti späť do východiskovej polohy.",
+    "primaryMuscle": "Quadriceps",
+    "secondaryMuscles": "Rectus femoris",
+    "tips": "Nevykonávaj prudké pohyby a v hornej pozícii krátko stiahni sval."
+  },
+  {
+    "name": "Výpady v chôdzi",
+    "muscleGroup": "Predné stehná",
+    "videoPath": "/videos/Predné stehná/Výpady v chôdzi.mp4",
+    "description": "Funkčný cvik na nohy a sedacie svaly, ktorý zároveň zlepšuje stabilitu a koordináciu.",
+    "difficulty": "Stredne pokročilý",
+    "equipment": "Vlastná váha alebo jednoručky",
+    "instructions": "Urob dlhý krok dopredu a klesni do výpadu tak, aby zadné koleno smerovalo k zemi. S výdychom sa odraz a pokračuj druhou nohou dopredu.",
+    "primaryMuscle": "Quadriceps",
+    "secondaryMuscles": "Gluteus maximus, hamstrings, core",
+    "tips": "Drž trup vzpriamený a koleno prednej nohy nech nepadá dovnútra."
+  }
+]

@@ -32,7 +32,8 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
         public async Task<IActionResult> ExerciseDetails(int id)
         {
-            var exercise = await _context.Exercises.FirstOrDefaultAsync(e => e.Id == id);
+            var exercise = await _context.Exercises
+                .FirstOrDefaultAsync(e => e.Id == id);
 
             if (exercise == null)
             {
@@ -46,7 +47,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         {
             return View();
         }
-
 
         public IActionResult TrainingBasics()
         {
