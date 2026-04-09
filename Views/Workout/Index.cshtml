@@ -1,0 +1,152 @@
+﻿@model Bc_exercise_and_healthy_nutrition.Models.Workout
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Môj tréning";
+    var selectedDate = (DateTime)ViewBag.SelectedDate;
+    var exercises = ViewBag.Exercises as List<SelectListItem> ?? new List<SelectListItem>();
+}
+
+<h2 class="page-title">Môj tréning</h2>
+
+@if (TempData["Ok"] != null)
+{
+    <div class="alert alert-success">@TempData["Ok"]</div>
+}
+
+@if (TempData["Err"] != null)
+{
+    <div class="alert alert-danger">@TempData["Err"]</div>
+}
+
+<div class="row g-3 align-items-stretch">
+    <div class="col-lg-5">
+        <div class="card-custom">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="section-title mb-0">Pridať cvik</h4>
+
+                <div style="max-width:170px;">
+                    <input id="workoutDate"
+                           type="date"
+                           class="form-control form-control-sm"
+                           value="@selectedDate.ToString("yyyy-MM-dd")" />
+                </div>
+            </div>
+
+            <form asp-controller="Workout" asp-action="AddExercise" method="post">
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="date" id="workoutDateHidden" value="@selectedDate.ToString("yyyy-MM-dd")" />
+
+                <div class="mb-3">
+                    <label class="form-label">Cvik</label>
+                    <select name="exerciseName" class="form-select" required>
+                        <option value="">-- Vyber cvik --</option>
+                        @foreach (var item in exercises)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="row g-2">
+                    <div class="col-4">
+                        <label class="form-label">Série</label>
+                        <input name="sets" type="number" class="form-control" min="1" max="20" value="3" required />
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label">Opakovania</label>
+                        <input name="reps" type="number" class="form-control" min="1" max="100" value="10" required />
+                    </div>
+
+                    <div class="col-4">
+                        <label class="form-label">Váha (kg)</label>
+                        <input name="weight" type="number" step="0.5" class="form-control" min="0" max="1000" value="0" required />
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <label class="form-label">Poznámka k tréningu</label>
+                    <textarea name="note" class="form-control" rows="3">@Model?.Note</textarea>
+                </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-main">Pridať do tréningu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="card-custom">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="section-title mb-0">Odcvičené cviky</h4>
+                <div class="text-muted-small">@selectedDate.ToString("dd.MM.yyyy")</div>
+            </div>
+
+            @if (Model == null || Model.Exercises == null || !Model.Exercises.Any())
+            {
+                <div class="text-muted">Na tento deň zatiaľ nemáš uložený žiadny tréning.</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-card align-middle">
+                        <thead>
+                            <tr>
+                                <th>Cvik</th>
+                                <th style="width:90px;">Série</th>
+                                <th style="width:120px;">Opakovania</th>
+                                <th style="width:120px;">Váha</th>
+                                <th style="width:120px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Exercises.OrderBy(x => x.Id))
+                            {
+                                <tr>
+                                    <td>@item.ExerciseName</td>
+                                    <td>@item.Sets</td>
+                                    <td>@item.Reps</td>
+                                    <td>@item.Weight kg</td>
+                                    <td class="text-end">
+                                        <form asp-controller="Workout" asp-action="DeleteExercise" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input type="hidden" name="date" value="@selectedDate.ToString("yyyy-MM-dd")" />
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Zmazať</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.Note))
+                {
+                    <div class="workout-note-box mt-3">
+                        <h5>Poznámka</h5>
+                        <p>@Model.Note</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const workoutDate = document.getElementById("workoutDate");
+        const workoutDateHidden = document.getElementById("workoutDateHidden");
+
+        workoutDate?.addEventListener("change", () => {
+            if (workoutDateHidden) {
+                workoutDateHidden.value = workoutDate.value;
+            }
+
+            location.href = `/Workout/Index?date=${encodeURIComponent(workoutDate.value)}`;
+        });
+    </script>
+}

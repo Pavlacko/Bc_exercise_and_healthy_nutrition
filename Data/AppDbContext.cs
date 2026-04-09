@@ -15,6 +15,8 @@ namespace Bc_exercise_and_healthy_nutrition.Data
         public DbSet<MealEntry> MealEntries { get; set; }
         public DbSet<DailyGoal> DailyGoals { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
+        public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
         public DbSet<EmailVerificationCode> EmailVerificationCodes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
