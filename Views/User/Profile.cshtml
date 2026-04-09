@@ -1,95 +1,170 @@
 ﻿@model Bc_exercise_and_healthy_nutrition.Models.AppUser
+
 @{
     ViewData["Title"] = "Profil";
+    var avatarPath = string.IsNullOrWhiteSpace(Model.AvatarPath)
+        ? "/images/default-avatar.png"
+        : Model.AvatarPath;
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="page-title mb-0">Profil</h2>
+<div class="stats-hero card-custom mb-3">
+    <div class="stats-hero-text">
+        <h1>Profil</h1>
+        <p>
+            Spravuj svoje osobné údaje, profilovú fotku a základné nastavenia účtu.
+            Všetky zmeny sa prejavia okamžite v celej aplikácii.
+        </p>
+    </div>
 
-    <a class="btn btn-sm btn-outline-main" asp-controller="User" asp-action="ChangePassword">
-        Zmeniť heslo
-    </a>
+    <div class="stats-hero-visual">
+        <div class="stats-hero-icon">
+            <i class="bi bi-person-badge"></i>
+        </div>
+    </div>
 </div>
+
+<div class="stats-mini-grid">
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Používateľ</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-person"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@Model.Meno</div>
+        <div class="stats-mini-card-sub">Meno prihláseného používateľa</div>
+    </div>
+
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Výška / váha</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-activity"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@Model.Vyska cm / @Model.Vaha kg</div>
+        <div class="stats-mini-card-sub">Aktuálne uložené telesné údaje</div>
+    </div>
+
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Vek</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-calendar-heart"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value">@Model.Vek</div>
+        <div class="stats-mini-card-sub">Vek uvedený v profile</div>
+    </div>
+</div>
+
+@if (TempData["Ok"] != null)
+{
+    <div class="alert alert-success">@TempData["Ok"]</div>
+}
 
 @if (TempData["Err"] != null)
 {
-    <div class="alert-custom alert-error">@TempData["Err"]</div>
-}
-@if (TempData["Ok"] != null)
-{
-    <div class="alert-custom alert-success">@TempData["Ok"]</div>
+    <div class="alert alert-danger">@TempData["Err"]</div>
 }
 
-<div class="card-custom">
-    <h4 class="section-title mb-3">Moje údaje</h4>
+<div class="row g-3 align-items-stretch">
+    <div class="col-lg-8">
+        <div class="card-custom summary-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-person-lines-fill"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title">Moje údaje</h3>
+                        <div class="stats-card-subtitle">Základné informácie o profile</div>
+                    </div>
+                </div>
 
-    <form asp-controller="User" asp-action="UpdateProfile" method="post">
-        @Html.AntiForgeryToken()
-        <input type="hidden" name="Id" value="@Model.Id" />
-
-        <div class="row g-3">
-            <div class="col-md-6">
-                <label class="form-label">Meno</label>
-                <input name="Meno" class="form-control" value="@Model.Meno" />
+                <a asp-controller="User" asp-action="ChangePassword" class="btn btn-sm btn-outline-main">
+                    Zmeniť heslo
+                </a>
             </div>
 
-            <div class="col-md-6">
-                <label class="form-label">Email</label>
-                <input name="Email" class="form-control" value="@Model.Email" />
-            </div>
+            <form asp-controller="User" asp-action="UpdateProfile" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.Id" />
 
-            <div class="col-md-4">
-                <label class="form-label">Vek</label>
-                <input name="Vek" type="number" class="form-control" value="@Model.Vek" min="10" max="100" />
-            </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Meno</label>
+                        <input name="meno" class="form-control" value="@Model.Meno" required />
+                    </div>
 
-            <div class="col-md-4">
-                <label class="form-label">Výška (cm)</label>
-                <input name="Vyska" type="number" class="form-control" value="@Model.Vyska" min="50" max="250" />
-            </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input name="email" type="email" class="form-control" value="@Model.Email" required />
+                    </div>
 
-            <div class="col-md-4">
-                <label class="form-label">Váha (kg)</label>
-                <input name="Vaha" type="number" step="0.1" class="form-control" value="@Model.Vaha" min="20" max="300" />
-            </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Vek</label>
+                        <input name="vek" type="number" class="form-control" value="@Model.Vek" min="0" max="120" required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Výška (cm)</label>
+                        <input name="vyska" type="number" class="form-control" value="@Model.Vyska" min="0" max="300" required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Váha (kg)</label>
+                        <input name="vaha" type="number" step="0.1" class="form-control" value="@Model.Vaha" min="0" max="500" required />
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-main">Uložiť zmeny</button>
+                </div>
+            </form>
         </div>
-
-        <div class="d-flex gap-2 mt-4">
-            <button type="submit" class="btn btn-main">Uložiť zmeny</button>
-        </div>
-    </form>
-</div>
-
-<div class="card-custom mt-3">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="section-title mb-0">Profilová fotka</h4>
-        <div class="text-muted-small">PNG/JPG, max 2 MB</div>
     </div>
 
-    <div class="d-flex align-items-center gap-3 flex-wrap">
-        <img class="avatar-lg"
-             src="@(string.IsNullOrWhiteSpace(Model.AvatarPath) ? "/img/default-avatar.png" : Model.AvatarPath)"
-             alt="Avatar" />
+    <div class="col-lg-4">
+        <div class="card-custom summary-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-image"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title">Profilová fotka</h3>
+                        <div class="stats-card-subtitle">Nahraj alebo zmeň avatar účtu</div>
+                    </div>
+                </div>
 
-        <form asp-controller="User"
-              asp-action="UploadAvatar"
-              method="post"
-              enctype="multipart/form-data"
-              class="d-flex gap-2 align-items-center flex-wrap">
-            @Html.AntiForgeryToken()
+                <div class="text-muted-small">PNG/JPG, max 2 MB</div>
+            </div>
 
-            <input type="file"
-                   name="avatar"
-                   accept="image/png,image/jpeg"
-                   class="form-control"
-                   style="max-width:320px;" />
+            <div class="profile-avatar-panel">
+                <img src="@avatarPath" alt="Avatar" class="profile-avatar-xl" />
+                <div class="profile-avatar-meta">
+                    <div class="profile-avatar-name">@Model.Meno</div>
+                    <div class="profile-avatar-email">@Model.Email</div>
+                </div>
+            </div>
 
-            <button class="btn btn-main" type="submit">Nahrať</button>
-        </form>
+            <form asp-controller="User" asp-action="UploadAvatar" method="post" enctype="multipart/form-data" class="mt-3">
+                @Html.AntiForgeryToken()
 
-        <form asp-controller="User" asp-action="DeleteAvatar" method="post">
-            @Html.AntiForgeryToken()
-            <button class="btn btn-outline-danger" type="submit">Zmazať fotku</button>
-        </form>
+                <div class="mb-3">
+                    <input type="file" name="avatar" class="form-control" accept=".jpg,.jpeg,.png" />
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-main">Nahrať</button>
+                </div>
+            </form>
+
+            <form asp-controller="User" asp-action="DeleteAvatar" method="post" class="mt-2">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-outline-danger">Zmazať fotku</button>
+            </form>
+        </div>
     </div>
 </div>
