@@ -22,18 +22,18 @@
 
         <div class="col-md-4">
             <div class="text-muted-small">
-                Vyber si deň pre detailný súhrn a obdobie pre graf kalórií.
+                Vyber si deň pre detailný súhrn a obdobie pre grafy.
             </div>
         </div>
     </div>
 </div>
 
-<div class="row">
+<div class="row g-3">
     <div class="col-md-6">
         <div class="card-custom">
             <div class="summary-card">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="summary-title">Súhrn dňa</div>
+                    <div class="summary-title">Strava za deň</div>
                     <div class="text-muted-small">
                         Dátum: <strong id="summaryDate">@DateTime.Today.ToString("dd.MM.yyyy")</strong>
                         &nbsp;|&nbsp; Položky: <strong id="todayCount">0</strong>
@@ -92,6 +92,58 @@
             <h4 id="chartTitle">Kalórie posledných 7 dní</h4>
             <canvas id="weeklyCanvas" height="180"></canvas>
             <div class="small-help mt-2" id="weeklyHint"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-1">
+    <div class="col-md-6">
+        <div class="card-custom">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="summary-title">Tréning za deň</div>
+                <div class="text-muted-small">
+                    Dátum: <strong id="workoutSummaryDate">@DateTime.Today.ToString("dd.MM.yyyy")</strong>
+                </div>
+            </div>
+
+            <div id="workoutMissing" class="text-muted-small">
+                Na tento deň nemáš uložený žiadny tréning.
+            </div>
+
+            <div id="workoutSummaryBox" style="display:none;">
+                <div class="workout-stat-row">
+                    <span>Počet cvikov</span>
+                    <strong id="workoutExerciseCount">0</strong>
+                </div>
+
+                <div class="workout-stat-row">
+                    <span>Počet sérií</span>
+                    <strong id="workoutTotalSets">0</strong>
+                </div>
+
+                <div class="workout-stat-row">
+                    <span>Počet opakovaní</span>
+                    <strong id="workoutTotalReps">0</strong>
+                </div>
+
+                <div class="workout-stat-row">
+                    <span>Objem tréningu</span>
+                    <strong><span id="workoutTotalVolume">0</span> kg</strong>
+                </div>
+
+                <div class="workout-note-stats mt-3" id="workoutNoteWrap" style="display:none;">
+                    <h5>Poznámka</h5>
+                    <p id="workoutNoteText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h4 id="workoutChartTitle">Objem tréningu posledných 7 dní</h4>
+            <canvas id="workoutCanvas" height="180"></canvas>
+            <div class="small-help mt-2" id="workoutHint"></div>
         </div>
     </div>
 </div>

@@ -982,3 +982,34 @@ body {
     font-size: 13px;
     color: #7a877f;
 }
+
+.workout-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #edf2ed;
+    color: #284737;
+}
+
+    .workout-stat-row:last-child {
+        border-bottom: none;
+    }
+
+.workout-note-stats {
+    background: #f8fbf8;
+    border: 1px solid #e2ebe3;
+    border-radius: 14px;
+    padding: 14px;
+}
+
+    .workout-note-stats h5 {
+        margin-bottom: 8px;
+        color: #244b3a;
+        font-weight: 700;
+    }
+
+    .workout-note-stats p {
+        margin-bottom: 0;
+        color: #4d5d55;
+    }

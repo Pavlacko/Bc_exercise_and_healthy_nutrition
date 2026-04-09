@@ -110,5 +110,92 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             return Json(result);
         }
+
+        [HttpGet]
+        public IActionResult WorkoutSummary(DateTime? date)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return Unauthorized();
+
+            var d = (date ?? DateTime.Today).Date;
+
+            var workout = _context.Workouts
+                .Include(w => w.Exercises)
+                .FirstOrDefault(w => w.AppUserId == userId.Value && w.Date == d);
+
+            if (workout == null)
+            {
+                return Json(new
+                {
+                    date = d.ToString("yyyy-MM-dd"),
+                    hasWorkout = false,
+                    exerciseCount = 0,
+                    totalSets = 0,
+                    totalReps = 0,
+                    totalVolume = 0,
+                    note = ""
+                });
+            }
+
+            var exerciseCount = workout.Exercises.Count;
+            var totalSets = workout.Exercises.Sum(x => x.Sets);
+            var totalReps = workout.Exercises.Sum(x => x.Sets * x.Reps);
+            var totalVolume = workout.Exercises.Sum(x => x.Sets * x.Reps * x.Weight);
+
+            return Json(new
+            {
+                date = d.ToString("yyyy-MM-dd"),
+                hasWorkout = true,
+                exerciseCount,
+                totalSets,
+                totalReps,
+                totalVolume = Math.Round(totalVolume, 1),
+                note = workout.Note ?? ""
+            });
+        }
+
+        [HttpGet]
+        public IActionResult WorkoutChart(DateTime? date, int days = 7)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return Unauthorized();
+
+            if (days != 7 && days != 30 && days != 365)
+                days = 7;
+
+            var endDate = (date ?? DateTime.Today).Date;
+            var fromDate = endDate.AddDays(-(days - 1)).Date;
+
+            var workouts = _context.Workouts
+                .Include(w => w.Exercises)
+                .Where(w => w.AppUserId == userId.Value && w.Date >= fromDate && w.Date <= endDate)
+                .ToList();
+
+            var map = new Dictionary<DateTime, double>();
+            for (var d = fromDate; d <= endDate; d = d.AddDays(1))
+                map[d] = 0;
+
+            foreach (var workout in workouts)
+            {
+                var volume = workout.Exercises.Sum(x => x.Sets * x.Reps * x.Weight);
+                var day = workout.Date.Date;
+
+                if (map.ContainsKey(day))
+                {
+                    map[day] += volume;
+                }
+            }
+
+            var result = map
+                .OrderBy(kv => kv.Key)
+                .Select(kv => new
+                {
+                    date = kv.Key.ToString("yyyy-MM-dd"),
+                    volume = Math.Round(kv.Value, 1)
+                })
+                .ToList();
+
+            return Json(result);
+        }
     }
 }

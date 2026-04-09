@@ -3,6 +3,7 @@
 
     const statsDate = el("statsDate");
     const statsRange = el("statsRange");
+
     const summaryDate = el("summaryDate");
     const chartTitle = el("chartTitle");
 
@@ -29,9 +30,24 @@
     const pctCEl = el("pctC");
     const pctFEl = el("pctF");
 
-    const canvas = el("weeklyCanvas");
-    const hint = el("weeklyHint");
-    const ctx = canvas ? canvas.getContext("2d") : null;
+    const foodCanvas = el("weeklyCanvas");
+    const foodHint = el("weeklyHint");
+    const foodCtx = foodCanvas ? foodCanvas.getContext("2d") : null;
+
+    const workoutSummaryDate = el("workoutSummaryDate");
+    const workoutMissing = el("workoutMissing");
+    const workoutSummaryBox = el("workoutSummaryBox");
+    const workoutExerciseCount = el("workoutExerciseCount");
+    const workoutTotalSets = el("workoutTotalSets");
+    const workoutTotalReps = el("workoutTotalReps");
+    const workoutTotalVolume = el("workoutTotalVolume");
+    const workoutNoteWrap = el("workoutNoteWrap");
+    const workoutNoteText = el("workoutNoteText");
+
+    const workoutChartTitle = el("workoutChartTitle");
+    const workoutCanvas = el("workoutCanvas");
+    const workoutHint = el("workoutHint");
+    const workoutCtx = workoutCanvas ? workoutCanvas.getContext("2d") : null;
 
     function formatDateSk(dateStr) {
         const d = new Date(dateStr);
@@ -49,15 +65,6 @@
 
     function getSelectedRange() {
         return Number(statsRange?.value || 7);
-    }
-
-    function updateChartTitle() {
-        if (!chartTitle) return;
-
-        const days = getSelectedRange();
-        if (days === 7) chartTitle.textContent = "Kalórie posledných 7 dní";
-        else if (days === 30) chartTitle.textContent = "Kalórie posledných 30 dní";
-        else chartTitle.textContent = "Kalórie posledného roka";
     }
 
     function setBar(barEl, pctEl, value, goal) {
@@ -94,7 +101,23 @@
         pctEl.className = clsPct;
     }
 
-    async function loadSummary() {
+    function updateTitles() {
+        const days = getSelectedRange();
+
+        if (chartTitle) {
+            if (days === 7) chartTitle.textContent = "Kalórie posledných 7 dní";
+            else if (days === 30) chartTitle.textContent = "Kalórie posledných 30 dní";
+            else chartTitle.textContent = "Kalórie posledného roka";
+        }
+
+        if (workoutChartTitle) {
+            if (days === 7) workoutChartTitle.textContent = "Objem tréningu posledných 7 dní";
+            else if (days === 30) workoutChartTitle.textContent = "Objem tréningu posledných 30 dní";
+            else workoutChartTitle.textContent = "Objem tréningu posledného roka";
+        }
+    }
+
+    async function loadFoodSummary() {
         const date = getSelectedDate();
         const resp = await fetch(`/Stats/TodaySummary?date=${encodeURIComponent(date)}`);
         if (!resp.ok) return;
@@ -138,24 +161,56 @@
         setBar(barF, pctFEl, data.fat, goal.fatGoal);
     }
 
-    function clearCanvas() {
+    async function loadWorkoutSummary() {
+        const date = getSelectedDate();
+        const resp = await fetch(`/Stats/WorkoutSummary?date=${encodeURIComponent(date)}`);
+        if (!resp.ok) return;
+
+        const data = await resp.json();
+
+        if (workoutSummaryDate) workoutSummaryDate.textContent = formatDateSk(data.date);
+
+        if (!data.hasWorkout) {
+            if (workoutMissing) workoutMissing.style.display = "block";
+            if (workoutSummaryBox) workoutSummaryBox.style.display = "none";
+            return;
+        }
+
+        if (workoutMissing) workoutMissing.style.display = "none";
+        if (workoutSummaryBox) workoutSummaryBox.style.display = "block";
+
+        if (workoutExerciseCount) workoutExerciseCount.textContent = data.exerciseCount;
+        if (workoutTotalSets) workoutTotalSets.textContent = data.totalSets;
+        if (workoutTotalReps) workoutTotalReps.textContent = data.totalReps;
+        if (workoutTotalVolume) workoutTotalVolume.textContent = data.totalVolume;
+
+        if (data.note && data.note.trim() !== "") {
+            if (workoutNoteWrap) workoutNoteWrap.style.display = "block";
+            if (workoutNoteText) workoutNoteText.textContent = data.note;
+        } else {
+            if (workoutNoteWrap) workoutNoteWrap.style.display = "none";
+            if (workoutNoteText) workoutNoteText.textContent = "";
+        }
+    }
+
+    function clearCanvas(ctx, canvas) {
         if (!ctx || !canvas) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    function drawBars(items) {
+    function drawBars(ctx, canvas, hintEl, items, valueKey, avgLabel) {
         if (!ctx || !canvas) return;
 
         const parentWidth = canvas.parentElement?.clientWidth ?? canvas.width;
         canvas.width = parentWidth;
 
-        clearCanvas();
+        clearCanvas(ctx, canvas);
 
         const w = canvas.width;
         const h = canvas.height;
         const pad = 14;
 
-        const max = Math.max(...items.map(x => Number(x.kcal) || 0), 10);
+        const max = Math.max(...items.map(x => Number(x[valueKey]) || 0), 10);
         const barAreaW = w - pad * 2;
         const slotW = barAreaW / items.length;
         const barW = Math.max(2, slotW * 0.65);
@@ -168,8 +223,8 @@
         ctx.stroke();
 
         items.forEach((x, i) => {
-            const kcal = Number(x.kcal) || 0;
-            const barH = ((h - pad * 2) * kcal) / max;
+            const value = Number(x[valueKey]) || 0;
+            const barH = ((h - pad * 2) * value) / max;
 
             const xPos = pad + i * slotW + gap / 2;
             const yPos = (h - pad) - barH;
@@ -193,39 +248,51 @@
             if (items.length <= 31 || i % 30 === 0) {
                 ctx.fillStyle = "#222";
                 ctx.font = "10px Segoe UI";
-                ctx.fillText(String(kcal), xPos, yPos - 4);
+                ctx.fillText(String(value), xPos, yPos - 4);
             }
         });
 
-        const avg = (items.reduce((s, a) => s + (Number(a.kcal) || 0), 0) / (items.length || 1)).toFixed(1);
-        if (hint) hint.textContent = `Priemer: ${avg} kcal / deň`;
+        const avg = (items.reduce((s, a) => s + (Number(a[valueKey]) || 0), 0) / (items.length || 1)).toFixed(1);
+        if (hintEl) hintEl.textContent = `${avgLabel}: ${avg}`;
     }
 
-    async function loadChart() {
+    async function loadFoodChart() {
         const date = getSelectedDate();
         const days = getSelectedRange();
-
-        updateChartTitle();
 
         const resp = await fetch(`/Stats/CaloriesChart?date=${encodeURIComponent(date)}&days=${days}`);
         if (!resp.ok) return;
 
         const data = await resp.json();
-        drawBars(data);
+        drawBars(foodCtx, foodCanvas, foodHint, data, "kcal", "Priemer kcal / deň");
+    }
+
+    async function loadWorkoutChart() {
+        const date = getSelectedDate();
+        const days = getSelectedRange();
+
+        const resp = await fetch(`/Stats/WorkoutChart?date=${encodeURIComponent(date)}&days=${days}`);
+        if (!resp.ok) return;
+
+        const data = await resp.json();
+        drawBars(workoutCtx, workoutCanvas, workoutHint, data, "volume", "Priemerný objem / deň");
     }
 
     async function reloadAll() {
-        await loadSummary();
-        await loadChart();
+        updateTitles();
+        await loadFoodSummary();
+        await loadFoodChart();
+        await loadWorkoutSummary();
+        await loadWorkoutChart();
     }
 
     statsDate?.addEventListener("change", reloadAll);
-    statsRange?.addEventListener("change", loadChart);
+    statsRange?.addEventListener("change", reloadAll);
 
     window.addEventListener("resize", () => {
-        loadChart();
+        loadFoodChart();
+        loadWorkoutChart();
     });
 
-    updateChartTitle();
     await reloadAll();
 })();
