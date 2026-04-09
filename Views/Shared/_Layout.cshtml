@@ -1,4 +1,4 @@
-﻿!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sk">
 <head>
     <meta charset="utf-8" />
@@ -14,13 +14,31 @@
     @{
         var loggedIn = Context.Session.GetString("LoggedIn") == "true";
         var role = Context.Session.GetString("UserRole");
+        var userName = Context.Session.GetString("UserName");
+        var userEmail = Context.Session.GetString("UserEmail");
+        var avatarPath = Context.Session.GetString("UserAvatarPath");
+
+        if (string.IsNullOrWhiteSpace(avatarPath))
+        {
+            avatarPath = "/images/default-avatar.png";
+        }
     }
 
     <div class="sidebar">
         <h2 class="sidebar-title">Healthy Start</h2>
 
-        <ul class="nav flex-column">
+        @if (loggedIn)
+        {
+            <div class="sidebar-user-box">
+                <img src="@avatarPath" alt="Avatar" class="sidebar-avatar" />
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name">@userName</div>
+                    <div class="sidebar-user-email">@userEmail</div>
+                </div>
+            </div>
+        }
 
+        <ul class="nav flex-column">
 
             @if (loggedIn)
             {
@@ -39,7 +57,6 @@
                 <a class="nav-link" asp-controller="Education" asp-action="Index">
                     <i class="bi bi-lightbulb me-2"></i>Tutorialy
                 </a>
-
             }
 
             @if (loggedIn && role == "Admin")

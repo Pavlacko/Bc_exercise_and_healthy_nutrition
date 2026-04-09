@@ -91,6 +91,8 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserRole", user.Rola);
             HttpContext.Session.SetString("UserEmail", user.Email);
+            HttpContext.Session.SetString("UserName", user.Meno ?? "");
+            HttpContext.Session.SetString("UserAvatarPath", user.AvatarPath ?? "");
 
             return RedirectToAction("Index", "Home");
         }
@@ -146,6 +148,8 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 HttpContext.Session.SetInt32("UserId", user.Id);
                 HttpContext.Session.SetString("UserRole", user.Rola);
                 HttpContext.Session.SetString("UserEmail", user.Email);
+                HttpContext.Session.SetString("UserName", user.Meno ?? "");
+                HttpContext.Session.SetString("UserAvatarPath", user.AvatarPath ?? "");
 
                 return RedirectToAction("Index", "Home");
             }
@@ -236,6 +240,8 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             HttpContext.Session.SetString("LoggedIn", "true");
             HttpContext.Session.SetString("UserRole", user.Rola);
             HttpContext.Session.SetString("UserEmail", user.Email);
+            HttpContext.Session.SetString("UserName", user.Meno ?? "");
+            HttpContext.Session.SetString("UserAvatarPath", user.AvatarPath ?? "");
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.Remove("TwoFactorUserId");
 
@@ -382,6 +388,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             user.AvatarPath = $"/uploads/avatars/{fileName}";
             await _context.SaveChangesAsync();
+            HttpContext.Session.SetString("UserAvatarPath", user.AvatarPath ?? "");
 
             TempData["Ok"] = "Profilová fotka uložená.";
             return RedirectToAction(nameof(Profile));
@@ -408,6 +415,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             user.AvatarPath = null;
             await _context.SaveChangesAsync();
+            HttpContext.Session.SetString("UserAvatarPath", "");
 
             TempData["Ok"] = "Profilová fotka zmazaná.";
             return RedirectToAction(nameof(Profile));
@@ -509,6 +517,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             _context.SaveChanges();
 
             HttpContext.Session.SetString("UserEmail", user.Email);
+            HttpContext.Session.SetString("UserName", user.Meno ?? "");
 
             TempData["Ok"] = "Profil uložený.";
             return RedirectToAction(nameof(Profile));
