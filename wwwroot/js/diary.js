@@ -7,15 +7,20 @@
     const addBtn = $("addEntryBtn");
     const err = $("addError");
     const body = $("entriesBody");
-    const foodTpl = $("foodOptionsTemplate"); 
+    const foodTpl = $("foodOptionsTemplate");
+    const applyGoalForward = $("applyGoalForward");
 
-    const esc = (s) => String(s)
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
+    const showErr = (m) => {
+        if (!err) return;
+        err.style.display = "block";
+        err.textContent = m;
+    };
 
-    const showErr = (m) => { if (!err) return; err.style.display = "block"; err.textContent = m; };
-    const hideErr = () => { if (!err) return; err.style.display = "none"; err.textContent = ""; };
+    const hideErr = () => {
+        if (!err) return;
+        err.style.display = "none";
+        err.textContent = "";
+    };
 
     const reqJson = async (url, opt) => {
         const r = await fetch(url, opt);
@@ -24,7 +29,6 @@
         return ct.includes("application/json") ? r.json() : null;
     };
 
-    //vytvara riadok ktory sa potom vlozi do DOM
     const rowHtml = (x) => {
         const options = foodTpl ? foodTpl.innerHTML : "";
         return `
@@ -56,7 +60,9 @@
             hideErr();
 
             const g = Number(grams?.value);
-            if (!g || g < 1 || g > 5000) return showErr("Zadaj gramáž 1–5000 g.");
+            if (!g || g < 1 || g > 5000) {
+                return showErr("Zadaj gramáž 1–5000 g.");
+            }
 
             const payload = {
                 foodItemId: Number(food?.value),
@@ -69,26 +75,25 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
             });
-            //pridanie riadku do ktory sa vytvoril v UI, afterbegin vlozi na vrch
+
             body.insertAdjacentHTML("afterbegin", rowHtml(data));
 
-            //po vložení nového záznamu vyhľadajú novovytvorený riadok v DOM, nájdu v ňom select pre jedlo a nastavia jeho hodnotu tak, aby UI zodpovedalo dátam uloženým na serveri.
             const tr = body.querySelector(`tr[data-id="${data.id}"]`);
             const sel = tr?.querySelector(".entryFood");
+            const foodId = data?.foodItemId ?? payload.foodItemId;
 
-            const foodId = (data?.foodItemId ?? payload.foodItemId);
-            if (sel && foodId != null) sel.value = String(foodId);
-
+            if (sel && foodId != null) {
+                sel.value = String(foodId);
+            }
         } catch (e) {
             showErr(e.message || "Chyba.");
         }
     });
 
     body?.addEventListener("click", async (e) => {
-        //najde najblizsi riadok podla targetu na ktory sme klikli
         const tr = e.target.closest("tr");
         if (!tr) return;
-        //vytiahneme z riadku ID zaznamu
+
         const id = Number(tr.dataset.id);
 
         try {
@@ -98,15 +103,16 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ id })
                 });
-                //odstranenie riadku 
+
                 tr.remove();
                 return;
             }
 
             if (e.target.closest(".saveBtn")) {
-                //v rámci toho riadku (tr) nájde input class entryGrams
                 const g = Number(tr.querySelector(".entryGrams")?.value);
-                if (!g || g < 1 || g > 5000) return alert("Zadaj gramáž 1–5000 g.");
+                if (!g || g < 1 || g > 5000) {
+                    return alert("Zadaj gramáž 1–5000 g.");
+                }
 
                 const foodId = Number(tr.querySelector(".entryFood")?.value);
 
@@ -116,7 +122,6 @@
                     body: JSON.stringify({ id, grams: g, foodItemId: foodId })
                 });
 
-                //zmena udajov podla recieved JSON
                 tr.querySelector(".kcal").textContent = data.kcal;
                 tr.querySelector(".p").textContent = data.protein;
                 tr.querySelector(".c").textContent = data.carbs;
@@ -133,6 +138,7 @@
 
     $("saveGoalBtn")?.addEventListener("click", async () => {
         const goalMsg = $("goalMsg");
+
         try {
             await reqJson("/Diary/SaveGoal", {
                 method: "POST",
@@ -142,7 +148,8 @@
                     kcalGoal: Number($("goalKcal")?.value),
                     proteinGoal: Number($("goalP")?.value),
                     carbsGoal: Number($("goalC")?.value),
-                    fatGoal: Number($("goalF")?.value)
+                    fatGoal: Number($("goalF")?.value),
+                    applyForward: applyGoalForward?.checked ?? false
                 })
             });
 
@@ -159,5 +166,4 @@
             }
         }
     });
-
 })();

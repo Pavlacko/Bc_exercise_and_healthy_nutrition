@@ -24,7 +24,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return RedirectToAction("Login", "User");
 
-            //ak nepride parameter, tak berie dnesok .Date - bez casu
             var d = (date ?? DateTime.Today).Date;
 
             var vm = new DiaryIndexViewModel
@@ -45,7 +44,10 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                     .OrderByDescending(e => e.Id)
                     .ToList(),
 
-                Goal = _context.DailyGoals.FirstOrDefault(g => g.AppUserId == userId.Value && g.Date == d)
+                Goal = _context.DailyGoals
+                    .Where(g => g.AppUserId == userId.Value && g.Date <= d)
+                    .OrderByDescending(g => g.Date)
+                    .FirstOrDefault()
             };
 
             return View(vm);
@@ -81,13 +83,12 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 id = created.Id,
                 foodName = created.FoodItem!.Name,
                 grams = created.Grams,
-                kcal = Math.Round(mul * created.FoodItem!.KcalPer100g, 1),
-                protein = Math.Round(mul * created.FoodItem!.ProteinPer100g, 1),
-                carbs = Math.Round(mul * created.FoodItem!.CarbsPer100g, 1),
-                fat = Math.Round(mul * created.FoodItem!.FatPer100g, 1)
+                kcal = Math.Round(mul * created.FoodItem.KcalPer100g, 1),
+                protein = Math.Round(mul * created.FoodItem.ProteinPer100g, 1),
+                carbs = Math.Round(mul * created.FoodItem.CarbsPer100g, 1),
+                fat = Math.Round(mul * created.FoodItem.FatPer100g, 1)
             });
         }
-
 
         [HttpPost]
         public IActionResult UpdateEntry([FromBody] UpdateEntryDto dto)
@@ -115,9 +116,9 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 id = entry.Id,
                 grams = entry.Grams,
                 kcal = Math.Round(mul * entry.FoodItem!.KcalPer100g, 1),
-                protein = Math.Round(mul * entry.FoodItem!.ProteinPer100g, 1),
-                carbs = Math.Round(mul * entry.FoodItem!.CarbsPer100g, 1),
-                fat = Math.Round(mul * entry.FoodItem!.FatPer100g, 1)
+                protein = Math.Round(mul * entry.FoodItem.ProteinPer100g, 1),
+                carbs = Math.Round(mul * entry.FoodItem.CarbsPer100g, 1),
+                fat = Math.Round(mul * entry.FoodItem.FatPer100g, 1)
             });
         }
 
@@ -168,6 +169,37 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             goal.CarbsGoal = dto.CarbsGoal;
             goal.FatGoal = dto.FatGoal;
 
+            if (!dto.ApplyForward)
+            {
+                var nextGoals = _context.DailyGoals
+                    .Where(g => g.AppUserId == userId.Value && g.Date > d)
+                    .OrderBy(g => g.Date)
+                    .ToList();
+
+                if (!nextGoals.Any())
+                {
+                    var previousGoal = _context.DailyGoals
+                        .Where(g => g.AppUserId == userId.Value && g.Date < d)
+                        .OrderByDescending(g => g.Date)
+                        .FirstOrDefault();
+
+                    if (previousGoal != null)
+                    {
+                        var nextDayGoal = new DailyGoal
+                        {
+                            AppUserId = userId.Value,
+                            Date = d.AddDays(1),
+                            KcalGoal = previousGoal.KcalGoal,
+                            ProteinGoal = previousGoal.ProteinGoal,
+                            CarbsGoal = previousGoal.CarbsGoal,
+                            FatGoal = previousGoal.FatGoal
+                        };
+
+                        _context.DailyGoals.Add(nextDayGoal);
+                    }
+                }
+            }
+
             _context.SaveChanges();
 
             return Json(new { ok = true });
@@ -192,9 +224,9 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             {
                 var mul = e.Grams / 100.0;
                 kcal += mul * e.FoodItem!.KcalPer100g;
-                p += mul * e.FoodItem!.ProteinPer100g;
-                c += mul * e.FoodItem!.CarbsPer100g;
-                f += mul * e.FoodItem!.FatPer100g;
+                p += mul * e.FoodItem.ProteinPer100g;
+                c += mul * e.FoodItem.CarbsPer100g;
+                f += mul * e.FoodItem.FatPer100g;
             }
 
             return Json(new
@@ -232,6 +264,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             public double ProteinGoal { get; set; }
             public double CarbsGoal { get; set; }
             public double FatGoal { get; set; }
+            public bool ApplyForward { get; set; }
         }
     }
 }

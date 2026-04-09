@@ -6,7 +6,6 @@
 
 <h2 class="page-title">Denník stravy</h2>
 
-
 <div class="row g-3 align-items-stretch">
     <div class="col-lg-6">
         <div class="card-custom">
@@ -71,6 +70,17 @@
                     <input id="goalF" type="number" class="form-control"
                            value="@(Model.Goal?.FatGoal ?? 0)" min="0" max="500" />
                 </div>
+            </div>
+
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="applyGoalForward" checked />
+                <label class="form-check-label" for="applyGoalForward">
+                    Použiť tento cieľ aj pre ďalšie dni
+                </label>
+            </div>
+
+            <div class="text-muted-small mt-2">
+                Ak nezaškrtneš túto možnosť, cieľ sa nastaví iba na vybraný deň.
             </div>
 
             <div class="d-flex align-items-center gap-2 mt-3">
