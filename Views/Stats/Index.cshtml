@@ -2,7 +2,56 @@
     ViewData["Title"] = "Štatistiky";
 }
 
-<h2 class="page-title">Štatistiky</h2>
+<div class="stats-hero card-custom mb-3">
+    <div class="stats-hero-text">
+        <h1>Štatistiky</h1>
+        <p>
+            Sleduj svoj kalorický príjem, makroživiny a tréningovú aktivitu v čase.
+            Vyber si konkrétny deň a obdobie, pre ktoré chceš zobraziť detailný prehľad.
+        </p>
+    </div>
+
+    <div class="stats-hero-visual">
+        <div class="stats-hero-icon">
+            <i class="bi bi-bar-chart-line-fill"></i>
+        </div>
+    </div>
+</div>
+
+<div class="stats-mini-grid">
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Vybraný deň</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-calendar-event"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value" id="miniSelectedDate">@DateTime.Today.ToString("dd.MM.")</div>
+        <div class="stats-mini-card-sub">Dátum pre detailný súhrn</div>
+    </div>
+
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Položky jedla</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-fork-knife"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value" id="todayCountMini">0</div>
+        <div class="stats-mini-card-sub">Záznamy za vybraný deň</div>
+    </div>
+
+    <div class="stats-mini-card">
+        <div class="stats-mini-card-top">
+            <div class="stats-mini-card-label">Objem tréningu</div>
+            <div class="stats-mini-card-icon">
+                <i class="bi bi-activity"></i>
+            </div>
+        </div>
+        <div class="stats-mini-card-value"><span id="workoutVolumeMini">0</span> kg</div>
+        <div class="stats-mini-card-sub">Tréningový objem za vybraný deň</div>
+    </div>
+</div>
 
 <div class="card-custom mb-3">
     <div class="row g-3 align-items-end">
@@ -22,7 +71,7 @@
 
         <div class="col-md-4">
             <div class="text-muted-small">
-                Vyber si deň pre detailný súhrn a obdobie pre grafy.
+                Zvolený dátum ovplyvňuje denný detail, zvolené obdobie ovplyvňuje grafy.
             </div>
         </div>
     </div>
@@ -30,66 +79,86 @@
 
 <div class="row g-3">
     <div class="col-md-6">
-        <div class="card-custom">
-            <div class="summary-card">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="summary-title">Strava za deň</div>
-                    <div class="text-muted-small">
-                        Dátum: <strong id="summaryDate">@DateTime.Today.ToString("dd.MM.yyyy")</strong>
-                        &nbsp;|&nbsp; Položky: <strong id="todayCount">0</strong>
+        <div class="card-custom summary-card">
+            <div class="stats-card-head">
+                <div>
+                    <div class="stats-card-title-wrap">
+                        <div class="stats-card-icon">
+                            <i class="bi bi-fire"></i>
+                        </div>
+                        <div>
+                            <h3 class="stats-card-title">Strava za deň</h3>
+                            <div class="stats-card-subtitle">Kalórie a makroživiny za vybraný deň</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="macro-block">
-                    <div class="macro-head">
-                        <span>Kalórie</span>
-                        <span><strong id="todayKcal">0</strong> kcal / <span id="gKcal">0</span> kcal <span id="pctKcal" class="pct">(—)</span></span>
-                    </div>
-                    <div class="progress macro-progress">
-                        <div id="barKcal" class="macro-bar progress-none" style="width:100%"></div>
-                    </div>
+                <div class="text-muted-small">
+                    Dátum: <strong id="summaryDate">@DateTime.Today.ToString("dd.MM.yyyy")</strong>
+                    &nbsp;|&nbsp; Položky: <strong id="todayCount">0</strong>
                 </div>
+            </div>
 
-                <div class="macro-block">
-                    <div class="macro-head">
-                        <span>Proteín</span>
-                        <span><strong id="todayP">0</strong> g / <span id="gP">0</span> g <span id="pctP" class="pct">(—)</span></span>
-                    </div>
-                    <div class="progress macro-progress">
-                        <div id="barP" class="progress-bar progress-none" style="width:100%"></div>
-                    </div>
+            <div class="macro-block">
+                <div class="macro-head">
+                    <span>Kalórie</span>
+                    <span><strong id="todayKcal">0</strong> kcal / <span id="gKcal">0</span> kcal <span id="pctKcal" class="pct">(—)</span></span>
                 </div>
+                <div class="progress macro-progress">
+                    <div id="barKcal" class="macro-bar progress-none" style="width:100%"></div>
+                </div>
+            </div>
 
-                <div class="macro-block">
-                    <div class="macro-head">
-                        <span>Sacharidy</span>
-                        <span><strong id="todayC">0</strong> g / <span id="gC">0</span> g <span id="pctC" class="pct">(—)</span></span>
-                    </div>
-                    <div class="progress macro-progress">
-                        <div id="barC" class="progress-bar progress-ok" style="width:0%"></div>
-                    </div>
+            <div class="macro-block">
+                <div class="macro-head">
+                    <span>Proteín</span>
+                    <span><strong id="todayP">0</strong> g / <span id="gP">0</span> g <span id="pctP" class="pct">(—)</span></span>
                 </div>
+                <div class="progress macro-progress">
+                    <div id="barP" class="progress-bar progress-none" style="width:100%"></div>
+                </div>
+            </div>
 
-                <div class="macro-block mb-0">
-                    <div class="macro-head">
-                        <span>Tuky</span>
-                        <span><strong id="todayF">0</strong> g / <span id="gF">0</span> g <span id="pctF" class="pct">(—)</span></span>
-                    </div>
-                    <div class="progress macro-progress">
-                        <div id="barF" class="progress-bar progress-none" style="width:100%"></div>
-                    </div>
+            <div class="macro-block">
+                <div class="macro-head">
+                    <span>Sacharidy</span>
+                    <span><strong id="todayC">0</strong> g / <span id="gC">0</span> g <span id="pctC" class="pct">(—)</span></span>
                 </div>
+                <div class="progress macro-progress">
+                    <div id="barC" class="progress-bar progress-ok" style="width:0%"></div>
+                </div>
+            </div>
 
-                <div id="goalMissing" class="text-muted-small mt-3" style="display:none;">
-                    Nemáš nastavený denný cieľ.
+            <div class="macro-block mb-0">
+                <div class="macro-head">
+                    <span>Tuky</span>
+                    <span><strong id="todayF">0</strong> g / <span id="gF">0</span> g <span id="pctF" class="pct">(—)</span></span>
                 </div>
+                <div class="progress macro-progress">
+                    <div id="barF" class="progress-bar progress-none" style="width:100%"></div>
+                </div>
+            </div>
+
+            <div id="goalMissing" class="text-muted-small mt-3" style="display:none;">
+                Nemáš nastavený denný cieľ.
             </div>
         </div>
     </div>
 
     <div class="col-md-6">
-        <div class="card-custom">
-            <h4 id="chartTitle">Kalórie posledných 7 dní</h4>
+        <div class="card-custom stats-chart-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title" id="chartTitle">Kalórie posledných 7 dní</h3>
+                        <div class="stats-card-subtitle">Vývoj kalorického príjmu v čase</div>
+                    </div>
+                </div>
+            </div>
+
             <canvas id="weeklyCanvas" height="180"></canvas>
             <div class="small-help mt-2" id="weeklyHint"></div>
         </div>
@@ -99,8 +168,17 @@
 <div class="row g-3 mt-1">
     <div class="col-md-6">
         <div class="card-custom">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="summary-title">Tréning za deň</div>
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-trophy"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title">Tréning za deň</h3>
+                        <div class="stats-card-subtitle">Súhrn tréningu za vybraný deň</div>
+                    </div>
+                </div>
+
                 <div class="text-muted-small">
                     Dátum: <strong id="workoutSummaryDate">@DateTime.Today.ToString("dd.MM.yyyy")</strong>
                 </div>
@@ -140,8 +218,19 @@
     </div>
 
     <div class="col-md-6">
-        <div class="card-custom">
-            <h4 id="workoutChartTitle">Objem tréningu posledných 7 dní</h4>
+        <div class="card-custom stats-chart-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-bar-chart-steps"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title" id="workoutChartTitle">Objem tréningu posledných 7 dní</h3>
+                        <div class="stats-card-subtitle">Vývoj tréningového objemu v čase</div>
+                    </div>
+                </div>
+            </div>
+
             <canvas id="workoutCanvas" height="180"></canvas>
             <div class="small-help mt-2" id="workoutHint"></div>
         </div>

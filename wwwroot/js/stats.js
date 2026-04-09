@@ -7,6 +7,10 @@
     const summaryDate = el("summaryDate");
     const chartTitle = el("chartTitle");
 
+    const miniSelectedDate = el("miniSelectedDate");
+    const todayCountMini = el("todayCountMini");
+    const workoutVolumeMini = el("workoutVolumeMini");
+
     const todayKcal = el("todayKcal");
     const todayP = el("todayP");
     const todayC = el("todayC");
@@ -57,6 +61,15 @@
         const month = String(d.getMonth() + 1).padStart(2, "0");
         const year = d.getFullYear();
         return `${day}.${month}.${year}`;
+    }
+
+    function formatDateShort(dateStr) {
+        const d = new Date(dateStr);
+        if (Number.isNaN(d.getTime())) return dateStr;
+
+        const day = String(d.getDate()).padStart(2, "0");
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        return `${day}.${month}.`;
     }
 
     function getSelectedDate() {
@@ -125,11 +138,15 @@
         const data = await resp.json();
 
         if (summaryDate) summaryDate.textContent = formatDateSk(data.date);
+        if (miniSelectedDate) miniSelectedDate.textContent = formatDateShort(data.date);
+
         if (todayKcal) todayKcal.textContent = data.kcal;
         if (todayP) todayP.textContent = data.protein;
         if (todayC) todayC.textContent = data.carbs;
         if (todayF) todayF.textContent = data.fat;
+
         if (todayCount) todayCount.textContent = data.count;
+        if (todayCountMini) todayCountMini.textContent = data.count;
 
         const goal = data.goal;
 
@@ -173,6 +190,7 @@
         if (!data.hasWorkout) {
             if (workoutMissing) workoutMissing.style.display = "block";
             if (workoutSummaryBox) workoutSummaryBox.style.display = "none";
+            if (workoutVolumeMini) workoutVolumeMini.textContent = "0";
             return;
         }
 
@@ -183,6 +201,7 @@
         if (workoutTotalSets) workoutTotalSets.textContent = data.totalSets;
         if (workoutTotalReps) workoutTotalReps.textContent = data.totalReps;
         if (workoutTotalVolume) workoutTotalVolume.textContent = data.totalVolume;
+        if (workoutVolumeMini) workoutVolumeMini.textContent = data.totalVolume;
 
         if (data.note && data.note.trim() !== "") {
             if (workoutNoteWrap) workoutNoteWrap.style.display = "block";
