@@ -5,21 +5,22 @@
 }
 
 <div class="exercise-details-page">
-
     <a asp-controller="Education" asp-action="Exercises" class="back-link">
         ← Späť na databázu cvikov
     </a>
 
     <h1 class="exercise-details-title">@Model.Name</h1>
 
-    <div class="exercise-details-video">
-        <video controls>
-            <source src="@Model.VideoPath" type="video/mp4">
-        </video>
-    </div>
+    @if (!string.IsNullOrWhiteSpace(Model.VideoPath))
+    {
+        <div class="exercise-details-video">
+            <video controls>
+                <source src="@Model.VideoPath" type="video/mp4">
+            </video>
+        </div>
+    }
 
     <div class="exercise-details-info">
-
         <div class="exercise-info-card">
             <h3>Základné informácie</h3>
             <p><strong>Svalová partia:</strong> @Model.MuscleGroup</p>
@@ -43,7 +44,5 @@
             <h3>Tipy a časté chyby</h3>
             <p>@Model.Tips</p>
         </div>
-
     </div>
-
 </div>

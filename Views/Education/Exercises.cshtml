@@ -29,7 +29,8 @@
 
     @foreach (var group in Model
             .Where(e => !string.IsNullOrWhiteSpace(e.MuscleGroup))
-            .GroupBy(e => e.MuscleGroup))
+            .GroupBy(e => e.MuscleGroup)
+            .OrderBy(g => g.Key))
     {
         <section class="exercise-group-section" data-muscle-group="@group.Key">
             <h2 class="exercise-group-title">@group.Key</h2>
@@ -38,13 +39,19 @@
                 @foreach (var exercise in group)
                 {
                     <div class="exercise-card">
-                        <div class="exercise-video-wrapper">
-                            <video controls preload="none">
-                                <source src="@exercise.VideoPath" type="video/mp4" />
-                            </video>
-                        </div>
+                        @if (!string.IsNullOrWhiteSpace(exercise.VideoPath))
+                        {
+                            <div class="exercise-video-wrapper">
+                                <video controls preload="none">
+                                    <source src="@exercise.VideoPath" type="video/mp4" />
+                                </video>
+                            </div>
+                        }
 
-                        <a asp-controller="Education" asp-action="ExerciseDetails" asp-route-id="@exercise.Id" class="exercise-card-body-link">
+                        <a asp-controller="Education"
+                               asp-action="ExerciseDetails"
+                               asp-route-id="@exercise.Id"
+                               class="exercise-card-body-link">
                             <div class="exercise-card-body">
                                 <h3>@exercise.Name</h3>
                                 <p>@exercise.MuscleGroup</p>
