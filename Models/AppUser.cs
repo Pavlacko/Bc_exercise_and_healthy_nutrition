@@ -33,13 +33,12 @@ namespace Bc_exercise_and_healthy_nutrition.Models
         [Required]
         public string Rola { get; set; } = "User";
 
-        public ProfileVisibility ProfileVisibility { get; set; } = ProfileVisibility.Friends;
+        public ProfileVisibility ProfileVisibility { get; set; } = ProfileVisibility.Public;
     }
 
     public enum ProfileVisibility
     {
         Public,
-        Friends,
         Private
     }
 }

@@ -1351,3 +1351,33 @@ body {
     color: #6f7f75;
     word-break: break-word;
 }
+
+.profile-visibility-card,
+.profile-photo-card {
+    min-height: unset !important;
+}
+
+.profile-visibility-card {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+.profile-photo-card {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+    .profile-photo-card .profile-avatar-panel {
+        margin-bottom: 1rem;
+    }
+
+    .profile-photo-card .form-control {
+        max-width: 100%;
+    }
+
+@media (min-width: 992px) {
+    .profile-photo-card {
+        position: sticky;
+        top: 24px;
+    }
+}

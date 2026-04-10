@@ -248,9 +248,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 return true;
 
             if (targetUser.ProfileVisibility == ProfileVisibility.Private)
-                return currentUserId == targetUser.Id;
-
-            if (targetUser.ProfileVisibility == ProfileVisibility.Friends)
             {
                 bool isFriend = _context.FriendRequests.Any(fr =>
                     ((fr.SenderId == currentUserId && fr.ReceiverId == targetUser.Id) ||

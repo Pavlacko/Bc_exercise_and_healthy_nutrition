@@ -523,6 +523,25 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             return RedirectToAction(nameof(Profile));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateProfileVisibility(ProfileVisibility profileVisibility)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+                return RedirectToAction("Login");
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId.Value);
+            if (user == null)
+                return NotFound();
+
+            user.ProfileVisibility = profileVisibility;
+            _context.SaveChanges();
+
+            TempData["SuccessMessage"] = "Viditeľnosť profilu bola uložená.";
+            return RedirectToAction("Profile");
+        }
+
     }
 }
 

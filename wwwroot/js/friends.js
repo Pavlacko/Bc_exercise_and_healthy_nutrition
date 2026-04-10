@@ -1,44 +1,87 @@
-﻿const input = document.getElementById("searchInput");
-const results = document.getElementById("searchResults");
+﻿const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
 
-input.addEventListener("input", async () => {
-    const res = await fetch(`/Friends/Search?query=${input.value}`);
-    const data = await res.json();
+if (searchInput) {
+    searchInput.addEventListener("input", async () => {
+        const query = searchInput.value.trim();
 
-    results.innerHTML = "";
+        if (query.length < 2) {
+            searchResults.innerHTML = "";
+            return;
+        }
 
-    data.forEach(u => {
-        const div = document.createElement("div");
+        const resp = await fetch(`/Friends/Search?query=${encodeURIComponent(query)}`);
+        if (!resp.ok) {
+            searchResults.innerHTML = "<div class='text-danger'>Nepodarilo sa načítať výsledky.</div>";
+            return;
+        }
 
-        div.innerHTML = `
-            <div class="d-flex justify-content-between">
-                <span>${u.meno}</span>
-                <button onclick="sendRequest(${u.id})" class="btn btn-sm btn-primary">
+        const data = await resp.json();
+        searchResults.innerHTML = "";
+
+        if (!data.length) {
+            searchResults.innerHTML = "<div class='text-muted'>Nenašiel sa žiadny používateľ.</div>";
+            return;
+        }
+
+        data.forEach(u => {
+            const row = document.createElement("div");
+            row.className = "d-flex justify-content-between align-items-center py-2 border-bottom";
+
+            row.innerHTML = `
+                <div>
+                    <div class="fw-semibold">${u.meno}</div>
+                    <div class="text-muted small">${u.email}</div>
+                </div>
+                <button class="btn btn-sm btn-primary" onclick="sendRequest(${u.id})">
                     Pridať
                 </button>
-            </div>
-        `;
+            `;
 
-        results.appendChild(div);
+            searchResults.appendChild(row);
+        });
     });
-});
+}
 
 async function sendRequest(id) {
-    await fetch("/Friends/SendRequest", {
+    const resp = await fetch("/Friends/SendRequest", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({ receiverId: id })
     });
 
-    alert("Žiadosť odoslaná");
+    if (resp.ok) {
+        alert("Žiadosť odoslaná.");
+        location.reload();
+        return;
+    }
+
+    const text = await resp.text();
+    alert(text || "Nepodarilo sa odoslať žiadosť.");
 }
 
 async function accept(id) {
-    await fetch(`/Friends/Accept?id=${id}`, { method: "POST" });
-    location.reload();
+    const resp = await fetch(`/Friends/Accept?id=${id}`, {
+        method: "POST"
+    });
+
+    if (resp.ok) {
+        location.reload();
+    } else {
+        alert("Nepodarilo sa prijať žiadosť.");
+    }
 }
 
 async function reject(id) {
-    await fetch(`/Friends/Reject?id=${id}`, { method: "POST" });
-    location.reload();
+    const resp = await fetch(`/Friends/Reject?id=${id}`, {
+        method: "POST"
+    });
+
+    if (resp.ok) {
+        location.reload();
+    } else {
+        alert("Nepodarilo sa odmietnuť žiadosť.");
+    }
 }

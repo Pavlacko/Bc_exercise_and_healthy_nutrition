@@ -1,20 +1,22 @@
 ﻿@using Bc_exercise_and_healthy_nutrition.Models
 @{
     ViewData["Title"] = "Priatelia";
+
     var friends = ViewBag.Friends as List<FriendRequest> ?? new List<FriendRequest>();
     var requests = ViewBag.Requests as List<FriendRequest> ?? new List<FriendRequest>();
+    var sentRequests = ViewBag.SentRequests as List<FriendRequest> ?? new List<FriendRequest>();
     var currentUserId = Context.Session.GetInt32("UserId");
 }
 
 <div class="container py-4">
     <div class="card shadow-sm border-0 rounded-4 p-4 mb-4">
         <h2 class="mb-3">Vyhľadať používateľa</h2>
-        <input id="searchInput" class="form-control" placeholder="Zadaj meno..." />
+        <input id="searchInput" class="form-control" placeholder="Zadaj meno používateľa..." />
         <div id="searchResults" class="mt-3"></div>
     </div>
 
     <div class="card shadow-sm border-0 rounded-4 p-4 mb-4">
-        <h3 class="mb-3">Žiadosti o priateľstvo</h3>
+        <h3 class="mb-3">Čakajúce žiadosti</h3>
 
         @if (!requests.Any())
         {
@@ -24,12 +26,39 @@
         {
             @foreach (var r in requests)
             {
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span>@(r.Sender?.Meno ?? "Neznámy používateľ")</span>
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
                     <div>
-                        <button onclick="accept(@r.Id)" class="btn btn-success btn-sm">Prijať</button>
-                        <button onclick="reject(@r.Id)" class="btn btn-danger btn-sm">Odmietnuť</button>
+                        <div class="fw-semibold">@(r.Sender?.Meno ?? "Neznámy používateľ")</div>
+                        <div class="text-muted small">@(r.Sender?.Email ?? "")</div>
                     </div>
+
+                    <div class="d-flex gap-2">
+                        <button onclick="accept(@r.Id)" class="btn btn-success btn-sm">Prijať</button>
+                        <button onclick="reject(@r.Id)" class="btn btn-outline-danger btn-sm">Odmietnuť</button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <div class="card shadow-sm border-0 rounded-4 p-4 mb-4">
+        <h3 class="mb-3">Odoslané žiadosti</h3>
+
+        @if (!sentRequests.Any())
+        {
+            <p class="text-muted mb-0">Nemáš žiadne odoslané žiadosti.</p>
+        }
+        else
+        {
+            @foreach (var r in sentRequests)
+            {
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <div>
+                        <div class="fw-semibold">@(r.Receiver?.Meno ?? "Neznámy používateľ")</div>
+                        <div class="text-muted small">@(r.Receiver?.Email ?? "")</div>
+                    </div>
+
+                    <span class="badge text-bg-warning">Čaká na prijatie</span>
                 </div>
             }
         }
@@ -48,8 +77,12 @@
             {
                 var friend = f.SenderId == currentUserId ? f.Receiver : f.Sender;
 
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span>@(friend?.Meno ?? "Neznámy používateľ")</span>
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                    <div>
+                        <div class="fw-semibold">@(friend?.Meno ?? "Neznámy používateľ")</div>
+                        <div class="text-muted small">@(friend?.Email ?? "")</div>
+                    </div>
+
                     @if (friend != null)
                     {
                         <a href="/Stats/User/@friend.Id" class="btn btn-primary btn-sm">
@@ -62,4 +95,6 @@
     </div>
 </div>
 
-<script src="~/js/friends.js"></script>
+@section Scripts {
+    <script src="~/js/friends.js" asp-append-version="true"></script>
+}

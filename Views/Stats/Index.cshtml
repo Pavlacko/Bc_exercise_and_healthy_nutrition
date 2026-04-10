@@ -18,6 +18,13 @@
     </div>
 </div>
 
+@if (ViewBag.IsForeignProfile == true)
+{
+    <div class="alert alert-info rounded-4 mb-3">
+        Pozeráš štatistiky používateľa <strong>@ViewBag.TargetUserName</strong>.
+    </div>
+}
+
 <div class="stats-mini-grid">
     <div class="stats-mini-card">
         <div class="stats-mini-card-top">
@@ -105,7 +112,7 @@
                     <span><strong id="todayKcal">0</strong> kcal / <span id="gKcal">0</span> kcal <span id="pctKcal" class="pct">(—)</span></span>
                 </div>
                 <div class="progress macro-progress">
-                    <div id="barKcal" class="macro-bar progress-none" style="width:100%"></div>
+                    <div id="barKcal" class="progress-bar progress-none" style="width:100%"></div>
                 </div>
             </div>
 
@@ -125,7 +132,7 @@
                     <span><strong id="todayC">0</strong> g / <span id="gC">0</span> g <span id="pctC" class="pct">(—)</span></span>
                 </div>
                 <div class="progress macro-progress">
-                    <div id="barC" class="progress-bar progress-ok" style="width:0%"></div>
+                    <div id="barC" class="progress-bar progress-none" style="width:100%"></div>
                 </div>
             </div>
 
@@ -140,7 +147,7 @@
             </div>
 
             <div id="goalMissing" class="text-muted-small mt-3" style="display:none;">
-                Nemáš nastavený denný cieľ.
+                Používateľ nemá nastavený denný cieľ.
             </div>
         </div>
     </div>
@@ -185,7 +192,7 @@
             </div>
 
             <div id="workoutMissing" class="text-muted-small">
-                Na tento deň nemáš uložený žiadny tréning.
+                Na tento deň nie je uložený žiadny tréning.
             </div>
 
             <div id="workoutSummaryBox" style="display:none;">
@@ -236,8 +243,6 @@
         </div>
     </div>
 </div>
-
-<hr />
 
 @section Scripts {
     <script src="~/js/stats.js" asp-append-version="true"></script>

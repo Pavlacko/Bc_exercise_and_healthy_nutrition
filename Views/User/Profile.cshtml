@@ -1,4 +1,5 @@
 ﻿@model Bc_exercise_and_healthy_nutrition.Models.AppUser
+@using Bc_exercise_and_healthy_nutrition.Models
 
 @{
     ViewData["Title"] = "Profil";
@@ -48,29 +49,36 @@
 
     <div class="stats-mini-card">
         <div class="stats-mini-card-top">
-            <div class="stats-mini-card-label">Vek</div>
+            <div class="stats-mini-card-label">Viditeľnosť</div>
             <div class="stats-mini-card-icon">
-                <i class="bi bi-calendar-heart"></i>
+                <i class="bi bi-shield-lock"></i>
             </div>
         </div>
-        <div class="stats-mini-card-value">@Model.Vek</div>
-        <div class="stats-mini-card-sub">Vek uvedený v profile</div>
+        <div class="stats-mini-card-value">
+            @(Model.ProfileVisibility == ProfileVisibility.Public ? "Verejný" : "Súkromný")
+        </div>
+        <div class="stats-mini-card-sub">Nastavenie prístupu k štatistikám</div>
     </div>
 </div>
 
 @if (TempData["Ok"] != null)
 {
-    <div class="alert alert-success">@TempData["Ok"]</div>
+    <div class="alert alert-success rounded-4">@TempData["Ok"]</div>
 }
 
 @if (TempData["Err"] != null)
 {
-    <div class="alert alert-danger">@TempData["Err"]</div>
+    <div class="alert alert-danger rounded-4">@TempData["Err"]</div>
 }
 
-<div class="row g-3 align-items-stretch">
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success rounded-4">@TempData["SuccessMessage"]</div>
+}
+
+<div class="row g-3 align-items-start">
     <div class="col-lg-8">
-        <div class="card-custom summary-card">
+        <div class="card-custom summary-card mb-3">
             <div class="stats-card-head">
                 <div class="stats-card-title-wrap">
                     <div class="stats-card-icon">
@@ -123,10 +131,57 @@
                 </div>
             </form>
         </div>
+
+        <div class="card-custom summary-card profile-visibility-card">
+            <div class="stats-card-head">
+                <div class="stats-card-title-wrap">
+                    <div class="stats-card-icon">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+                    <div>
+                        <h3 class="stats-card-title">Viditeľnosť profilu</h3>
+                        <div class="stats-card-subtitle">Nastav, kto môže vidieť tvoje štatistiky</div>
+                    </div>
+                </div>
+            </div>
+
+            <form asp-controller="User" asp-action="UpdateProfileVisibility" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label class="form-label">Kto môže vidieť tvoje štatistiky</label>
+                    <select name="profileVisibility" class="form-select">
+                        @if (Model.ProfileVisibility == ProfileVisibility.Public)
+                        {
+                            <option value="Public" selected>Verejný</option>
+                        }
+                        else
+                        {
+                            <option value="Public">Verejný</option>
+                        }
+
+                        @if (Model.ProfileVisibility == ProfileVisibility.Private)
+                        {
+                            <option value="Private" selected>Súkromný</option>
+                        }
+                        else
+                        {
+                            <option value="Private">Súkromný</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="text-muted-small mb-3">
+                    Verejný = profil uvidia všetci prihlásení používatelia. Súkromný = profil uvidia iba tvoji priatelia.
+                </div>
+
+                <button type="submit" class="btn btn-main">Uložiť </button>
+            </form>
+        </div>
     </div>
 
     <div class="col-lg-4">
-        <div class="card-custom summary-card">
+        <div class="card-custom summary-card profile-photo-card">
             <div class="stats-card-head">
                 <div class="stats-card-title-wrap">
                     <div class="stats-card-icon">
