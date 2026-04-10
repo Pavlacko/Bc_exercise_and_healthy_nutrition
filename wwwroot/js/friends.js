@@ -26,16 +26,23 @@ if (searchInput) {
 
         data.forEach(u => {
             const row = document.createElement("div");
-            row.className = "d-flex justify-content-between align-items-center py-2 border-bottom";
+            row.className = "friend-row";
+
+            const profileButton = u.canViewProfile
+                ? `<a href="/Stats/User/${u.id}" class="btn btn-outline-main btn-sm friend-btn">Zobraziť profil</a>`
+                : "";
 
             row.innerHTML = `
-                <div>
-                    <div class="fw-semibold">${u.meno}</div>
-                    <div class="text-muted small">${u.email}</div>
+                <div class="friend-row-left">
+                    <div class="friend-name">${u.meno}</div>
+                <div class="friend-email">${u.email}</div>
                 </div>
-                <button class="btn btn-sm btn-primary" onclick="sendRequest(${u.id})">
-                    Pridať
-                </button>
+                <div class="friend-actions">
+                    ${profileButton}
+                    <button class="btn btn-main btn-sm friend-btn" onclick="sendRequest(${u.id})">
+                        Pridať priateľa
+                    </button>
+                </div>
             `;
 
             searchResults.appendChild(row);
@@ -83,5 +90,20 @@ async function reject(id) {
         location.reload();
     } else {
         alert("Nepodarilo sa odmietnuť žiadosť.");
+    }
+}
+
+async function removeFriend(friendId) {
+    const confirmed = confirm("Naozaj chceš odstrániť tohto priateľa?");
+    if (!confirmed) return;
+
+    const resp = await fetch(`/Friends/RemoveFriend?friendId=${friendId}`, {
+        method: "POST"
+    });
+
+    if (resp.ok) {
+        location.reload();
+    } else {
+        alert("Nepodarilo sa odstrániť priateľa.");
     }
 }

@@ -26,15 +26,15 @@
         {
             @foreach (var r in requests)
             {
-                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                    <div>
-                        <div class="fw-semibold">@(r.Sender?.Meno ?? "Neznámy používateľ")</div>
-                        <div class="text-muted small">@(r.Sender?.Email ?? "")</div>
+                <div class="friend-row">
+                    <div class="friend-row-left">
+                        <div class="friend-name">@(r.Sender?.Meno ?? "Neznámy používateľ")</div>
+                        <div class="friend-email">@(r.Sender?.Email ?? "")</div>
                     </div>
 
-                    <div class="d-flex gap-2">
-                        <button onclick="accept(@r.Id)" class="btn btn-success btn-sm">Prijať</button>
-                        <button onclick="reject(@r.Id)" class="btn btn-outline-danger btn-sm">Odmietnuť</button>
+                    <div class="friend-actions">
+                        <button onclick="accept(@r.Id)" class="btn btn-main btn-sm friend-btn">Prijať</button>
+                        <button onclick="reject(@r.Id)" class="btn btn-outline-danger btn-sm friend-btn">Odmietnuť</button>
                     </div>
                 </div>
             }
@@ -52,13 +52,15 @@
         {
             @foreach (var r in sentRequests)
             {
-                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                    <div>
-                        <div class="fw-semibold">@(r.Receiver?.Meno ?? "Neznámy používateľ")</div>
-                        <div class="text-muted small">@(r.Receiver?.Email ?? "")</div>
+                <div class="friend-row">
+                    <div class="friend-row-left">
+                        <div class="friend-name">@(r.Receiver?.Meno ?? "Neznámy používateľ")</div>
+                        <div class="friend-email">@(r.Receiver?.Email ?? "")</div>
                     </div>
 
-                    <span class="badge text-bg-warning">Čaká na prijatie</span>
+                    <div class="friend-actions">
+                        <span class="friend-pill-muted">Čaká na prijatie</span>
+                    </div>
                 </div>
             }
         }
@@ -77,17 +79,23 @@
             {
                 var friend = f.SenderId == currentUserId ? f.Receiver : f.Sender;
 
-                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                    <div>
-                        <div class="fw-semibold">@(friend?.Meno ?? "Neznámy používateľ")</div>
-                        <div class="text-muted small">@(friend?.Email ?? "")</div>
+                <div class="friend-row">
+                    <div class="friend-row-left">
+                        <div class="friend-name">@(friend?.Meno ?? "Neznámy používateľ")</div>
+                        <div class="friend-email">@(friend?.Email ?? "")</div>
                     </div>
 
                     @if (friend != null)
                     {
-                        <a href="/Stats/User/@friend.Id" class="btn btn-primary btn-sm">
-                            Zobraziť profil
-                        </a>
+                        <div class="friend-actions">
+                            <a href="/Stats/User/@friend.Id" class="btn btn-outline-main btn-sm friend-btn">
+                                Zobraziť profil
+                            </a>
+
+                            <button type="button" class="btn btn-outline-danger btn-sm friend-btn" onclick="removeFriend(@friend.Id)">
+                                Odstrániť priateľa
+                            </button>
+                        </div>
                     }
                 </div>
             }

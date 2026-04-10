@@ -2,52 +2,106 @@
     ViewData["Title"] = "Kalkulačky";
 }
 
-<div class="container calculators-page">
+<div class="calc-hero card-custom mb-4">
+    <div class="calc-hero-left">
 
-    <h1 class="mb-2">Kalkulačky</h1>
-    <p class="text-muted mb-4">Vyber si kalkulačku, ktorú chceš použiť.</p>
+        <h1 class="calc-hero-title">Kalkulačky</h1>
 
-    <div class="row g-4">
-
-        <div class="col-md-4">
-            <a asp-controller="Calculators" asp-action="Calories" class="calculator-card">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h4 class="card-title">Kalorická kalkulačka</h4>
-                        <p class="card-text">
-                            Vypočíta odporúčaný denný kalorický príjem podľa tvojich údajov.
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <a asp-controller="Calculators" asp-action="Bmr" class="calculator-card">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h4 class="card-title">BMR kalkulačka</h4>
-                        <p class="card-text">
-                            Vypočíta bazálny metabolizmus – koľko kalórií telo spáli v pokoji.
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <a asp-controller="Calculators" asp-action="Bmi" class="calculator-card">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h4 class="card-title">BMI kalkulačka</h4>
-                        <p class="card-text">
-                            Vypočíta index telesnej hmotnosti podľa výšky a váhy.
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
+        <p class="calc-hero-text">
+            Vyber si nástroj, ktorý ti pomôže lepšie pochopiť tvoje telo, kalorické potreby
+            a základné hodnoty dôležité pri zdravom životnom štýle.
+        </p>
 
     </div>
 
+    <div class="calc-hero-right">
+        <div class="calc-hero-icon-wrap">
+            <i class="bi bi-calculator"></i>
+        </div>
+    </div>
+</div>
+
+<div class="calc-mini-grid mb-4">
+    <div class="calc-mini-card">
+        <div class="calc-mini-label">Kalórie</div>
+        <div class="calc-mini-value">Príjem</div>
+        <div class="calc-mini-sub">Odporúčaný denný kalorický príjem</div>
+    </div>
+
+    <div class="calc-mini-card">
+        <div class="calc-mini-label">BMR</div>
+        <div class="calc-mini-value">Metabolizmus</div>
+        <div class="calc-mini-sub">Koľko energie telo spáli v pokoji</div>
+    </div>
+
+    <div class="calc-mini-card">
+        <div class="calc-mini-label">BMI</div>
+        <div class="calc-mini-value">Index</div>
+        <div class="calc-mini-sub">Základné posúdenie telesnej hmotnosti</div>
+    </div>
+</div>
+
+<div class="calc-grid">
+    <a asp-controller="Calculators" asp-action="Calories" class="calc-card">
+        <div class="calc-card-top">
+            <div class="calc-card-icon">
+                <i class="bi bi-fire"></i>
+            </div>
+            <div class="calc-card-arrow">
+                <i class="bi bi-arrow-right"></i>
+            </div>
+        </div>
+
+        <h3>Kalorická kalkulačka</h3>
+        <p>
+            Vypočíta odporúčaný denný kalorický príjem podľa tvojich údajov,
+            cieľa a úrovne aktivity.
+        </p>
+
+        <div class="calc-card-footer">
+            <span class="calc-card-link">Otvoriť</span>
+        </div>
+    </a>
+
+    <a asp-controller="Calculators" asp-action="BMR" class="calc-card">
+        <div class="calc-card-top">
+            <div class="calc-card-icon">
+                <i class="bi bi-heart-pulse"></i>
+            </div>
+            <div class="calc-card-arrow">
+                <i class="bi bi-arrow-right"></i>
+            </div>
+        </div>
+
+        <h3>BMR kalkulačka</h3>
+        <p>
+            Zistí bazálny metabolizmus, teda približné množstvo kalórií,
+            ktoré telo potrebuje na základné fungovanie v pokoji.
+        </p>
+
+        <div class="calc-card-footer">
+            <span class="calc-card-link">Otvoriť</span>
+        </div>
+    </a>
+
+    <a asp-controller="Calculators" asp-action="BMI" class="calc-card">
+        <div class="calc-card-top">
+            <div class="calc-card-icon">
+                <i class="bi bi-person-standing"></i>
+            </div>
+            <div class="calc-card-arrow">
+                <i class="bi bi-arrow-right"></i>
+            </div>
+        </div>
+
+        <h3>BMI kalkulačka</h3>
+        <p>
+            Vypočíta index telesnej hmotnosti na základe výšky a váhy
+            a poskytne základnú interpretáciu výsledku.
+        </p>
+
+        <div class="calc-card-footer">
+            <span class="calc-card-link">Otvoriť</span>
+        </div>
+    </a>
 </div>

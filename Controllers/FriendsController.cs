@@ -65,7 +65,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                     id = u.Id,
                     meno = u.Meno,
                     email = u.Email,
-                    visibility = u.ProfileVisibility.ToString()
+                    canViewProfile = u.ProfileVisibility == ProfileVisibility.Public
                 })
                 .ToList();
 
@@ -86,12 +86,24 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             if (senderId == dto.ReceiverId)
                 return BadRequest("Nemôžeš poslať žiadosť sám sebe.");
 
-            bool exists = _db.FriendRequests.Any(fr =>
+            var existing = _db.FriendRequests.FirstOrDefault(fr =>
                 (fr.SenderId == senderId && fr.ReceiverId == dto.ReceiverId) ||
                 (fr.SenderId == dto.ReceiverId && fr.ReceiverId == senderId));
 
-            if (exists)
-                return BadRequest("Žiadosť už existuje alebo ste už priatelia.");
+            if (existing != null)
+            {
+                if (existing.Status == "Accepted")
+                    return BadRequest("Už ste priatelia.");
+
+                if (existing.Status == "Pending")
+                    return BadRequest("Žiadosť už existuje.");
+
+                if (existing.Status == "Rejected")
+                {
+                    _db.FriendRequests.Remove(existing);
+                    _db.SaveChanges();
+                }
+            }
 
             var request = new FriendRequest
             {
@@ -131,7 +143,31 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             if (req == null)
                 return NotFound();
 
-            req.Status = "Rejected";
+            _db.FriendRequests.Remove(req);
+            _db.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult RemoveFriend(int friendId)
+        {
+            int currentUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+
+            if (currentUserId == 0)
+                return Unauthorized();
+
+            var friendship = _db.FriendRequests.FirstOrDefault(fr =>
+                fr.Status == "Accepted" &&
+                (
+                    (fr.SenderId == currentUserId && fr.ReceiverId == friendId) ||
+                    (fr.SenderId == friendId && fr.ReceiverId == currentUserId)
+                ));
+
+            if (friendship == null)
+                return NotFound();
+
+            _db.FriendRequests.Remove(friendship);
             _db.SaveChanges();
 
             return Ok();
