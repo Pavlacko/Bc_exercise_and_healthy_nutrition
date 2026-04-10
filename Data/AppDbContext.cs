@@ -17,6 +17,7 @@ namespace Bc_exercise_and_healthy_nutrition.Data
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
+        public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<EmailVerificationCode> EmailVerificationCodes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +27,18 @@ namespace Bc_exercise_and_healthy_nutrition.Data
             modelBuilder.Entity<DailyGoal>()
                 .HasIndex(g => new { g.AppUserId, g.Date })
                 .IsUnique();
+
+            modelBuilder.Entity<FriendRequest>()
+                .HasOne(fr => fr.Sender)
+                .WithMany()
+                .HasForeignKey(fr => fr.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<FriendRequest>()
+                .HasOne(fr => fr.Receiver)
+                .WithMany()
+                .HasForeignKey(fr => fr.ReceiverId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -31,6 +31,15 @@ namespace Bc_exercise_and_healthy_nutrition.Models
         public string PasswordHash { get; set; } = string.Empty;
 
         [Required]
-        public string Rola { get; set; } = "User"; 
+        public string Rola { get; set; } = "User";
+
+        public ProfileVisibility ProfileVisibility { get; set; } = ProfileVisibility.Friends;
+    }
+
+    public enum ProfileVisibility
+    {
+        Public,
+        Friends,
+        Private
     }
 }

@@ -61,6 +61,10 @@
                 <a class="nav-link" asp-controller="Workout" asp-action="Index">
                     <i class="bi bi-calendar2-check me-2"></i>Môj tréning
                 </a>
+
+                <a class="nav-link" asp-controller="Friends" asp-action="Index">
+                    <i class="bi bi-people me-2"></i>Priatelia
+                </a>
             }
 
             @if (loggedIn && role == "Admin")

@@ -1,5 +1,6 @@
 ﻿using Bc_exercise_and_healthy_nutrition.Data;
 using Bc_exercise_and_healthy_nutrition.Filters;
+using Bc_exercise_and_healthy_nutrition.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,16 +22,23 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         }
 
         [HttpGet]
-        public IActionResult TodaySummary(DateTime? date)
+        public IActionResult TodaySummary(DateTime? date, int? userId)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return Unauthorized();
+            int currentUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+            int targetUserId = userId ?? currentUserId;
+
+            var targetUser = _context.Users.FirstOrDefault(u => u.Id == targetUserId);
+            if (targetUser == null)
+                return NotFound();
+
+            if (!CanViewProfile(currentUserId, targetUser))
+                return Unauthorized();
 
             var d = (date ?? DateTime.Today).Date;
 
             var entries = _context.MealEntries
                 .Include(e => e.FoodItem)
-                .Where(e => e.AppUserId == userId.Value && e.Date == d)
+                .Where(e => e.AppUserId == targetUserId && e.Date == d)
                 .ToList();
 
             double kcal = 0, p = 0, c = 0, f = 0;
@@ -45,7 +53,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             }
 
             var goal = _context.DailyGoals
-                .Where(g => g.AppUserId == userId.Value && g.Date <= d)
+                .Where(g => g.AppUserId == targetUserId && g.Date <= d)
                 .OrderByDescending(g => g.Date)
                 .FirstOrDefault();
 
@@ -57,7 +65,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 protein = Math.Round(p, 1),
                 carbs = Math.Round(c, 1),
                 fat = Math.Round(f, 1),
-
                 goal = goal == null ? null : new
                 {
                     kcalGoal = goal.KcalGoal,
@@ -69,10 +76,17 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         }
 
         [HttpGet]
-        public IActionResult CaloriesChart(DateTime? date, int days = 7)
+        public IActionResult CaloriesChart(DateTime? date, int days = 7, int? userId = null)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return Unauthorized();
+            int currentUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+            int targetUserId = userId ?? currentUserId;
+
+            var targetUser = _context.Users.FirstOrDefault(u => u.Id == targetUserId);
+            if (targetUser == null)
+                return NotFound();
+
+            if (!CanViewProfile(currentUserId, targetUser))
+                return Unauthorized();
 
             if (days != 7 && days != 30 && days != 365)
                 days = 7;
@@ -82,7 +96,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             var entries = _context.MealEntries
                 .Include(e => e.FoodItem)
-                .Where(e => e.AppUserId == userId.Value && e.Date >= fromDate && e.Date <= endDate)
+                .Where(e => e.AppUserId == targetUserId && e.Date >= fromDate && e.Date <= endDate)
                 .ToList();
 
             var map = new Dictionary<DateTime, double>();
@@ -93,10 +107,9 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
             {
                 var mul = e.Grams / 100.0;
                 var day = e.Date.Date;
+
                 if (map.ContainsKey(day))
-                {
                     map[day] += mul * e.FoodItem!.KcalPer100g;
-                }
             }
 
             var result = map
@@ -112,16 +125,23 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         }
 
         [HttpGet]
-        public IActionResult WorkoutSummary(DateTime? date)
+        public IActionResult WorkoutSummary(DateTime? date, int? userId)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return Unauthorized();
+            int currentUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+            int targetUserId = userId ?? currentUserId;
+
+            var targetUser = _context.Users.FirstOrDefault(u => u.Id == targetUserId);
+            if (targetUser == null)
+                return NotFound();
+
+            if (!CanViewProfile(currentUserId, targetUser))
+                return Unauthorized();
 
             var d = (date ?? DateTime.Today).Date;
 
             var workout = _context.Workouts
                 .Include(w => w.Exercises)
-                .FirstOrDefault(w => w.AppUserId == userId.Value && w.Date == d);
+                .FirstOrDefault(w => w.AppUserId == targetUserId && w.Date == d);
 
             if (workout == null)
             {
@@ -155,10 +175,17 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
         }
 
         [HttpGet]
-        public IActionResult WorkoutChart(DateTime? date, int days = 7)
+        public IActionResult WorkoutChart(DateTime? date, int days = 7, int? userId = null)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return Unauthorized();
+            int currentUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+            int targetUserId = userId ?? currentUserId;
+
+            var targetUser = _context.Users.FirstOrDefault(u => u.Id == targetUserId);
+            if (targetUser == null)
+                return NotFound();
+
+            if (!CanViewProfile(currentUserId, targetUser))
+                return Unauthorized();
 
             if (days != 7 && days != 30 && days != 365)
                 days = 7;
@@ -168,7 +195,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
 
             var workouts = _context.Workouts
                 .Include(w => w.Exercises)
-                .Where(w => w.AppUserId == userId.Value && w.Date >= fromDate && w.Date <= endDate)
+                .Where(w => w.AppUserId == targetUserId && w.Date >= fromDate && w.Date <= endDate)
                 .ToList();
 
             var map = new Dictionary<DateTime, double>();
@@ -181,9 +208,7 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 var day = workout.Date.Date;
 
                 if (map.ContainsKey(day))
-                {
                     map[day] += volume;
-                }
             }
 
             var result = map
@@ -196,6 +221,46 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
                 .ToList();
 
             return Json(result);
+        }
+
+        [HttpGet]
+        public IActionResult User(int id)
+        {
+            int currentUserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+
+            var targetUser = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (targetUser == null)
+                return NotFound();
+
+            if (!CanViewProfile(currentUserId, targetUser))
+                return View("PrivateProfile");
+
+            ViewBag.TargetUserId = id;
+            ViewBag.TargetUserName = targetUser.Meno;
+            ViewBag.IsForeignProfile = currentUserId != id;
+
+            return View("Index");
+        }
+
+        private bool CanViewProfile(int currentUserId, AppUser targetUser)
+        {
+            if (targetUser.ProfileVisibility == ProfileVisibility.Public)
+                return true;
+
+            if (targetUser.ProfileVisibility == ProfileVisibility.Private)
+                return currentUserId == targetUser.Id;
+
+            if (targetUser.ProfileVisibility == ProfileVisibility.Friends)
+            {
+                bool isFriend = _context.FriendRequests.Any(fr =>
+                    ((fr.SenderId == currentUserId && fr.ReceiverId == targetUser.Id) ||
+                     (fr.SenderId == targetUser.Id && fr.ReceiverId == currentUserId))
+                    && fr.Status == "Accepted");
+
+                return isFriend || currentUserId == targetUser.Id;
+            }
+
+            return false;
         }
     }
 }

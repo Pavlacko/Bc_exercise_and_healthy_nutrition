@@ -1,4 +1,29 @@
-﻿(async function () {
+﻿function getViewedUserId() {
+    const parts = window.location.pathname.split("/");
+    const userIndex = parts.indexOf("User");
+
+    if (userIndex !== -1 && parts.length > userIndex + 1) {
+        const id = parseInt(parts[userIndex + 1]);
+        if (!isNaN(id)) return id;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryId = parseInt(urlParams.get("userId"));
+    if (!isNaN(queryId)) return queryId;
+
+    return null;
+}
+
+const viewedUserId = getViewedUserId();
+
+function withUserId(url) {
+    if (!viewedUserId) return url;
+
+    const separator = url.includes("?") ? "&" : "?";
+    return `${url}${separator}userId=${viewedUserId}`;
+}
+
+(async function () {
     const el = (id) => document.getElementById(id);
 
     const statsDate = el("statsDate");
@@ -132,7 +157,7 @@
 
     async function loadFoodSummary() {
         const date = getSelectedDate();
-        const resp = await fetch(`/Stats/TodaySummary?date=${encodeURIComponent(date)}`);
+        const resp = await fetch(withUserId(`/Stats/TodaySummary?date=${encodeURIComponent(date)}`));
         if (!resp.ok) return;
 
         const data = await resp.json();
@@ -180,7 +205,7 @@
 
     async function loadWorkoutSummary() {
         const date = getSelectedDate();
-        const resp = await fetch(`/Stats/WorkoutSummary?date=${encodeURIComponent(date)}`);
+        const resp = await fetch(withUserId(`/Stats/WorkoutSummary?date=${encodeURIComponent(date)}`));
         if (!resp.ok) return;
 
         const data = await resp.json();
@@ -279,7 +304,7 @@
         const date = getSelectedDate();
         const days = getSelectedRange();
 
-        const resp = await fetch(`/Stats/CaloriesChart?date=${encodeURIComponent(date)}&days=${days}`);
+        const resp = await fetch(withUserId(`/Stats/CaloriesChart?date=${encodeURIComponent(date)}&days=${days}`));
         if (!resp.ok) return;
 
         const data = await resp.json();
@@ -290,7 +315,7 @@
         const date = getSelectedDate();
         const days = getSelectedRange();
 
-        const resp = await fetch(`/Stats/WorkoutChart?date=${encodeURIComponent(date)}&days=${days}`);
+        const resp = await fetch(withUserId(`/Stats/WorkoutChart?date=${encodeURIComponent(date)}&days=${days}`));
         if (!resp.ok) return;
 
         const data = await resp.json();
