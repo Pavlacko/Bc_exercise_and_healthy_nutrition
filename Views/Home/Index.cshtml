@@ -2,9 +2,9 @@
     ViewData["Title"] = "Domov";
 }
 
-<div class="stats-hero card-custom mb-3">
+<div class="stats-hero card-custom mb-4">
     <div class="stats-hero-text">
-        <h1>Vitajte v Healthy Start</h1>
+        <h1>Vitajte v aplikácii Healthy Start</h1>
         <p>
             Začni budovať zdravé návyky jednoducho a prehľadne.
             Sleduj svoj jedálniček, analyzuj makroživiny a maj svoj tréning pod kontrolou.
@@ -18,69 +18,48 @@
     </div>
 </div>
 
-<div class="stats-mini-grid">
-    <div class="stats-mini-card">
-        <div class="stats-mini-card-top">
-            <div class="stats-mini-card-label">Denník</div>
-            <div class="stats-mini-card-icon">
+<div class="home-feature-grid">
+    <a asp-controller="Diary" asp-action="Index" class="home-feature-card">
+        <div class="home-feature-top">
+            <div class="home-feature-label">Denník</div>
+            <div class="home-feature-icon">
                 <i class="bi bi-journal-text"></i>
             </div>
         </div>
-        <div class="stats-mini-card-value">Strava</div>
-        <div class="stats-mini-card-sub">Zaznamenávaj jedlá a sleduj kalórie</div>
-    </div>
+        <div class="home-feature-value">Strava</div>
+        <div class="home-feature-sub">Zaznamenávaj jedlá a sleduj kalórie a makroživiny</div>
+    </a>
 
-    <div class="stats-mini-card">
-        <div class="stats-mini-card-top">
-            <div class="stats-mini-card-label">Štatistiky</div>
-            <div class="stats-mini-card-icon">
+    <a asp-controller="Stats" asp-action="Index" class="home-feature-card">
+        <div class="home-feature-top">
+            <div class="home-feature-label">Štatistiky</div>
+            <div class="home-feature-icon">
                 <i class="bi bi-bar-chart-line"></i>
             </div>
         </div>
-        <div class="stats-mini-card-value">Prehľad</div>
-        <div class="stats-mini-card-sub">Vizualizácia progresu v čase</div>
-    </div>
+        <div class="home-feature-value">Prehľad</div>
+        <div class="home-feature-sub">Vizualizácia progresu a vývoja hodnôt v čase</div>
+    </a>
 
-    <div class="stats-mini-card">
-        <div class="stats-mini-card-top">
-            <div class="stats-mini-card-label">Tréning</div>
-            <div class="stats-mini-card-icon">
+    <a asp-controller="Workout" asp-action="Index" class="home-feature-card">
+        <div class="home-feature-top">
+            <div class="home-feature-label">Môj tréning</div>
+            <div class="home-feature-icon">
                 <i class="bi bi-activity"></i>
             </div>
         </div>
-        <div class="stats-mini-card-value">Výkon</div>
-        <div class="stats-mini-card-sub">Sleduj svoje tréningy a objem</div>
-    </div>
-</div>
+        <div class="home-feature-value">Výkon</div>
+        <div class="home-feature-sub">Sleduj svoje tréningy, objem a aktivitu</div>
+    </a>
 
-<div class="card-custom mt-3">
-    <h3 class="mb-3">Čo môžeš robiť v aplikácii?</h3>
-
-    <div class="row g-3">
-        <div class="col-md-6">
-            <ul class="home-list">
-                <li>📊 sledovať kalorický príjem a makroživiny</li>
-                <li>🍽️ zapisovať jedlá do denníka</li>
-                <li>📈 analyzovať svoj progres v čase</li>
-            </ul>
+    <a asp-controller="Education" asp-action="Index" class="home-feature-card">
+        <div class="home-feature-top">
+            <div class="home-feature-label">Tutoriály</div>
+            <div class="home-feature-icon">
+                <i class="bi bi-book"></i>
+            </div>
         </div>
-
-        <div class="col-md-6">
-            <ul class="home-list">
-                <li>🏋️ zaznamenávať tréningy</li>
-                <li>🤝 pridávať si priateľov</li>
-                <li>🔒 kontrolovať viditeľnosť svojho profilu</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="mt-4">
-        <a asp-controller="Diary" asp-action="Index" class="btn btn-main friend-btn">
-            Začať s denníkom
-        </a>
-
-        <a asp-controller="Stats" asp-action="Index" class="btn btn-outline-main friend-btn ms-2">
-            Zobraziť štatistiky
-        </a>
-    </div>
+        <div class="home-feature-value">Návody</div>
+        <div class="home-feature-sub">Získaj užitočné informácie o strave a cvičení</div>
+    </a>
 </div>
