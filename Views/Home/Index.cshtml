@@ -2,64 +2,77 @@
     ViewData["Title"] = "Domov";
 }
 
-<div class="stats-hero card-custom mb-4">
-    <div class="stats-hero-text">
-        <h1>Vitajte v aplikácii Healthy Start</h1>
-        <p>
-            Začni budovať zdravé návyky jednoducho a prehľadne.
-            Sleduj svoj jedálniček, analyzuj makroživiny a maj svoj tréning pod kontrolou.
-        </p>
-    </div>
-
-    <div class="stats-hero-visual">
-        <div class="stats-hero-icon">
+<div class="home-hero home-hero-full">
+    <div class="home-hero-content">
+        <span class="home-badge">
             <i class="bi bi-heart-pulse-fill"></i>
-        </div>
+            Healthy Start
+        </span>
+
+        <h1>Začni budovať zdravé návyky jednoducho a prehľadne</h1>
+
+        <p>
+            Sleduj svoj jedálniček, analyzuj makroživiny, zapisuj si tréningy
+            a získaj užitočné informácie o strave a cvičení na jednom mieste.
+        </p>
+
     </div>
 </div>
 
-<div class="home-feature-grid">
-    <a asp-controller="Diary" asp-action="Index" class="home-feature-card">
-        <div class="home-feature-top">
-            <div class="home-feature-label">Denník</div>
-            <div class="home-feature-icon">
+<div class="home-sections home-sections-full">
+    <a asp-controller="Diary" asp-action="Index" class="home-section-card card-diary">
+        <div class="home-section-overlay"></div>
+        <div class="home-section-content">
+            <div class="home-section-icon">
                 <i class="bi bi-journal-text"></i>
             </div>
+            <div class="home-section-label">Denník</div>
+            <div class="home-section-title">Strava</div>
+            <div class="home-section-text">
+                Zaznamenávaj jedlá a sleduj kalórie a makroživiny.
+            </div>
         </div>
-        <div class="home-feature-value">Strava</div>
-        <div class="home-feature-sub">Zaznamenávaj jedlá a sleduj kalórie a makroživiny</div>
     </a>
 
-    <a asp-controller="Stats" asp-action="Index" class="home-feature-card">
-        <div class="home-feature-top">
-            <div class="home-feature-label">Štatistiky</div>
-            <div class="home-feature-icon">
+    <a asp-controller="Stats" asp-action="Index" class="home-section-card card-stats">
+        <div class="home-section-overlay"></div>
+        <div class="home-section-content">
+            <div class="home-section-icon">
                 <i class="bi bi-bar-chart-line"></i>
             </div>
+            <div class="home-section-label">Štatistiky</div>
+            <div class="home-section-title">Prehľad</div>
+            <div class="home-section-text">
+                Vizualizácia progresu a vývoja hodnôt v čase.
+            </div>
         </div>
-        <div class="home-feature-value">Prehľad</div>
-        <div class="home-feature-sub">Vizualizácia progresu a vývoja hodnôt v čase</div>
     </a>
 
-    <a asp-controller="Workout" asp-action="Index" class="home-feature-card">
-        <div class="home-feature-top">
-            <div class="home-feature-label">Môj tréning</div>
-            <div class="home-feature-icon">
+    <a asp-controller="Workout" asp-action="Index" class="home-section-card card-workout">
+        <div class="home-section-overlay"></div>
+        <div class="home-section-content">
+            <div class="home-section-icon">
                 <i class="bi bi-activity"></i>
             </div>
-        </div>
-        <div class="home-feature-value">Výkon</div>
-        <div class="home-feature-sub">Sleduj svoje tréningy, objem a aktivitu</div>
-    </a>
-
-    <a asp-controller="Education" asp-action="Index" class="home-feature-card">
-        <div class="home-feature-top">
-            <div class="home-feature-label">Tutoriály</div>
-            <div class="home-feature-icon">
-                <i class="bi bi-book"></i>
+            <div class="home-section-label">Môj tréning</div>
+            <div class="home-section-title">Výkon</div>
+            <div class="home-section-text">
+                Sleduj svoje tréningy, objem a aktivitu.
             </div>
         </div>
-        <div class="home-feature-value">Návody</div>
-        <div class="home-feature-sub">Získaj užitočné informácie o strave a cvičení</div>
+    </a>
+
+    <a asp-controller="Education" asp-action="Index" class="home-section-card card-education">
+        <div class="home-section-overlay"></div>
+        <div class="home-section-content">
+            <div class="home-section-icon">
+                <i class="bi bi-book"></i>
+            </div>
+            <div class="home-section-label">Tutoriály</div>
+            <div class="home-section-title">Návody</div>
+            <div class="home-section-text">
+                Získaj užitočné informácie o strave a cvičení.
+            </div>
+        </div>
     </a>
 </div>

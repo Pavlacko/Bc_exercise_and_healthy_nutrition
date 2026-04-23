@@ -89,7 +89,7 @@
                     </div>
                 </div>
 
-                <a asp-controller="User" asp-action="ChangePassword" class="btn btn-sm btn-outline-main">
+                <a asp-controller="User" asp-action="ChangePassword" class="btn btn-sm btn-main">
                     Zmeniť heslo
                 </a>
             </div>
@@ -217,7 +217,7 @@
 
             <form asp-controller="User" asp-action="DeleteAvatar" method="post" class="mt-2">
                 @Html.AntiForgeryToken()
-                <button type="submit" class="btn btn-outline-danger">Zmazať fotku</button>
+                <button type="submit" class="btn btn-danger">Zmazať fotku</button>
             </form>
         </div>
     </div>
