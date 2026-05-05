@@ -8,7 +8,6 @@ namespace Bc_exercise_and_healthy_nutrition.Controllers
     [RequireLogin]
     public class HomeController : Controller
     {
-        //ILogger<HomeController> slúži na logovanie udalostí a chýb v rámci HomeControllera a je dodaný frameworkom pomocou dependency injection.
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)

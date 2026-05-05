@@ -68,7 +68,6 @@ body {
     margin: 14px 0;
 }
 
-/* Sidebar */
 .sidebar {
     position: fixed;
     top: 0;
@@ -152,7 +151,6 @@ body {
         color: var(--green-900) !important;
     }
 
-/* Cards */
 .card-custom {
     background: var(--card);
     border: none;
@@ -168,7 +166,6 @@ body {
         transform: translateY(-1px);
     }
 
-/* Forms */
 .form-container {
     max-width: 600px;
     background: #fff;
@@ -188,7 +185,6 @@ body {
     box-shadow: 0 0 0 0.15rem rgba(53, 105, 76, 0.2);
 }
 
-/* Buttons */
 .btn {
     border-radius: 999px !important;
     font-weight: 700;
@@ -278,7 +274,6 @@ body {
         filter: brightness(0.98);
     }
 
-/* Alerts */
 .alert-custom {
     border-radius: var(--radius-sm);
     padding: 12px 16px;
@@ -298,7 +293,6 @@ body {
     color: #7a1a1a;
 }
 
-/* Tables */
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -363,7 +357,6 @@ body {
         border-radius: 10px;
     }
 
-/* Generic blocks */
 .kv {
     background: #f6f9f6;
     border: 1px solid #e7efe7;
@@ -392,7 +385,6 @@ body {
         color: var(--green-900);
     }
 
-/* Macro bars */
 .macro-block {
     margin-top: 14px;
 }
@@ -455,7 +447,6 @@ body {
             background: var(--none) !important;
         }
 
-/* Avatars / profile */
 .avatar-lg {
     width: 96px;
     height: 96px;
@@ -522,7 +513,6 @@ body {
         max-width: 100%;
     }
 
-/* Education */
 .education-page {
     padding: 10px 0 32px 0;
 }
@@ -604,7 +594,6 @@ body {
         line-height: 1.4;
     }
 
-/* Exercise library */
 .exercise-library-page {
     width: 100%;
     padding: 32px 28px 56px;
@@ -750,7 +739,6 @@ body {
     transform: translateX(4px);
 }
 
-/* Exercise details */
 .exercise-details-page {
     width: 100%;
     max-width: 1100px;
@@ -855,7 +843,6 @@ body {
     word-break: break-word;
 }
 
-/* Calculator overview */
 .calculator-card {
     text-decoration: none;
     color: inherit;
@@ -1061,7 +1048,6 @@ body {
         background: #dcecdf;
     }
 
-/* Nutrition / training info pages */
 .nutrition-page,
 .training-page {
     max-width: 1000px;
@@ -1117,7 +1103,6 @@ body {
     height: 100%;
 }
 
-/* Workout */
 .workout-note-box,
 .workout-note-stats {
     background: var(--card-soft);
@@ -1158,7 +1143,6 @@ body {
     padding: 8px 0;
 }
 
-/* Stats */
 .stats-hero {
     display: grid;
     grid-template-columns: 1.3fr 0.7fr;
@@ -1301,7 +1285,6 @@ body {
     min-height: 100%;
 }
 
-/* Friends */
 .friend-row {
     display: flex;
     justify-content: space-between;
@@ -1365,7 +1348,6 @@ body {
     border: 1px solid #dbe5dd;
 }
 
-/* Home */
 .home-list {
     list-style: none;
     padding-left: 0;
@@ -1520,7 +1502,6 @@ body {
     background-image: url('/images/home/education.jpg');
 }
 
-/* Responsive */
 @media (min-width: 992px) {
     .profile-photo-card {
         position: sticky;
